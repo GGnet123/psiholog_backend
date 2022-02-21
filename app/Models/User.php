@@ -19,9 +19,22 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
+        'login',
         'password',
+        'type_id',
+        'lang',
+        'date_b',
+        'avatar_id',
+        'note',
+        'price',
+        'notify_all',
+        'notify_meditation',
+        'notify_app'
     ];
+
+    CONST ADMIN_TYPE = 1;
+    CONST DOCTOR_TYPE = 2;
+    CONST USER_TYPE = 3;
 
     /**
      * The attributes that should be hidden for serialization.
@@ -40,5 +53,19 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        ''
     ];
+
+
+    function isAdmin():bool {
+        return $this->type_id == STATIC::ADMIN_TYPE;
+    }
+
+    function isDoctor():bool {
+        return $this->type_id == STATIC::DOCTOR_TYPE;
+    }
+
+    function isUser():bool {
+        return $this->type_id == STATIC::USER_TYPE;
+    }
 }
