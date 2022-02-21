@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Services\UploaderFile;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -37,6 +38,9 @@ class User extends Authenticatable
     CONST USER_TYPE = 3;
     CONST NOTE_FINISHED_TYPE = 4;
 
+    CONST EN_LANG = 'en';
+    const RU_LANG = 'ru';
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -53,7 +57,12 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime'
+        'email_verified_at' => 'datetime',
+        'price' => 'integer',
+        'notify_all' => 'boolean',
+        'notify_meditation' => 'boolean',
+        'notify_app' => 'boolean',
+        'date_b' => 'date'
     ];
 
 
@@ -71,5 +80,9 @@ class User extends Authenticatable
 
     function isNoteFinishRegistration():bool {
         return $this->type_id == STATIC::NOTE_FINISHED_TYPE;
+    }
+
+    function relAvatar() {
+        return $this->belongsTo(UploaderFile::class, 'avatar_id');
     }
 }

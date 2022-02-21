@@ -35,6 +35,7 @@ class Step2Action extends AbstractAction {
         $user->login = $this->data['login'];
         $user->password = Hash::make($this->data['password']);
         $user->name = '';
+        $user->lang = User::EN_LANG;
         $user->save();
 
         Auth::login($user);

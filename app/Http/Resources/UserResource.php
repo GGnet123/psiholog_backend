@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\Services\UploaderFileResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserResource extends JsonResource
@@ -46,7 +47,7 @@ class UserResource extends JsonResource
             'login' => $this->login,
             'lang' => $this->lang,
             'date_b' => $this->date_b,
-            'avatar_id' => $this->avatar_id,
+            'avatar' => ($this->relAvatar ? new UploaderFileResource($this->relAvatar) : null),
             'note' => $this->note,
             'price' => $this->price,
             'notify_all' => $this->notify_all,
@@ -62,7 +63,7 @@ class UserResource extends JsonResource
             'name' => $this->name,
             'login' => $this->login,
             'lang' => $this->lang,
-            'avatar_id' => $this->avatar_id,
+            'avatar' => ($this->relAvatar ? new UploaderFileResource($this->relAvatar) : null),
             'notify_all' => $this->notify_all,
             'notify_meditation' => $this->notify_meditation,
             'notify_app' => $this->notify_app,

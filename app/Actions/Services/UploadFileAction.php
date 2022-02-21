@@ -9,7 +9,7 @@ class UploadFileAction extends AbstractAction {
     protected function do(){
         $file = $this->request->file('upload_file');
 
-        $file_name = pathinfo($file>getClientOriginalName(), PATHINFO_FILENAME);
+        $file_name = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
         $file_name = Str::slug($file_name);
 
         $file_path = $file->storeAs(
