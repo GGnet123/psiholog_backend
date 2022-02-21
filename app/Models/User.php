@@ -35,6 +35,7 @@ class User extends Authenticatable
     CONST ADMIN_TYPE = 1;
     CONST DOCTOR_TYPE = 2;
     CONST USER_TYPE = 3;
+    CONST NOTE_FINISHED_TYPE = 4;
 
     /**
      * The attributes that should be hidden for serialization.
@@ -52,8 +53,7 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
-        ''
+        'email_verified_at' => 'datetime'
     ];
 
 
@@ -67,5 +67,9 @@ class User extends Authenticatable
 
     function isUser():bool {
         return $this->type_id == STATIC::USER_TYPE;
+    }
+
+    function isNoteFinishRegistration():bool {
+        return $this->type_id == STATIC::NOTE_FINISHED_TYPE;
     }
 }

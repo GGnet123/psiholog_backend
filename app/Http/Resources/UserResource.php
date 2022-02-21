@@ -20,10 +20,22 @@ class UserResource extends JsonResource
         if ($this->isUser())
             return $this->userResponse($request);
 
+        if ($this->isNoteFinishRegistration())
+            return $this->noteFinishResponse($request);
+
         return  [
             'id' => $this->id,
             'name' => $this->name,
-            'login' => $this->login
+            'login' => $this->login,
+            'type' => 'admin'
+        ];
+    }
+
+    private function noteFinishResponse($request){
+        return  [
+            'id' => $this->id,
+            'login' => $this->login,
+            'type' => 'note_finished'
         ];
     }
 
@@ -39,7 +51,22 @@ class UserResource extends JsonResource
             'price' => $this->price,
             'notify_all' => $this->notify_all,
             'notify_meditation' => $this->notify_meditation,
-            'notify_app' => $this->notify_app
+            'notify_app' => $this->notify_app,
+            'type' => 'doctor'
+        ];
+    }
+
+    private function userResponse($request){
+        return  [
+            'id' => $this->id,
+            'name' => $this->name,
+            'login' => $this->login,
+            'lang' => $this->lang,
+            'avatar_id' => $this->avatar_id,
+            'notify_all' => $this->notify_all,
+            'notify_meditation' => $this->notify_meditation,
+            'notify_app' => $this->notify_app,
+            'type' => 'user'
         ];
     }
 }

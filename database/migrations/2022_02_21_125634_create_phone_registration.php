@@ -13,14 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('uploaded_file', function (Blueprint $table) {
+        Schema::create('phone_registration', function (Blueprint $table) {
             $table->id();
-            $table->string('path')->nullable();
-            $table->string('filesize')->nullable();
-            $table->string('filename')->nullable();
-            $table->string('extension')->nullable();
-            $table->string('title')->nullable();
-            $table->integer('type_id')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('pin')->nullable();
+            $table->boolean('accepted')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('uploaded_file');
+        Schema::dropIfExists('phone_registration');
     }
 };

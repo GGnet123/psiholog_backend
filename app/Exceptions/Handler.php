@@ -13,7 +13,7 @@ class Handler extends ExceptionHandler
      * @var array<int, class-string<Throwable>>
      */
     protected $dontReport = [
-        //
+        CustomException::class
     ];
 
     /**
@@ -38,4 +38,25 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+
+    public function render($request, $e)
+    {
+        if ($request->is('api/*') && $e instanceof  CustomException){
+            return $this->handleApiException($request, $e);
+        }
+
+
+        return parent::render($request, $e);
+    }
+
+    private function handleApiException($request, $e){
+        return response()->json([
+            'success' => false,
+            'status_code' => $e->getCode(),
+            'message' => $e->getMessage(),
+            'exception_class' => (new \ReflectionClass($e))->getShortName()
+        ], $e->HTTP_CODE);
+    }
+
 }
