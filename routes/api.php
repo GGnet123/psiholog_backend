@@ -12,6 +12,13 @@ Route::group(['prefix' => 'v1'], function () {
         Route::get('logout', [\App\Http\Controllers\v1\AuthController::class, 'logout']);
         Route::get('user', [\App\Http\Controllers\v1\AuthController::class, 'user']);
 
+        Route::group(['prefix' => 'main'], function () {
+            Route::group(['prefix' => 'lib-specialization'], function () {
+                Route::get('/', [\App\Http\Controllers\v1\Main\LibSpecializationController::class, 'index']);
+                Route::get('{item}', [\App\Http\Controllers\v1\Main\LibSpecializationController::class, 'item']);
+            });
+        });
+
         Route::group(['prefix' => 'services'], function () {
             Route::group(['prefix' => 'uploader'], function () {
                 Route::post('music', [\App\Http\Controllers\v1\Services\UploaderFileController::class, 'music']);
