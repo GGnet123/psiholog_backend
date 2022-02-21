@@ -11,7 +11,7 @@ class LibSpecializationController extends Controller
 {
     function index(){
         return LibSpecializationResource::collection(
-            LibSpecialization::latest()->paginate(12)
+            LibSpecialization::latest()->get()
         );
     }
 

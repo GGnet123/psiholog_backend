@@ -10,7 +10,6 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::get('logout', [\App\Http\Controllers\v1\AuthController::class, 'logout']);
-        Route::get('user', [\App\Http\Controllers\v1\AuthController::class, 'user']);
 
         Route::group(['prefix' => 'main'], function () {
             Route::group(['prefix' => 'lib-specialization'], function () {
@@ -26,6 +25,20 @@ Route::group(['prefix' => 'v1'], function () {
                 Route::post('image', [\App\Http\Controllers\v1\Services\UploaderFileController::class, 'image']);
                 Route::delete('{file}', [\App\Http\Controllers\v1\Services\UploaderFileController::class, 'destroy']);
             });
+        });
+
+        Route::group(['prefix' => 'profile'], function(){
+            Route::group(['prefix' => 'doctor'], function () {
+                Route::get('data', [\App\Http\Controllers\v1\Profile\Doctor\DoctorProfileController::class, 'data']);
+                Route::post('data', [\App\Http\Controllers\v1\Profile\Doctor\DoctorProfileController::class, 'save']);
+
+
+                Route::group(['prefix' => 'specialization'], function () {
+                    Route::get('/', [\App\Http\Controllers\v1\Profile\Doctor\DoctorSpecializationController::class, 'index']);
+                    Route::post('/', [\App\Http\Controllers\v1\Profile\Doctor\DoctorSpecializationController::class, 'manyAdd']);
+                });
+            });
+
         });
     });
 

@@ -23,10 +23,6 @@ class AuthController extends Controller
         ];
     }
 
-    function user(Request $request){
-        return new UserResource($request->user());
-    }
-
     function logout(Request $request){
         $request->user()->tokens()->delete();
 

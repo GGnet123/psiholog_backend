@@ -28,6 +28,7 @@ services:
       SERVICE_NAME: mysql
     volumes:
       - ./docker/mysql:/docker-entrypoint-initdb.d
+      - data-volume:/var/lib/mysql
     ports:
       - 3306:3306
     networks:
@@ -46,3 +47,5 @@ services:
 networks:
   app:
     driver: bridge
+volumes:
+  data-volume:

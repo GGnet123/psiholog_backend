@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('user_id')->nullable();
             $table->bigInteger('lib_specialization_id')->nullable();
-            $table->string('color')->nullable();
             $table->timestamps();
         });
     }

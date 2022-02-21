@@ -20,7 +20,8 @@ class LibSpecializationFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'name_en' => $this->faker->name().'_en'
+            'name_en' => $this->faker->name().'_en',
+            'color' => $this->faker->rgbColor
         ];
     }
 }
