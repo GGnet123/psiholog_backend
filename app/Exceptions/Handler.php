@@ -50,7 +50,8 @@ class Handler extends ExceptionHandler
         return parent::render($request, $e);
     }
 
-    private function handleApiException($request, $e){
+    private function handleApiException($request, $e): \Illuminate\Http\JsonResponse
+    {
         return response()->json([
             'success' => false,
             'status_code' => $e->getCode(),

@@ -24,7 +24,7 @@ return new class extends Migration
             $table->date('date_b')->nullable();
             $table->bigInteger('avatar_id')->nullable();
             $table->longText('note')->nullable();
-            $table->integer('price')->default(null);
+            $table->integer('price')->nullable();
             $table->boolean('notify_all')->default(true);
             $table->boolean('notify_meditation')->default(true);
             $table->boolean('notify_app')->default(true);

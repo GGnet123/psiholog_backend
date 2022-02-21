@@ -26,9 +26,12 @@ class RegistrationController extends Controller
     }
 
     function step2(Step2Request $request){
-        $model = (new Step2Action(null, $request->validated()))->run();
+        $user = (new Step2Action(null, $request->validated()))->run();
 
-        return new UserResource($model);
+        return [
+            'data' => new UserResource($user),
+            'token' =>  $user->createToken('main')->plainTextToken
+        ];
     }
 
     function step3(){
