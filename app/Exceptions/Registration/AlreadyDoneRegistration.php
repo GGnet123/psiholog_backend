@@ -1,8 +1,10 @@
 <?php
 namespace App\Exceptions\Registration;
 
-class  AlreadyDoneRegistration extends \Exception {
+use App\Exceptions\CustomException;
+
+class  AlreadyDoneRegistration extends CustomException {
     protected $message = 'this phone already finish registration';
-    protected $code = 400;
+    protected $code = 01;
 
 }

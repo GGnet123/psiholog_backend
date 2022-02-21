@@ -5,6 +5,6 @@ use App\Exceptions\CustomException;
 
 class  NoteFinishedRegistrationException extends CustomException {
     protected $message = 'this phone note finished registration';
-    public $code = 01;
+    protected $code = 03;
 
 }

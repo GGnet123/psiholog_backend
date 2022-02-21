@@ -1,7 +1,10 @@
 <?php
 namespace App\Exceptions\Registration;
 
-class  WrongPinException extends \Exception {
+use App\Exceptions\CustomException;
+
+class  WrongPinException extends CustomException {
     protected $message = 'wrong pin for done registration';
+    protected $code = 05;
 
 }
