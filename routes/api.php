@@ -10,6 +10,17 @@ Route::group(['prefix' => 'v1'], function () {
         Route::get('logout', [\App\Http\Controllers\v1\AuthController::class, 'logout']);
 
         Route::group(['prefix' => 'main'], function () {
+            Route::group(['prefix' => 'lib-music'], function () {
+                Route::get('/', [\App\Http\Controllers\v1\Main\LibMusicGalaryController::class, 'index']);
+                Route::get('{item}', [\App\Http\Controllers\v1\Main\LibMusicGalaryController::class, 'item']);
+            });
+
+            Route::group(['prefix' => 'lib-video'], function () {
+                Route::get('/', [\App\Http\Controllers\v1\Main\LibVideoGalaryController::class, 'index']);
+                Route::get('{item}', [\App\Http\Controllers\v1\Main\LibVideoGalaryController::class, 'item']);
+            });
+
+
             Route::group(['prefix' => 'support'], function () {
                 Route::get('/', [\App\Http\Controllers\v1\Main\SupportController::class, 'index']);
                 Route::get('{item}', [\App\Http\Controllers\v1\Main\SupportController::class, 'item']);
