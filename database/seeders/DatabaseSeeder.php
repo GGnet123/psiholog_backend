@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Database\Seeders\Main\FaqSeed;
 use Database\Seeders\Main\LibSpecialiationSeed;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -16,7 +17,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            LibSpecialiationSeed::class
+            LibSpecialiationSeed::class,
+            FaqSeed::class
         ]);
     }
 }
