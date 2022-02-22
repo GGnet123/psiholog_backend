@@ -6,6 +6,7 @@ use Database\Seeders\Main\FaqSeed;
 use Database\Seeders\Main\LibMusicSeed;
 use Database\Seeders\Main\LibSpecialiationSeed;
 use Database\Seeders\Main\LibVideoSeed;
+use Database\Seeders\Main\MusicGalarySeed;
 use Database\Seeders\Main\TermOfUseSeed;
 use Database\Seeders\Main\TestVideoAndMusicSampleSeed;
 use Illuminate\Database\Seeder;
@@ -25,7 +26,8 @@ class DatabaseSeeder extends Seeder
             TermOfUseSeed::class,
             LibMusicSeed::class,
             LibVideoSeed::class,
-            TestVideoAndMusicSampleSeed::class
+            TestVideoAndMusicSampleSeed::class,
+            MusicGalarySeed::class
         ]);
     }
 }
