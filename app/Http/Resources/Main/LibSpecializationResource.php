@@ -12,6 +12,7 @@ class LibSpecializationResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->trans('name'),
+            'color' => $this->color,
         ];
     }
 }
