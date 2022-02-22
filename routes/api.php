@@ -31,12 +31,19 @@ Route::group(['prefix' => 'v1'], function () {
             Route::group(['prefix' => 'doctor'], function () {
                 Route::get('data', [\App\Http\Controllers\v1\Profile\Doctor\DoctorProfileController::class, 'data']);
                 Route::post('data', [\App\Http\Controllers\v1\Profile\Doctor\DoctorProfileController::class, 'save']);
+                Route::post('change-lang', [\App\Http\Controllers\v1\Profile\Doctor\DoctorProfileController::class, 'lang']);
 
 
                 Route::group(['prefix' => 'specialization'], function () {
                     Route::get('/', [\App\Http\Controllers\v1\Profile\Doctor\DoctorSpecializationController::class, 'index']);
                     Route::post('/', [\App\Http\Controllers\v1\Profile\Doctor\DoctorSpecializationController::class, 'manyAdd']);
                 });
+            });
+
+            Route::group(['prefix' => 'user'], function () {
+                Route::get('data', [\App\Http\Controllers\v1\Profile\User\UserProfileController::class, 'data']);
+                Route::post('data', [\App\Http\Controllers\v1\Profile\User\UserProfileController::class, 'save']);
+                Route::post('change-lang', [\App\Http\Controllers\v1\Profile\User\UserProfileController::class, 'lang']);
             });
 
         });
