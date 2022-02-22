@@ -10,6 +10,11 @@ Route::group(['prefix' => 'v1'], function () {
         Route::get('logout', [\App\Http\Controllers\v1\AuthController::class, 'logout']);
 
         Route::group(['prefix' => 'main'], function () {
+            Route::group(['prefix' => 'galary-video'], function () {
+                Route::get('/', [\App\Http\Controllers\v1\Main\VideoGalaryController::class, 'index']);
+                Route::get('{item}', [\App\Http\Controllers\v1\Main\VideoGalaryController::class, 'item']);
+            });
+
             Route::group(['prefix' => 'galary-music'], function () {
                 Route::get('/', [\App\Http\Controllers\v1\Main\MusicGalaryController::class, 'index']);
                 Route::get('{item}', [\App\Http\Controllers\v1\Main\MusicGalaryController::class, 'item']);
