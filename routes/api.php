@@ -3,8 +3,6 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-
-
 Route::group(['prefix' => 'v1'], function () {
     Route::post('login', [\App\Http\Controllers\v1\AuthController::class, 'login']);
 
@@ -12,6 +10,11 @@ Route::group(['prefix' => 'v1'], function () {
         Route::get('logout', [\App\Http\Controllers\v1\AuthController::class, 'logout']);
 
         Route::group(['prefix' => 'main'], function () {
+            Route::group(['prefix' => 'support'], function () {
+                Route::get('/', [\App\Http\Controllers\v1\Main\SupportController::class, 'index']);
+                Route::get('{item}', [\App\Http\Controllers\v1\Main\SupportController::class, 'item']);
+                Route::post('/', [\App\Http\Controllers\v1\Main\SupportController::class, 'save']);
+            });
 
             Route::group(['prefix' => 'faq'], function () {
                 Route::get('/', [\App\Http\Controllers\v1\Main\FaqController::class, 'index']);
@@ -38,6 +41,8 @@ Route::group(['prefix' => 'v1'], function () {
         });
 
         Route::group(['prefix' => 'profile'], function(){
+
+
 
             Route::group(['prefix' => 'doctor'], function () {
                 Route::get('data', [\App\Http\Controllers\v1\Profile\Doctor\DoctorProfileController::class, 'data']);
