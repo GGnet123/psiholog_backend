@@ -10,6 +10,11 @@ Route::group(['prefix' => 'v1'], function () {
         Route::get('logout', [\App\Http\Controllers\v1\AuthController::class, 'logout']);
 
         Route::group(['prefix' => 'main'], function () {
+            Route::group(['prefix' => 'galary-music'], function () {
+                Route::get('/', [\App\Http\Controllers\v1\Main\MusicGalaryController::class, 'index']);
+                Route::get('{item}', [\App\Http\Controllers\v1\Main\MusicGalaryController::class, 'item']);
+            });
+
             Route::group(['prefix' => 'lib-music'], function () {
                 Route::get('/', [\App\Http\Controllers\v1\Main\LibMusicGalaryController::class, 'index']);
                 Route::get('{item}', [\App\Http\Controllers\v1\Main\LibMusicGalaryController::class, 'item']);
@@ -52,9 +57,6 @@ Route::group(['prefix' => 'v1'], function () {
         });
 
         Route::group(['prefix' => 'profile'], function(){
-
-
-
             Route::group(['prefix' => 'doctor'], function () {
                 Route::get('data', [\App\Http\Controllers\v1\Profile\Doctor\DoctorProfileController::class, 'data']);
                 Route::post('data', [\App\Http\Controllers\v1\Profile\Doctor\DoctorProfileController::class, 'save']);

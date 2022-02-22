@@ -2,7 +2,6 @@
 
 namespace App\Models\Main;
 
-use App\Models\Profile\UserSpecialization;
 use App\Models\Services\UploaderFile;
 use App\Traits\TranslateModelTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
