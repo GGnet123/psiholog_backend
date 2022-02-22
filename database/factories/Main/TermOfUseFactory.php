@@ -2,12 +2,12 @@
 
 namespace Database\Factories\Main;
 
-use App\Models\Main\Faq;
+use App\Models\Main\TermOfUse;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class FaqFactory extends Factory
+class TermOfUseFactory extends Factory
 {
-    protected $model = Faq::class;
+    protected $model = TermOfUse::class;
     /**
      * Define the model's default state.
      *
@@ -16,8 +16,6 @@ class FaqFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
-            'name_en' => $this->faker->name().'_en',
             'note' => $this->faker->text,
             'note_en' => 'EN__'.$this->faker->text.'_en'
         ];

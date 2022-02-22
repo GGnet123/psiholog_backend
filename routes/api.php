@@ -22,6 +22,10 @@ Route::group(['prefix' => 'v1'], function () {
                 Route::get('/', [\App\Http\Controllers\v1\Main\LibSpecializationController::class, 'index']);
                 Route::get('{item}', [\App\Http\Controllers\v1\Main\LibSpecializationController::class, 'item']);
             });
+
+            Route::group(['prefix' => 'term-of-use'], function () {
+                Route::get('/', [\App\Http\Controllers\v1\Main\TermOfUseController::class, 'index']);
+            });
         });
 
         Route::group(['prefix' => 'services'], function () {
