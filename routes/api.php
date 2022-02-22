@@ -44,6 +44,12 @@ Route::group(['prefix' => 'v1'], function () {
                     Route::post('/', [\App\Http\Controllers\v1\Profile\Doctor\DoctorVideoController::class, 'save']);
                     Route::delete('{user_video}', [\App\Http\Controllers\v1\Profile\Doctor\DoctorVideoController::class, 'destroy']);
                 });
+
+                Route::group(['prefix' => 'certificat'], function () {
+                    Route::get('/', [\App\Http\Controllers\v1\Profile\Doctor\DoctorCertificatController::class, 'index']);
+                    Route::post('/', [\App\Http\Controllers\v1\Profile\Doctor\DoctorCertificatController::class, 'save']);
+                    Route::delete('{user_certificat}', [\App\Http\Controllers\v1\Profile\Doctor\DoctorCertificatController::class, 'destroy']);
+                });
             });
 
             Route::group(['prefix' => 'user'], function () {
