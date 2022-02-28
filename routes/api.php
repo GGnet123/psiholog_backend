@@ -62,7 +62,7 @@ Route::group(['prefix' => 'v1'], function () {
         });
 
         Route::group(['prefix' => 'profile'], function(){
-            Route::group(['prefix' => 'doctor'], function () {
+            Route::group(['prefix' => 'doctor', 'middleware' => ['auth_doctor']], function () {
                 Route::get('data', [\App\Http\Controllers\v1\Profile\Doctor\DoctorProfileController::class, 'data']);
                 Route::post('data', [\App\Http\Controllers\v1\Profile\Doctor\DoctorProfileController::class, 'save']);
                 Route::post('change-lang', [\App\Http\Controllers\v1\Profile\Doctor\DoctorProfileController::class, 'lang']);
@@ -86,7 +86,7 @@ Route::group(['prefix' => 'v1'], function () {
                 });
             });
 
-            Route::group(['prefix' => 'user'], function () {
+            Route::group(['prefix' => 'user', 'middleware' => ['auth_user']], function () {
                 Route::get('data', [\App\Http\Controllers\v1\Profile\User\UserProfileController::class, 'data']);
                 Route::post('data', [\App\Http\Controllers\v1\Profile\User\UserProfileController::class, 'save']);
                 Route::post('change-lang', [\App\Http\Controllers\v1\Profile\User\UserProfileController::class, 'lang']);
