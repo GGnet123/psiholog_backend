@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\AuthAdmin;
 use App\Http\Middleware\AuthDoctorUser;
 use App\Http\Middleware\AuthSimpleUser;
 use App\Http\Middleware\ForceJsonResponse;
@@ -68,6 +69,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'auth_user' => AuthSimpleUser::class,
-        'auth_doctor' => AuthDoctorUser::class
+        'auth_doctor' => AuthDoctorUser::class,
+        'auth_admin' => AuthAdmin::class,
     ];
 }

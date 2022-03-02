@@ -14,7 +14,6 @@ Route::group(['prefix' => 'v1'], function () {
         Route::group(['middleware' => ['auth:sanctum']], function () {
             Route::post('step3-doctor', [\App\Http\Controllers\v1\RegistrationController::class, 'step3Doctor']);
             Route::post('step3-user', [\App\Http\Controllers\v1\RegistrationController::class, 'step3User']);
-
         });
     });
 
