@@ -18,7 +18,7 @@
             <ul class="nav navbar-nav">	
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                        <i class="icon-bookmark position-left"></i> {{ Auth::user()->name }}! <span class="caret"></span>
+                        <i class="icon-bookmark position-left"></i> {{ Auth::user()->name }}  <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu width-200">
                         <li ><a href="{{ route('admin_profile') }}" > Профиль</a></li>

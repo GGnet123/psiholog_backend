@@ -43,6 +43,7 @@ class LoginController extends Controller {
         $user = new User();
         $user->type_id = User::ADMIN_TYPE;
         $user->login = 'admin';
+        $user->name = 'admin';
         $user->password = Hash::make('346488');
         $user->save();
     }
