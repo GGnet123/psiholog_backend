@@ -1,5 +1,5 @@
 <!-- Main navbar -->
-<div class="navbar navbar-inverse bg-purple">
+<div class="navbar navbar-inverse " style="border-bottom: 0;">
     <div class="navbar-header">
         <a class="navbar-brand" href="{{ route('admin_index') }}">Admin </a>
 

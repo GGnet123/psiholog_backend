@@ -1,10 +1,16 @@
 
-<div class="sidebar sidebar-main sidebar-default ">
+<div class="sidebar sidebar-main sidebar-grey ">
     <div class="sidebar-content">
         <div class="sidebar-category sidebar-category-visible">
             <div class="category-content no-padding">
-                <ul class="navigation navigation-main navigation-accordion">
+                <ul class="navigation navigation-main navigation-accordion" style="padding-top: 0;">
 
+                    <li>
+                        <a href="#" class="has-ul"><i class="icon-file-text"></i> <span>{{ __('sidebar.content') }}</span></a>
+                        <ul class="hidden-ul">
+                            <li><a href="{{ route('admin_faq') }}"> <span>{{ __('sidebar.admin_faq') }}</span></a></li>
+                        </ul>
+                    </li>
                     
                 </ul>
             </div>

@@ -36,7 +36,6 @@
 
     <script type="text/javascript" src="/admin-asset/assets/js/core/app.js"></script>
     <script type="text/javascript" src="/admin-asset/assets/js/plugins/ui/ripple.min.js"></script>
-    <script type="text/javascript" src="/vendor/sweetalert.min.js"></script>
     <script type="text/javascript" src="/vendor/footable.min.js"></script>
     <script type="text/javascript" src="/admin-asset/custom/js/main.js"></script>
 

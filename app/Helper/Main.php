@@ -1,36 +1,8 @@
 <?php
-function checkFilterParam($request){
-    $url = $request->url();
-    $ar_param = $request->all();
 
-    if (count($ar_param) > 0 && ($request->save_filter == 1 || $request->page > 0)){
-
-        $saved = str_replace("save_filter=1", "", $request->fullUrl());
-
-        session(['filter_'.$url => $saved]);
-        session()->save();
-
-        return false;
-    }
-
-    if ($request->clear_filter == 1){
-        session()->forget('filter_'.$url);
-        session()->save();
-
-        return redirect()->to($url);
-    }
-
-    if (count($ar_param) == 0 && session('filter_'.$url)) {
-        return redirect()->to(session('filter_'.$url));
-    }
-
-
-    return false;
-}
-
-function getSortLink($request, $attr){
+function getSortLink($ar_request, $attr){
     $ar = [];
-    foreach ($request->all() as $k => $v){
+    foreach ($ar_request as $k => $v){
         if (is_array($v))
             continue;
 
@@ -44,7 +16,7 @@ function getSortLink($request, $attr){
     }
     $ar['save_filter'] = 1;
 
-    if ($request->sort == $attr && $request->sort_by == 'desc'){
+    if (isset($ar_request['sort']) && isset($ar_request['sort_by']) && $ar_request['sort'] == $attr && $ar_request['sort_by'] == 'desc'){
         $ar['sort'] = $attr;
         $ar['sort_by'] = 'asc';
     }

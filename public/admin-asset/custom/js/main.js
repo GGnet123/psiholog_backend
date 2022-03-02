@@ -89,43 +89,6 @@ $(document).ready(function () {
 
     });
 
-    FilePond.setOptions({
-        server: {
-            url: '/admin/cabinet/page/main/filepond',
-            process: {
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            }
-        }
-    });
-
-    if ($('.js_file_uploader').length){
-        $('.js_file_uploader').filepond();
-    }
-
-
-    $( ".js_upload__single" ).each(function( index ) {
-        let file = $(this).val();
-        let attr_id = $(this).data('attr_id');
-        if (file == '' || file == null || file == undefined)
-            return;
-
-        $( " .js_upload_"+attr_id ).filepond('addFile', '/'+file);
-    });
-
-
-    $( ".js_upload__many" ).each(function( index ) {
-        let file = $(this).val();
-        let attr_id = $(this).data('attr_id');
-        if (file == '' || file == null || file == undefined)
-            return;
-
-        file = file.split('|')
-        file.forEach(function(f) {
-            $( " .js_upload_"+attr_id ).filepond('addFile', '/'+f);
-        });
-    });
 
 
 
