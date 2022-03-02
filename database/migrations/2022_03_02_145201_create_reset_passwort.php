@@ -13,8 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('reset_passwort', function (Blueprint $table) {
+        Schema::create('reset_password', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id')->nullable();
+            $table->integer('pin')->nullable();
+            $table->boolean('done')->default(false);
             $table->timestamps();
         });
     }

@@ -27,6 +27,8 @@ class Step1Action extends AbstractAction {
         $this->model->accepted = false;
         $this->model->save();
 
+        // TODO need add send sms pin to phone
+
         return $this->model;
     }
 }
