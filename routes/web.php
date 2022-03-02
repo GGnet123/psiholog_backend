@@ -17,5 +17,12 @@ Route::group(['prefix' => 'admin/login'], function () {
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () {
     Route::get('/', [\App\Http\Controllers\Admin\IndexController::class, 'index'])->name('admin_index');
+
+
+    Route::group(['prefix' => 'profile'], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\ProfileController::class, 'index'])->name('admin_profile');
+        Route::post('/', [\App\Http\Controllers\Admin\ProfileController::class, 'save'])->name('admin_profile_save');
+    });
+
     Route::get('logout', [\App\Http\Controllers\Admin\LoginController::class, 'logout'])->name('admin_logout');
 });

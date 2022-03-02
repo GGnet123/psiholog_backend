@@ -21,7 +21,7 @@
                         <i class="icon-bookmark position-left"></i> {{ Auth::user()->name }}! <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu width-200">
-                        <li ><a href="/" > Профиль</a></li>
+                        <li ><a href="{{ route('admin_profile') }}" > Профиль</a></li>
                         <li ><a href="{{ route('admin_logout')  }}" > Выйти</a></li>
                     </ul>
                 </li>

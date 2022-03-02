@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'asd')
+@section('title', 'Привет')
 
 @section('content')
     <!-- Post grid -->

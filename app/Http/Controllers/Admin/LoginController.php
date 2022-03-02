@@ -6,8 +6,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Modules\Entity\SysAuthLog\SysAuthLog;
-use Modules\Entity\SysUserType\SysUserType;
 
 class LoginController extends Controller {
     function index(){
