@@ -43,4 +43,5 @@ class DoctorProfileController extends Controller
 
         return new UserResource($model);
     }
+
 }
