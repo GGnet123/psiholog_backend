@@ -5,6 +5,7 @@ use App\Actions\AbstractAction;
 use App\Exceptions\Registration\AlreadyFinishRegistrationException;
 use App\Exceptions\Registration\AlreadyDoneRegistration;
 use App\Exceptions\Registration\NoteFoundedPhoneRegistrationException;
+use App\Exceptions\Registration\PhoneNoteFoundedInFirebaseException;
 use App\Exceptions\Registration\WrongPinException;
 use App\Models\PhoneRegistration;
 use App\Models\User;
@@ -24,7 +25,11 @@ class Step2Action extends AbstractAction {
         if (!$this->model)
             throw new NoteFoundedPhoneRegistrationException();
 
-        CheckSmsService::check($this->data['login'], $this->data['pin']);
+        $res_check_pin = CheckSmsService::check($this->data['login'], $this->data['pin']);
+        if ($res_check_pin !== true && $res_check_pin == 'wrong_number')
+            throw new PhoneNoteFoundedInFirebaseException();
+        else if ($res_check_pin !== true && $res_check_pin == 'wrong_pin')
+            throw new WrongPinException();
 
 
         $this->model->accepted = true;

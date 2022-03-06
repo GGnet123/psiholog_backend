@@ -14,10 +14,7 @@ class Step1Action extends  AbstractAction {
 
         $reset = ResetPassword::where('user_id', $user->id)->where('done', false)->first();
         if (!$reset)
-            $reset = ResetPassword::create(['user_id'=>$user->id, 'done' => false, 'pin' => 123456]);
-
-        // TODO need add send sms pin to phone
-
+            $reset = ResetPassword::create(['user_id'=>$user->id, 'done' => false]);
 
         return $user;
     }

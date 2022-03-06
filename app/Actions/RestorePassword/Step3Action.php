@@ -4,9 +4,11 @@ namespace  App\Actions\RestorePassword;
 use App\Actions\AbstractAction;
 use App\Exceptions\RestorePassword\NoteCreatedPinForRestorePasswordException;
 use App\Exceptions\RestorePassword\NoteFoundedLoginException;
+use App\Exceptions\RestorePassword\PhoneNoteFoundedInFirebaseForRestoreException;
 use App\Exceptions\RestorePassword\WrongPinForRestorePasswordException;
 use App\Models\ResetPassword;
 use App\Models\User;
+use App\Services\CheckSmsService;
 use Illuminate\Support\Facades\Hash;
 
 class Step3Action extends  AbstractAction {
@@ -19,7 +21,10 @@ class Step3Action extends  AbstractAction {
         if (!$reset)
             throw new NoteCreatedPinForRestorePasswordException();
 
-        if ($reset->pin != $this->data['pin'])
+        $res_check_pin = CheckSmsService::check($this->data['login'], $this->data['pin']);
+        if ($res_check_pin !== true && $res_check_pin == 'wrong_number')
+            throw new PhoneNoteFoundedInFirebaseForRestoreException();
+        else if ($res_check_pin !== true && $res_check_pin == 'wrong_pin')
             throw new WrongPinForRestorePasswordException();
 
         $user->password = Hash::make($this->data['password']);
