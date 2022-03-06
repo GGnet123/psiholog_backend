@@ -87,6 +87,11 @@ Route::group(['prefix' => 'v1'], function () {
                 Route::post('change-password', [\App\Http\Controllers\v1\Profile\Doctor\DoctorProfileController::class, 'changePassword']);
 
 
+                Route::group(['prefix' => 'timetable-plan'], function () {
+                    Route::get('/', [\App\Http\Controllers\v1\Profile\Doctor\DoctorTimetablePlanController::class, 'index']);
+                    Route::post('/', [\App\Http\Controllers\v1\Profile\Doctor\DoctorTimetablePlanController::class, 'save']);
+                });
+
                 Route::group(['prefix' => 'specialization'], function () {
                     Route::get('/', [\App\Http\Controllers\v1\Profile\Doctor\DoctorSpecializationController::class, 'index']);
                     Route::post('/', [\App\Http\Controllers\v1\Profile\Doctor\DoctorSpecializationController::class, 'manyAdd']);

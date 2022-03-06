@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Services\UploaderFile;
+use App\Models\Timetable\TimetablePlan;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -84,5 +85,16 @@ class User extends Authenticatable
 
     function relAvatar() {
         return $this->belongsTo(UploaderFile::class, 'avatar_id');
+    }
+
+    function relTimetablePlan(){
+        return $this->hasOne(TimetablePlan::class, 'user_id');
+    }
+
+    function generateDefPlan(){
+        $item = TimetablePlan::where(['user_id' => $this->id])->first();
+        if (!$item)
+            TimetablePlan::create(['user_id' => $this->id]);
+
     }
 }

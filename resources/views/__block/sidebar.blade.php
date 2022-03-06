@@ -20,10 +20,7 @@
                         </ul>
                     </li>
 
-
                     <li><a href="{{ route('sample_video') }}"><i class="icon-video-camera"></i> <span>{{ __('sidebar.sample_video') }}</span></a></li>
-
-                    <li><a href="{{ route('sample_sms') }}"><i class="icon-letter"></i> <span>{{ __('sidebar.sample_sms') }}</span></a></li>
                     
                 </ul>
             </div>

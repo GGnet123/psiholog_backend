@@ -18,6 +18,12 @@ trait FilterModelTrait {
             if ($ar_filter[$k] == 'int' && $v > 0)
                 $q->where($k, $v);
 
+            if ($ar_filter[$k] == 'boolean' && $v)
+                $q->where($k, true);
+
+            if ($ar_filter[$k] == 'boolean' && !$v)
+                $q->where($k, false);
+
         }
 
         return $q;
