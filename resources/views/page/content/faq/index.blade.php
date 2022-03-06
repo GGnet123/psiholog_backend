@@ -29,6 +29,8 @@
                     <th data-breakpoints="all">{{ $model->label('id') }}</th>
                     <th ><x-sortLink :name='$model->label("name")' attr="name" :request="$request" /></th>
                     <th ><x-sortLink :name='$model->label("name_en")' attr="name_en" :request="$request" /></th>
+                    <th >{{ $model->label('good_count') }}</th>
+                    <th >{{ $model->label('bad_count') }}</th>
                     <th data-breakpoints="all">{{ $model->label('created_at') }}</th>
                     <th data-breakpoints="all">{{ $model->label('updated_at') }}</th>
                     <th>
@@ -43,6 +45,8 @@
 
                         <td>{{ $i->name }}</td>
                         <td>{{ $i->name_en }}</td>
+                        <td>{{ $i->getGoodCount() }}</td>
+                        <td>{{ $i->getBadCount() }}</td>
                         <td>{{ $i->created_at }}</td>
                         <td>{{ $i->updated_at }}</td>
                         <th>

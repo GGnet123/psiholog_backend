@@ -32,6 +32,18 @@ class Faq extends Model
         'name_en',
     ];
 
+    function relStat(){
+        return $this->hasMany(FaqStat::class, 'faq_id');
+    }
+
+    function getGoodCount(){
+        return $this->relStat()->where('is_good', true)->count();
+    }
+
+    function getBadCount(){
+        return $this->relStat()->where('is_good', false)->count();
+    }
+
 
 
 }

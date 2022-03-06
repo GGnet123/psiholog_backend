@@ -12,7 +12,9 @@ class FaqResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->trans('name'),
-            'note' => $this->trans('note')
+            'note' => $this->trans('note'),
+            'vote_good' => $this->getGoodCount(),
+            'vote_false' => $this->getBadCount()
         ];
     }
 }

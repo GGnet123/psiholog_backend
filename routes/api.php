@@ -56,6 +56,7 @@ Route::group(['prefix' => 'v1'], function () {
             Route::group(['prefix' => 'faq'], function () {
                 Route::get('/', [\App\Http\Controllers\v1\Main\FaqController::class, 'index']);
                 Route::get('{item}', [\App\Http\Controllers\v1\Main\FaqController::class, 'item']);
+                Route::post('/vote/{item}', [\App\Http\Controllers\v1\Main\FaqController::class, 'vote']);
             });
 
             Route::group(['prefix' => 'lib-specialization'], function () {

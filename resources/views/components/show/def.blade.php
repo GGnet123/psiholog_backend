@@ -3,7 +3,7 @@
         $val = (isset($value) ? $value : $model->{$name});
     @endphp
 
-    @if ($val)
+    @if ($val || $val === 0)
         <div class="form-group">
             <label>
                 {{ $model->label($name) }}
