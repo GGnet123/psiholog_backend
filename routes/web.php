@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Content\FaqController;
+use App\Http\Controllers\Admin\Content\TermOfUseController;
 use App\Http\Controllers\Admin\Lib\LibSpecializationController;
 use Illuminate\Support\Facades\Route;
 use Hmurich\Swagger\Controllers\SwaggerViewController;
@@ -29,6 +30,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
             Route::post('update/{item}', [FaqController::class, 'saveUpdate'])->name('admin_faq_update_save');
             Route::get('show/{item}', [FaqController::class, 'view'])->name('admin_faq_show');
             Route::get('delete/{item}', [FaqController::class, 'delete'])->name('admin_faq_delete');
+        });
+
+        Route::group(['prefix' => 'term-of-use'], function () {
+            Route::get('/', [TermOfUseController::class, 'index'])->name('admin_term');
+            Route::post('/', [TermOfUseController::class, 'save'])->name('admin_term_save');
+
         });
     });
 

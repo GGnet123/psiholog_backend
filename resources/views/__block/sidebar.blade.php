@@ -9,6 +9,7 @@
                         <a href="#" class="has-ul"><i class="icon-file-text"></i> <span>{{ __('sidebar.content') }}</span></a>
                         <ul class="hidden-ul">
                             <li><a href="{{ route('admin_faq') }}"> <span>{{ __('sidebar.admin_faq') }}</span></a></li>
+                            <li><a href="{{ route('admin_term') }}"> <span>{{ __('sidebar.admin_term') }}</span></a></li>
                         </ul>
                     </li>
 
