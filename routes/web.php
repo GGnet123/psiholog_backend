@@ -58,4 +58,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
     });
 
     Route::get('logout', [\App\Http\Controllers\Admin\LoginController::class, 'logout'])->name('admin_logout');
+
+
+    Route::group(['prefix' => 'sample'], function () {
+        Route::get('video', [\App\Http\Controllers\Admin\Sample\VideoCallController::class, 'index'])->name('sample_video');
+        Route::get('video/token', [\App\Http\Controllers\Admin\Sample\VideoCallController::class, 'token']);
+
+        Route::get('sms', [])->name('sample_sms');
+    });
 });
+
+
