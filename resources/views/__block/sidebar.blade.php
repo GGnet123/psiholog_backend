@@ -14,7 +14,7 @@
                     </li>
 
                     <li>
-                        <a href="#" class="has-ul"><i class="icons-list"></i> <span>{{ __('sidebar.libs') }}</span></a>
+                        <a href="#" class="has-ul"><i class="icons-list-extended"></i> <span>{{ __('sidebar.libs') }}</span></a>
                         <ul class="hidden-ul">
                             <li><a href="{{ route('admin_lib_spec') }}"> <span>{{ __('sidebar.admin_lib_spec') }}</span></a></li>
                         </ul>
@@ -22,6 +22,8 @@
 
 
                     <li><a href="{{ route('sample_video') }}"><i class="icon-video-camera"></i> <span>{{ __('sidebar.sample_video') }}</span></a></li>
+
+                    <li><a href="{{ route('sample_sms') }}"><i class="icon-letter"></i> <span>{{ __('sidebar.sample_sms') }}</span></a></li>
                     
                 </ul>
             </div>

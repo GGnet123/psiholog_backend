@@ -64,7 +64,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
         Route::get('video', [\App\Http\Controllers\Admin\Sample\VideoCallController::class, 'index'])->name('sample_video');
         Route::get('video/token', [\App\Http\Controllers\Admin\Sample\VideoCallController::class, 'token']);
 
-        Route::get('sms', [])->name('sample_sms');
+        Route::get('sms', [\App\Http\Controllers\Admin\Sample\SmsController::class, 'index'])->name('sample_sms');
+        Route::post('sms', [\App\Http\Controllers\Admin\Sample\SmsController::class, 'save'])->name('sample_sms_save');
     });
 });
 
