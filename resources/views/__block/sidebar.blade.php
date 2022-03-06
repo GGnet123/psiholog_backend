@@ -11,6 +11,13 @@
                             <li><a href="{{ route('admin_faq') }}"> <span>{{ __('sidebar.admin_faq') }}</span></a></li>
                         </ul>
                     </li>
+
+                    <li>
+                        <a href="#" class="has-ul"><i class="icon-file-text"></i> <span>{{ __('sidebar.libs') }}</span></a>
+                        <ul class="hidden-ul">
+                            <li><a href="{{ route('admin_lib_spec') }}"> <span>{{ __('sidebar.admin_lib_spec') }}</span></a></li>
+                        </ul>
+                    </li>
                     
                 </ul>
             </div>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Content\FaqController;
+use App\Http\Controllers\Admin\Lib\LibSpecializationController;
 use Illuminate\Support\Facades\Route;
 use Hmurich\Swagger\Controllers\SwaggerViewController;
 
@@ -28,6 +29,19 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
             Route::post('update/{item}', [FaqController::class, 'saveUpdate'])->name('admin_faq_update_save');
             Route::get('show/{item}', [FaqController::class, 'view'])->name('admin_faq_show');
             Route::get('delete/{item}', [FaqController::class, 'delete'])->name('admin_faq_delete');
+        });
+    });
+
+
+    Route::group(['prefix' => 'lib'], function () {
+        Route::group(['prefix' => 'specialization'], function () {
+            Route::get('/', [LibSpecializationController::class, 'index'])->name('admin_lib_spec');
+            Route::get('create', [LibSpecializationController::class, 'create'])->name('admin_lib_spec_create');
+            Route::post('create', [LibSpecializationController::class, 'saveCreate'])->name('admin_lib_spec_create_save');
+            Route::get('update/{item}', [LibSpecializationController::class, 'update'])->name('admin_lib_spec_update');
+            Route::post('update/{item}', [LibSpecializationController::class, 'saveUpdate'])->name('admin_lib_spec_update_save');
+            Route::get('show/{item}', [LibSpecializationController::class, 'view'])->name('admin_lib_spec_show');
+            Route::get('delete/{item}', [LibSpecializationController::class, 'delete'])->name('admin_lib_spec_delete');
         });
     });
 
