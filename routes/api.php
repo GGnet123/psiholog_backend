@@ -8,7 +8,7 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::group(['prefix' => 'registration'], function () {
         Route::post('step1', [\App\Http\Controllers\v1\RegistrationController::class, 'step1']);
-        Route::post('resendPin', [\App\Http\Controllers\v1\RegistrationController::class, 'resendPin']);
+        // Route::post('resendPin', [\App\Http\Controllers\v1\RegistrationController::class, 'resendPin']);
         Route::post('step2', [\App\Http\Controllers\v1\RegistrationController::class, 'step2']);
 
         Route::group(['middleware' => ['auth:sanctum']], function () {

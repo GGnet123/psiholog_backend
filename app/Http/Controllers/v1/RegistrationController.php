@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\v1;
 
-use App\Actions\Registration\ResendPinAction;
 use App\Actions\Registration\Step1Action;
 use App\Actions\Registration\Step2Action;
 use App\Actions\Registration\Step3DoctorAction;
@@ -19,12 +18,6 @@ class RegistrationController extends Controller
 {
     function step1(Step1Request $request){
         $model = (new Step1Action(null, $request->validated()))->run();
-
-        return new PhoneRegistrationResource($model);
-    }
-
-    function resendPin(Step1Request $request){
-        $model = (new ResendPinAction(null, $request->validated()))->run();
 
         return new PhoneRegistrationResource($model);
     }

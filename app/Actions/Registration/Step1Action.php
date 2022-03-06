@@ -23,11 +23,8 @@ class Step1Action extends AbstractAction {
 
         $this->model = new PhoneRegistration();
         $this->model->phone = $this->data['login'];
-        $this->model->generatePin();
         $this->model->accepted = false;
         $this->model->save();
-
-        // TODO need add send sms pin to phone
 
         return $this->model;
     }

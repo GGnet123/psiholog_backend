@@ -8,6 +8,7 @@ use App\Exceptions\Registration\NoteFoundedPhoneRegistrationException;
 use App\Exceptions\Registration\WrongPinException;
 use App\Models\PhoneRegistration;
 use App\Models\User;
+use App\Services\CheckSmsService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -23,8 +24,7 @@ class Step2Action extends AbstractAction {
         if (!$this->model)
             throw new NoteFoundedPhoneRegistrationException();
 
-        if ($this->model->pin != $this->data['pin'])
-            throw new WrongPinException();
+        CheckSmsService::check($this->data['login'], $this->data['pin']);
 
 
         $this->model->accepted = true;
