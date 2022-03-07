@@ -1,6 +1,8 @@
 <?php
 namespace App\Traits;
 
+use Illuminate\Support\Str;
+
 trait FilterModelTrait {
     function scopeFilter($q, $request){
         $ar_filter = (is_array($this->ar_filter) ? $this->ar_filter : []);
@@ -23,6 +25,11 @@ trait FilterModelTrait {
 
             if ($ar_filter[$k] == 'boolean' && !$v)
                 $q->where($k, false);
+
+            if ($ar_filter[$k] == 'function' && $v) {
+                $func = Str::camel($k);
+                $q->{$func}($v);
+            }
 
         }
 

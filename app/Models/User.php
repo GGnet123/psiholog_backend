@@ -2,8 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Main\LibSpecialization;
+use App\Models\Profile\UserCertificat;
+use App\Models\Profile\UserSpecialization;
+use App\Models\Profile\UserVideo;
 use App\Models\Services\UploaderFile;
 use App\Models\Timetable\TimetablePlan;
+use App\Traits\FilterModelTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -12,7 +17,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, FilterModelTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -42,11 +47,15 @@ class User extends Authenticatable
     CONST EN_LANG = 'en';
     const RU_LANG = 'ru';
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
+    protected $ar_filter = [
+        'name' => 'string',
+        'price' => 'int',
+        'specialization_id' => 'function',
+        'specialization_array' => 'function',
+        'price_b' => 'function',
+        'price_e' => 'function'
+    ];
+
     protected $hidden = [
         'password',
         'remember_token',
@@ -66,6 +75,29 @@ class User extends Authenticatable
         'date_b' => 'date'
     ];
 
+    function scopeSpecializationId($q, $id){
+        $q->whereHas('relSpecilization', function($b) use ($id){
+            $b->where('lib_specialization_id', $id);
+        });
+    }
+
+    function scopeSpecializationArray($q, $ar){
+        $q->whereHas('relSpecilization', function($b) use ($ar){
+            $b->whereIn('lib_specialization_id', $ar);
+        });
+    }
+
+    function scopePriceB($q, $price){
+        $q->where('price', '>=', $price);
+    }
+
+    function scopePriceE($q, $price){
+        $q->where('price', '<=', $price);
+    }
+
+    function scopeDoctor($q){
+        $q->where('type_id', static::DOCTOR_TYPE);
+    }
 
     function isAdmin():bool {
         return $this->type_id == STATIC::ADMIN_TYPE;
@@ -89,6 +121,30 @@ class User extends Authenticatable
 
     function relTimetablePlan(){
         return $this->hasOne(TimetablePlan::class, 'user_id');
+    }
+
+    function relCertificat(){
+        return $this->hasMany(UserCertificat::class, 'user_id');
+    }
+
+    function relVideo(){
+        return $this->hasMany(UserVideo::class, 'user_id');
+    }
+
+    function relSpecilization(){
+        return $this->hasMany(UserSpecialization::class, 'user_id');
+    }
+
+    function relSpecilizationMain(){
+        return $this->belongsToMany(LibSpecialization::class, 'users_specialization', 'user_id', 'lib_specialization_id');
+    }
+
+    function relCertificatsMain(){
+        return $this->belongsToMany(UploaderFile::class, 'users_sertificats', 'user_id', 'sertificat_id');
+    }
+
+    function relVideoMain(){
+        return $this->belongsToMany(UploaderFile::class, 'users_video', 'user_id', 'video_id');
     }
 
     function generateDefPlan(){

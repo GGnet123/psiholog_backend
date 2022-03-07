@@ -4,7 +4,17 @@ return [
         'v1Auth' => 'Auth',
         'DoctorDoctorProfile' => 'DoctorProfile',
         'v1Registration' => 'Registration',
-        'v1RestorePassword' => 'RestorePassword'
+        'v1RestorePassword' => 'RestorePassword',
+        'MainSupport' => 'Support',
+        'MainFaq' => 'Faq',
+        'MainLibSpecialization' => 'LibSpecialization',
+        'MainTermOfUse' => 'TermOfUse',
+        'DoctorDoctorTimetablePlan' => 'DoctorTimetablePlan',
+        'DoctorDoctorSpecialization' => 'DoctorSpecialization',
+        'DoctorDoctorVideo' => 'DoctorVideo',
+        'DoctorDoctorCertificat' => 'DoctorCertificat',
+        'UserUserProfile' => 'UserProfile',
+        'MainDoctor' => 'SearchDoctor'
     ],
     'path' => [
         'auth' => [
