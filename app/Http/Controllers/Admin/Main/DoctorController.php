@@ -5,14 +5,14 @@ use App\Http\Controllers\Controller;
 use App\Models\User as Model;
 use Illuminate\Http\Request;
 
-class  UserController extends Controller{
-    protected $view_path = 'page.main.user';
-    protected $route_path = 'admin_main_user';
-    protected $title_path = 'title.main_user';
+class  DoctorController extends Controller{
+    protected $view_path = 'page.main.doctor';
+    protected $route_path = 'admin_doctor';
+    protected $title_path = 'title.doctor';
     protected $def_model = Model::class;
 
     public function index(Request $request){
-        $this->items = $this->def_model::simpleUser()->filter($request)->sort($request);
+        $this->items = $this->def_model::doctor()->filter($request)->sort($request);
 
         return view($this->view_path.'.index', [
             'title' => __($this->title_path.''),

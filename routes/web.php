@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\Content\FaqController;
 use App\Http\Controllers\Admin\Content\TermOfUseController;
 use App\Http\Controllers\Admin\Lib\LibSpecializationController;
+use App\Http\Controllers\Admin\Main\DoctorController;
 use App\Http\Controllers\Admin\Main\UserController;
 use Illuminate\Support\Facades\Route;
 use Hmurich\Swagger\Controllers\SwaggerViewController;
@@ -27,6 +28,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
             Route::get('/', [UserController::class, 'index'])->name('admin_main_user');
             Route::get('show/{item}', [UserController::class, 'view'])->name('admin_main_user_show');
             Route::get('block/{item}', [UserController::class, 'blocked'])->name('admin_main_user_block');
+        });
+
+        Route::group(['prefix' => 'doctor'], function () {
+            Route::get('/', [DoctorController::class, 'index'])->name('admin_doctor');
+            Route::get('show/{item}', [DoctorController::class, 'view'])->name('admin_doctor_show');
+            Route::get('block/{item}', [DoctorController::class, 'blocked'])->name('admin_doctor_block');
         });
     });
 

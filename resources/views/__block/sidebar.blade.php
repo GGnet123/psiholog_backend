@@ -5,6 +5,7 @@
             <div class="category-content no-padding">
                 <ul class="navigation navigation-main navigation-accordion" style="padding-top: 0;">
 
+                    <li><a href="{{ route('admin_doctor') }}"><i class="icon-user-tie"></i> <span>{{ __('sidebar.admin_doctor') }}</span></a></li>
                     <li><a href="{{ route('admin_main_user') }}"><i class="icon-users"></i> <span>{{ __('sidebar.admin_main_user') }}</span></a></li>
 
                     <li>
