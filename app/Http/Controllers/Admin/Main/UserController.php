@@ -40,5 +40,10 @@ class  UserController extends Controller{
         ]);
     }
 
+    function blocked(Request $request, Model $item){
+        $item->update(['is_blocked' => ($item->is_blocked ? false : true)]);
+
+        return redirect()->back()->with('success', __('main.updated_model'));
+    }
 
 }

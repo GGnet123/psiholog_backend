@@ -26,6 +26,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
         Route::group(['prefix' => 'users'], function () {
             Route::get('/', [UserController::class, 'index'])->name('admin_main_user');
             Route::get('show/{item}', [UserController::class, 'view'])->name('admin_main_user_show');
+            Route::get('block/{item}', [UserController::class, 'blocked'])->name('admin_main_user_block');
         });
     });
 

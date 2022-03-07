@@ -17,6 +17,9 @@ class AuthController extends Controller
         $user = Auth::user();
         $user->tokens()->delete();
 
+        if ($user->is_blocked)
+            return $this->false('This user is blocked');
+
         return [
             'data' => new UserResource($user),
             'token' =>  $user->createToken('main')->plainTextToken

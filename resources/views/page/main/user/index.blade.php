@@ -30,6 +30,7 @@
                     <th ><x-sortLink :name='$model->label("name")' attr="name" :request="$request" /></th>
                     <th ><x-sortLink :name='$model->label("login")' attr="name_en" :request="$request" /></th>
                     <th>{{ $model->label('lang') }}</th>
+                    <th>{{ $model->label('is_blocked') }}</th>
                     <th data-breakpoints="all">{{ $model->label('created_at') }}</th>
                     <th data-breakpoints="all">{{ $model->label('updated_at') }}</th>
                     <th>
@@ -43,6 +44,7 @@
                         <td>{{ $i->name }}</td>
                         <td>{{ $i->login }}</td>
                         <td>{{ $i->lang }}</td>
+                        <td>{{ $i->is_blocked ? 'Да' : 'Нет' }}</td>
                         <td>{{ $i->created_at }}</td>
                         <td>{{ $i->updated_at }}</td>
                         <th>
@@ -52,6 +54,7 @@
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     <li><a href="{{ route($route_path.'_show', $i) }}">{{ __('main.show') }} </a></li>
+                                    <li><a href="{{ route($route_path.'_block', $i) }}">{{ $i->is_blocked ? 'Разблокировать' : 'Заблокировать' }} </a></li>
                                 </ul>
                             </div>
                         </th>

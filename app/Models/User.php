@@ -37,7 +37,8 @@ class User extends Authenticatable
         'price',
         'notify_all',
         'notify_meditation',
-        'notify_app'
+        'notify_app',
+        'is_blocked'
     ];
 
     CONST ADMIN_TYPE = 1;
@@ -54,7 +55,8 @@ class User extends Authenticatable
         'specialization_id' => 'function',
         'specialization_array' => 'function',
         'price_b' => 'function',
-        'price_e' => 'function'
+        'price_e' => 'function',
+        'is_blocked' => 'boolean'
     ];
 
     protected $ar_sort = [
@@ -78,7 +80,8 @@ class User extends Authenticatable
         'notify_all' => 'boolean',
         'notify_meditation' => 'boolean',
         'notify_app' => 'boolean',
-        'date_b' => 'date'
+        'date_b' => 'date',
+        'is_blocked' => 'boolean'
     ];
 
     function scopeSpecializationId($q, $id){
