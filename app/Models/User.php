@@ -9,7 +9,8 @@ use App\Models\Profile\UserVideo;
 use App\Models\Services\UploaderFile;
 use App\Models\Timetable\TimetablePlan;
 use App\Traits\FilterModelTrait;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Traits\LabelModelTrait;
+use App\Traits\SortModelTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -17,7 +18,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, FilterModelTrait;
+    use HasApiTokens, HasFactory, Notifiable, FilterModelTrait, SortModelTrait, LabelModelTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -54,6 +55,11 @@ class User extends Authenticatable
         'specialization_array' => 'function',
         'price_b' => 'function',
         'price_e' => 'function'
+    ];
+
+    protected $ar_sort = [
+        'name',
+        'login',
     ];
 
     protected $hidden = [
@@ -97,6 +103,10 @@ class User extends Authenticatable
 
     function scopeDoctor($q){
         $q->where('type_id', static::DOCTOR_TYPE);
+    }
+
+    function scopeSimpleUser($q){
+        $q->where('type_id', static::USER_TYPE);
     }
 
     function isAdmin():bool {

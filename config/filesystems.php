@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DISK', 'local'),
+    'default' => 'local_new',
 
     /*
     |--------------------------------------------------------------------------
@@ -29,6 +29,12 @@ return [
     */
 
     'disks' => [
+
+        'local_new' => [
+            'driver' => 'local',
+            'root' => public_path(),
+            'visibility' => 'public',
+        ],
 
         'local' => [
             'driver' => 'local',

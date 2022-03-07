@@ -13,7 +13,7 @@ class UploadFileAction extends AbstractAction {
         $file_name = Str::slug($file_name);
 
         $file_path = $file->storeAs(
-            'public/store/'.date('Y').'/'.date('m').'/'.date('d').'/'.rand(1000, 9999),
+            'store/'.date('Y').'/'.date('m').'/'.date('d').'/'.rand(1000, 9999),
             $file_name.'.'.$file->getClientOriginalExtension());
 
         $size = $file->getSize();

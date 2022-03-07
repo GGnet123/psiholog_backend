@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\Content\FaqController;
 use App\Http\Controllers\Admin\Content\TermOfUseController;
 use App\Http\Controllers\Admin\Lib\LibSpecializationController;
+use App\Http\Controllers\Admin\Main\UserController;
 use Illuminate\Support\Facades\Route;
 use Hmurich\Swagger\Controllers\SwaggerViewController;
 
@@ -21,6 +22,13 @@ Route::group(['prefix' => 'admin/login'], function () {
 Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () {
     Route::get('/', [\App\Http\Controllers\Admin\IndexController::class, 'index'])->name('admin_index');
 
+    Route::group(['prefix' => 'main'], function () {
+        Route::group(['prefix' => 'users'], function () {
+            Route::get('/', [UserController::class, 'index'])->name('admin_main_user');
+            Route::get('show/{item}', [UserController::class, 'view'])->name('admin_main_user_show');
+        });
+    });
+
     Route::group(['prefix' => 'content'], function () {
         Route::group(['prefix' => 'faq'], function () {
             Route::get('/', [FaqController::class, 'index'])->name('admin_faq');
@@ -35,7 +43,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
         Route::group(['prefix' => 'term-of-use'], function () {
             Route::get('/', [TermOfUseController::class, 'index'])->name('admin_term');
             Route::post('/', [TermOfUseController::class, 'save'])->name('admin_term_save');
-
         });
     });
 
