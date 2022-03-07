@@ -14,7 +14,8 @@ return [
         'DoctorDoctorVideo' => 'DoctorVideo',
         'DoctorDoctorCertificat' => 'DoctorCertificat',
         'UserUserProfile' => 'UserProfile',
-        'MainDoctor' => 'SearchDoctor'
+        'MainDoctor' => 'SearchDoctor',
+        'MainClaim' => 'Claim'
     ],
     'path' => [
         'auth' => [

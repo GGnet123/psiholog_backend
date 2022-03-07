@@ -73,6 +73,15 @@ Route::group(['prefix' => 'v1'], function () {
                 Route::get('/', [\App\Http\Controllers\v1\Main\DoctorController::class, 'index']);
                 Route::get('{item}', [\App\Http\Controllers\v1\Main\DoctorController::class, 'item']);
             });
+
+
+            Route::group(['prefix' => 'claim'], function () {
+                Route::get('/', [\App\Http\Controllers\v1\Main\ClaimController::class, 'index']);
+                Route::get('{item}', [\App\Http\Controllers\v1\Main\ClaimController::class, 'item']);
+                Route::post('/', [\App\Http\Controllers\v1\Main\ClaimController::class, 'save']);
+            });
+
+
         });
 
         Route::group(['prefix' => 'services'], function () {
