@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Admin\Main;
 
 use App\Http\Controllers\Controller;
+use App\Models\Profile\UserCertificat;
 use App\Models\User as Model;
 use Illuminate\Http\Request;
 
@@ -26,15 +27,22 @@ class  DoctorController extends Controller{
     public function view(Request $request, Model $item){
         $title = __($this->title_path.'_show');
 
-        return view($this->view_path.'.show', [
+        $data =  [
             'title' => $title,
             'model' => $item,
             'ar_bread' => [
                 route($this->route_path) => __($this->title_path.'')
             ],
             'request' => $request,
-            'route_path' => $this->route_path
-        ]);
+            'route_path' => $this->route_path,
+            'specializations' => $item->relSpecilizationMain()->pluck('name')->toArray(),
+            'certificats' => $item->relCertificatsMain,
+            'videos' => $item->relVideoMain,
+            'timetable' => $item->relTimetablePlan
+        ];
+
+
+        return view($this->view_path.'.show', $data);
     }
 
     function blocked(Request $request, Model $item){

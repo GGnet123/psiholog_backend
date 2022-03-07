@@ -6,7 +6,6 @@ $.ajaxSetup({
 
 
 $(document).ready(function () {
-
     let current_url = window.location.href;
     $('.navigation-accordion>li>a').each(function (index) {
 
