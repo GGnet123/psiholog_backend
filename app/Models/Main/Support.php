@@ -27,6 +27,10 @@ class Support extends Model
         'is_closed' => 'boolean'
     ];
 
+    protected $ar_filter = [
+        'name' => 'string'
+    ];
+
     function relFile(){
         return $this->belongsTo(UploaderFile::class, 'file_id');
     }

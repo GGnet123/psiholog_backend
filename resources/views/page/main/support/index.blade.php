@@ -11,12 +11,8 @@
                         <x-input.int name="id" :model="$model" :value="$request->id" />
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-8">
                         <x-input.text name="name" id="name" :model="$model" :value="$request->name" />
-                    </div>
-
-                    <div class="col-md-4">
-                        <x-input.text name="login" id="login" :model="$model" :value="$request->login" />
                     </div>
                 </div>
             </x-form.filter>
