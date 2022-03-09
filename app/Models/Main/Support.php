@@ -4,12 +4,15 @@ namespace App\Models\Main;
 
 use App\Models\Services\UploaderFile;
 use App\Models\User;
+use App\Traits\FilterModelTrait;
+use App\Traits\LabelModelTrait;
+use App\Traits\SortModelTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Support extends Model
 {
-    use HasFactory;
+    use HasFactory, LabelModelTrait, SortModelTrait, FilterModelTrait;
     protected $table = 'support';
     protected $fillable = [
         'name',
