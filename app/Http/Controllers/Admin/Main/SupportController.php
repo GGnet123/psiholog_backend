@@ -1,8 +1,8 @@
 <?php
 namespace App\Http\Controllers\Admin\Main;
 
+use App\Actions\MainUpdateAction;
 use App\Http\Controllers\Controller;
-use App\Models\Profile\UserCertificat;
 use App\Models\Main\Support as Model;
 use Illuminate\Http\Request;
 
@@ -39,6 +39,20 @@ class  SupportController extends Controller{
 
 
         return view($this->view_path.'.show', $data);
+    }
+
+    public function save(Request $request, Model $item){
+        $data = $request->all();
+        $data['is_closed'] = true;
+        $action = new MainUpdateAction($item, $data);
+
+        try {
+            $action->run();
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+
+        return redirect()->route($this->route_path.'_show', $item)->with('success', __('main.updated_model'));
     }
 
 }

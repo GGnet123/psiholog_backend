@@ -40,7 +40,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
         Route::group(['prefix' => 'support'], function(){
             Route::get('/', [SupportController::class, 'index'])->name('admin_support');
             Route::get('show/{item}', [SupportController::class, 'view'])->name('admin_support_show');
-            Route::post('show/{item}', [SupportController::class, 'view'])->name('admin_support_save');
+            Route::post('show/{item}', [SupportController::class, 'save'])->name('admin_support_save');
 
         });
     });
