@@ -33,7 +33,7 @@ class CreateRecordAction extends AbstractAction {
         $item->is_moved = true;
         $item->save();
 
-        event(new CreateRecordEvent($item));
+        event(new CreateRecordEvent($item, Auth::user()));
 
         return $item;
     }

@@ -11,10 +11,17 @@ use App\Events\StartSeanceRecordEvent;
 use App\Events\FinishSeanceRecordEvent;
 use App\Events\MoveSeanceRecordEvent;
 use App\Events\CancelRecordEvent;
-use App\Listeners\SendShipmentNotification;
+
 use App\Listeners\CreateRecordLogListner;
+use App\Listeners\ApprovedRecordLogListner;
 use App\Listeners\CreateRecordBalanceListner;
-use App\Listeners\UpdateRecordBalanceListner;
+use App\Listeners\PayedRecordRecordLogListner;
+use App\Listeners\PayedRecordBalanceListner;
+use App\Listeners\StartSeanceRecordLogListner;
+use App\Listeners\FinishSeanceRecordLogListner;
+use App\Listeners\MoveSeanceRecordLogListner;
+use App\Listeners\CancelRecordLogListner;
+use App\Listeners\CancelRecordBalanceListner;
 
 
 class EventServiceProvider extends ServiceProvider
@@ -29,25 +36,25 @@ class EventServiceProvider extends ServiceProvider
             CreateRecordLogListner::class
         ],
         ApprovedRecordEvent::class => [
-            CreateRecordLogListner::class,
+            ApprovedRecordLogListner::class,
             CreateRecordBalanceListner::class
         ],
         PayedRecordEvent::class => [
-            CreateRecordLogListner::class,
-            UpdateRecordBalanceListner::class
+            PayedRecordRecordLogListner::class,
+            PayedRecordBalanceListner::class
         ],
         StartSeanceRecordEvent::class => [
-            CreateRecordLogListner::class
+            StartSeanceRecordLogListner::class
         ],
         FinishSeanceRecordEvent::class => [
-            CreateRecordLogListner::class
+            FinishSeanceRecordLogListner::class
         ],
         MoveSeanceRecordEvent::class => [
-            CreateRecordLogListner::class
+            MoveSeanceRecordLogListner::class
         ],
         CancelRecordEvent::class => [
-            CreateRecordLogListner::class,
-            UpdateRecordBalanceListner::class
+            CancelRecordLogListner::class,
+            CancelRecordBalanceListner::class
         ]
     ];
 

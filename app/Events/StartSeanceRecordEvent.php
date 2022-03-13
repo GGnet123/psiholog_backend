@@ -2,6 +2,8 @@
 
 namespace App\Events;
 
+use App\Models\Record\RecordDoctor;
+use App\Models\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -14,23 +16,12 @@ class StartSeanceRecordEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    /**
-     * Create a new event instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
+    public RecordDoctor $record;
+    public User $user;
 
-    /**
-     * Get the channels the event should broadcast on.
-     *
-     * @return \Illuminate\Broadcasting\Channel|array
-     */
-    public function broadcastOn()
+    public function __construct(RecordDoctor $record, User $user)
     {
-        return new PrivateChannel('channel-name');
+        $this->record = $record;
+        $this->user = $user;
     }
 }

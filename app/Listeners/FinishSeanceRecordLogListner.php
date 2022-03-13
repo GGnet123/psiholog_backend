@@ -2,12 +2,12 @@
 
 namespace App\Listeners;
 
-use App\Events\CreateRecordEvent;
+use App\Events\FinishSeanceRecordEvent;
 use App\Models\Record\RecordLog;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class CreateRecordLogListner
+class FinishSeanceRecordLogListner
 {
     /**
      * Create the event listener.
@@ -22,10 +22,10 @@ class CreateRecordLogListner
     /**
      * Handle the event.
      *
-     * @param  \App\Events\CreateRecordEvent  $event
+     * @param  \App\Events\FinishSeanceRecordEvent  $event
      * @return void
      */
-    public function handle(CreateRecordEvent $event)
+    public function handle(FinishSeanceRecordEvent $event)
     {
         $record = $event->record;
         $user = $event->user;
