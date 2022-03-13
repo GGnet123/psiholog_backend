@@ -10,5 +10,6 @@ return [
     'sample_sms' => 'Пример отправки смс',
     'admin_main_user' => 'Профили посетителей',
     'admin_doctor' => 'Профили докторов',
-    'admin_support' => 'Поддержка'
+    'admin_support' => 'Поддержка',
+    'admin_claim' => 'Жалобы',
 ];

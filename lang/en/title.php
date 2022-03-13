@@ -26,4 +26,9 @@ return [
 
     'admin_support' => 'Поддержка',
     'admin_support_show' => 'Поддержка. Форма просмотра',
+
+    'admin_claim' => 'Жалобы',
+    'admin_claim_show' => 'Жалобы. Форма просмотра',
+
+
 ];

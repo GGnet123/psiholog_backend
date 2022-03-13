@@ -36,5 +36,9 @@ class Claim extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    function relFromUser(){
+        return $this->belongsTo(User::class, 'from_user_id');
+    }
+
 
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\Content\FaqController;
 use App\Http\Controllers\Admin\Content\TermOfUseController;
 use App\Http\Controllers\Admin\Lib\LibSpecializationController;
+use App\Http\Controllers\Admin\Main\ClaimController;
 use App\Http\Controllers\Admin\Main\DoctorController;
 use App\Http\Controllers\Admin\Main\SupportController;
 use App\Http\Controllers\Admin\Main\UserController;
@@ -43,6 +44,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
             Route::post('show/{item}', [SupportController::class, 'save'])->name('admin_support_save');
 
         });
+
+        Route::group(['prefix' => 'claim'], function(){
+            Route::get('/', [ClaimController::class, 'index'])->name('admin_claim');
+            Route::get('show/{item}', [ClaimController::class, 'view'])->name('admin_claim_show');
+            Route::get('close/{item}', [ClaimController::class, 'save'])->name('admin_claim_close');
+
+        });
+
+
     });
 
     Route::group(['prefix' => 'content'], function () {
