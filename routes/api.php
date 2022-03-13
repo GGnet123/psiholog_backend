@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\v1\Main\SubscriptionController;
 use App\Http\Controllers\v1\Record\ManageRecordController;
+use App\Http\Controllers\v1\Record\RecordController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,15 @@ Route::group(['prefix' => 'v1'], function () {
                 Route::post('finish-record/{record}', [ManageRecordController::class, 'finishRecord']);
                 Route::post('move-record/{record}', [ManageRecordController::class, 'moveRecord']);
                 Route::post('cancel-record/{record}', [ManageRecordController::class, 'cancelRecord']);
+            });
+
+
+            Route::group(['prefix' => 'record'], function () {
+                Route::get('ar-status', [RecordController::class, 'getArStatus']);
+                Route::get('doctor-record', [RecordController::class, 'doctorRecords']);
+                Route::get('customer-record', [RecordController::class, 'customerRecords']);
+                Route::get('show/{record}', [RecordController::class, 'show']);
+
             });
         });
 
