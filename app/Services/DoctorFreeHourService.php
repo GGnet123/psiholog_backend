@@ -54,7 +54,7 @@ class DoctorFreeHourService {
                 continue;
             }
 
-            if (isset($this->doctor_records[$i_str.':00'])){
+            if (isset($this->doctor_records[$i_str.':00:00'])){
                 $res[$i_str.':00'] = 'BUSY';
                 continue;
             }
@@ -69,7 +69,9 @@ class DoctorFreeHourService {
         $this->doctor_records = RecordDoctor::where(['doctor_id' => $this->user->id, 'record_date' => $this->date->format('Y-m-d')])
                                                 ->whereIn('status_id', [RecordDoctor::CREATED_STATUS, RecordDoctor::APPROVED_STATUS,
                                                                         RecordDoctor::ON_WORK_STATUS, RecordDoctor::PAYED_STATUS])
-                                                ->where('is_canceled', false)->pluck('record_time')->toArray();
+                                                ->where('is_canceled', false)->pluck('record_time', 'record_time')->toArray();
+
+
     }
 
     private function calcTimetable(){

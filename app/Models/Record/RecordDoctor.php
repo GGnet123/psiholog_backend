@@ -52,6 +52,14 @@ class RecordDoctor extends Model {
         ];
     }
 
+    function getStatusNameAttribute(){
+        $ar_status = static::getArStatus();
+        if (!isset($ar_status[$this->status_id]))
+            return null;
+
+        return $ar_status[$this->status_id];
+    }
+
     function relCustomer(){
         return $this->belongsTo(User::class, 'customer_id');
     }

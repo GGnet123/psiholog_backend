@@ -2,10 +2,20 @@
 
 namespace App\Providers;
 
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
+
+use App\Events\CreateRecordEvent;
+use App\Events\ApprovedRecordEvent;
+use App\Events\PayedRecordEvent;
+use App\Events\StartSeanceRecordEvent;
+use App\Events\FinishSeanceRecordEvent;
+use App\Events\MoveSeanceRecordEvent;
+use App\Events\CancelRecordEvent;
+use App\Listeners\SendShipmentNotification;
+use App\Listeners\CreateRecordLogListner;
+use App\Listeners\CreateRecordBalanceListner;
+use App\Listeners\UpdateRecordBalanceListner;
+
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -15,9 +25,30 @@ class EventServiceProvider extends ServiceProvider
      * @var array<class-string, array<int, class-string>>
      */
     protected $listen = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
+        CreateRecordEvent::class => [
+            CreateRecordLogListner::class
         ],
+        ApprovedRecordEvent::class => [
+            CreateRecordLogListner::class,
+            CreateRecordBalanceListner::class
+        ],
+        PayedRecordEvent::class => [
+            CreateRecordLogListner::class,
+            UpdateRecordBalanceListner::class
+        ],
+        StartSeanceRecordEvent::class => [
+            CreateRecordLogListner::class
+        ],
+        FinishSeanceRecordEvent::class => [
+            CreateRecordLogListner::class
+        ],
+        MoveSeanceRecordEvent::class => [
+            CreateRecordLogListner::class
+        ],
+        CancelRecordEvent::class => [
+            CreateRecordLogListner::class,
+            UpdateRecordBalanceListner::class
+        ]
     ];
 
     /**
