@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\v1\Record\ManageRecordController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,14 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::get('logout', [\App\Http\Controllers\v1\AuthController::class, 'logout']);
+
+        Route::group(['prefix' => 'record'], function () {
+
+            Route::group(['prefix' => 'manage'], function () {
+                Route::get('free-hour/{doctor}', [ManageRecordController::class, 'getDoctorFreeHour']);
+                Route::post('create-record/{doctor}', [ManageRecordController::class, 'createRecord']);
+            });
+        });
 
         Route::group(['prefix' => 'main'], function () {
             Route::group(['prefix' => 'galary-video'], function () {

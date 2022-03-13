@@ -16,7 +16,7 @@ trait ApiResponse {
         return response()->json($res, 200);
     }
 
-    function data($data){
+    function data_response($data){
         $res = [];
         $res['data'] = $data;
 
