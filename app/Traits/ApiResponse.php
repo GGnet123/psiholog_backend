@@ -16,6 +16,13 @@ trait ApiResponse {
         return response()->json($res, 200);
     }
 
+    function data($data){
+        $res = [];
+        $res['data'] = $data;
+
+        return response()->json($res, 200);
+    }
+
     function noContent(){
         return response()->json(true, 200);
     }
