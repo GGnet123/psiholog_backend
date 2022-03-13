@@ -12,7 +12,7 @@ class Balancer extends Model {
     use LabelModelTrait, SortModelTrait, FilterModelTrait;
     protected $table = 'log_record';
     protected $fillable = [
-        'is_done', 'is_canceled', 'user_id', 'sum', 'record_id', 'subscription_id'];
+        'is_done', 'is_canceled', 'user_id', 'sum', 'record_id', 'subscription_id', 'need_returned', 'is_returned'];
 
     protected $ar_filter = [
         'is_done' => 'boolean',
@@ -20,13 +20,17 @@ class Balancer extends Model {
         'user_id' => 'int',
         'sum' => 'int',
         'record_id' => 'int',
-        'subscription_id' => 'int'
+        'subscription_id' => 'int',
+        'need_returned' => 'boolean',
+        'is_returned' => 'boolean',
     ];
 
     protected $casts = [
         'is_canceled' => 'boolean',
         'is_moved' => 'boolean',
-        'sum' => 'integer'
+        'sum' => 'integer',
+        'need_returned' => 'boolean',
+        'is_returned' => 'boolean',
     ];
 
     function relUser(){

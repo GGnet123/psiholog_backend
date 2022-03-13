@@ -15,12 +15,14 @@ return new class extends Migration
     {
         Schema::create('balancer', function (Blueprint $table) {
             $table->id();
-            $table->boolean('is_done');
-            $table->boolean('is_canceled');
+            $table->boolean('is_done')->default(false);
+            $table->boolean('is_canceled')->default(false);
             $table->bigInteger('user_id');
             $table->integer('sum');
-            $table->integer('record_id');
-            $table->integer('subscription_id');
+            $table->integer('record_id')->nullable();
+            $table->integer('subscription_id')->nullable();
+            $table->boolean('need_returned')->default(false);
+            $table->boolean('is_returned')->default(false);
             $table->timestamps();
         });
     }

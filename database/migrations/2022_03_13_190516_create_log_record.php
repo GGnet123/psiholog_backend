@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('record_id');
             $table->integer('status_id');
-            $table->integer('is_moved');
-            $table->integer('is_canceled');
+            $table->integer('is_moved')->default(false);
+            $table->integer('is_canceled')->default(false);
             $table->bigInteger('user_id');
-            $table->json('record_json');
+            $table->json('record_json')->nullable();
             $table->timestamps();
         });
     }

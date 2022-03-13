@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('subscription', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id');
-            $table->boolean('is_active');
+            $table->boolean('is_active')->default(true);
             $table->date('date_e');
             $table->timestamps();
         });
