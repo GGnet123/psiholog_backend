@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Balancer extends Model {
     use LabelModelTrait, SortModelTrait, FilterModelTrait;
-    protected $table = 'log_record';
+    protected $table = 'balancer';
     protected $fillable = [
         'is_done', 'is_canceled', 'user_id', 'sum', 'record_id', 'subscription_id', 'need_returned', 'is_returned'];
 

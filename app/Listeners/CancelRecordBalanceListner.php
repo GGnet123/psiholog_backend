@@ -28,7 +28,7 @@ class CancelRecordBalanceListner
      * @return void
      */
 
-    public function handle(CreateRecordEvent $event)
+    public function handle(CancelRecordEvent $event)
     {
         $record = $event->record;
         $user = $event->user;

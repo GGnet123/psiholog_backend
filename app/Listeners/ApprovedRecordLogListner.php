@@ -26,7 +26,7 @@ class ApprovedRecordLogListner
      * @param  \App\Events\ApprovedRecordEvent  $event
      * @return void
      */
-    public function handle(CreateRecordEvent $event)
+    public function handle(ApprovedRecordEvent $event)
     {
         $record = $event->record;
         $user = $event->user;

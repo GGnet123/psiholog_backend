@@ -27,10 +27,15 @@ Route::group(['prefix' => 'v1'], function () {
         Route::get('logout', [\App\Http\Controllers\v1\AuthController::class, 'logout']);
 
         Route::group(['prefix' => 'record'], function () {
-
             Route::group(['prefix' => 'manage'], function () {
                 Route::get('free-hour/{doctor}', [ManageRecordController::class, 'getDoctorFreeHour']);
                 Route::post('create-record/{doctor}', [ManageRecordController::class, 'createRecord']);
+                Route::post('approve-record/{record}', [ManageRecordController::class, 'approveRecord']);
+                Route::post('pay-record/{record}', [ManageRecordController::class, 'payRecord']);
+                Route::post('start-seance-record/{record}', [ManageRecordController::class, 'startSeanceRecord']);
+                Route::post('finish-record/{record}', [ManageRecordController::class, 'finishRecord']);
+                Route::post('move-record/{record}', [ManageRecordController::class, 'moveRecord']);
+                Route::post('cancel-record/{record}', [ManageRecordController::class, 'cancelRecord']);
             });
         });
 
