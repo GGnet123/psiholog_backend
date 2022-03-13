@@ -24,6 +24,10 @@ use App\Listeners\CancelRecordLogListner;
 use App\Listeners\CancelRecordBalanceListner;
 
 
+use App\Events\CreateSubscriptionEvent;
+use App\Listeners\CreateSubscriptionBalancerLister;
+
+
 class EventServiceProvider extends ServiceProvider
 {
     /**
@@ -55,6 +59,9 @@ class EventServiceProvider extends ServiceProvider
         CancelRecordEvent::class => [
             CancelRecordLogListner::class,
             CancelRecordBalanceListner::class
+        ],
+        CreateSubscriptionEvent::class => [
+            CreateSubscriptionBalancerLister::class
         ]
     ];
 

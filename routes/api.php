@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\v1\Main\SubscriptionController;
 use App\Http\Controllers\v1\Record\ManageRecordController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +41,11 @@ Route::group(['prefix' => 'v1'], function () {
         });
 
         Route::group(['prefix' => 'main'], function () {
+            Route::group(['prefix' => 'subscription'], function () {
+                Route::get('/', [SubscriptionController::class, 'index']);
+                Route::post('/', [SubscriptionController::class, 'create']);
+            });
+
             Route::group(['prefix' => 'galary-video'], function () {
                 Route::get('/', [\App\Http\Controllers\v1\Main\VideoGalaryController::class, 'index']);
                 Route::get('{item}', [\App\Http\Controllers\v1\Main\VideoGalaryController::class, 'item']);

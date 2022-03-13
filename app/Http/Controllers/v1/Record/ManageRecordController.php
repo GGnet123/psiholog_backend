@@ -19,8 +19,6 @@ use App\Models\Record\RecordDoctor;
 use App\Models\User;
 use App\Services\DoctorFreeHourService;
 use DateTime;
-use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 class ManageRecordController extends Controller
 {

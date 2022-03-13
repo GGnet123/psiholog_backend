@@ -12,7 +12,11 @@ class Subscription extends Model {
     use LabelModelTrait, SortModelTrait, FilterModelTrait;
     protected $table = 'subscription';
     protected $fillable = [
-        'user_id', 'is_active', 'date_e'];
+        'user_id', 'is_active', 'date_e', 'by_month', 'by_year'
+    ];
+
+    CONST COST_MONTH = 1500;
+    CONST COST_YEAR = 9500;
 
     protected $ar_filter = [
         'is_active' => 'boolean',
@@ -22,7 +26,9 @@ class Subscription extends Model {
 
     protected $casts = [
         'is_active' => 'boolean',
-        'is_active' => 'date'
+        'by_month' => 'boolean',
+        'by_year' => 'boolean',
+        'date_e' => 'date'
     ];
 
     function relUser(){
