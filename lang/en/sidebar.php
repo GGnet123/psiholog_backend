@@ -12,4 +12,5 @@ return [
     'admin_doctor' => 'Профили докторов',
     'admin_support' => 'Поддержка',
     'admin_claim' => 'Жалобы',
+    'admin_record' => 'Записи',
 ];

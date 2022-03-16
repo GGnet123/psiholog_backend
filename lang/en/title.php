@@ -30,5 +30,9 @@ return [
     'admin_claim' => 'Жалобы',
     'admin_claim_show' => 'Жалобы. Форма просмотра',
 
+    'admin_record' => 'Записи',
+    'admin_record_show' => 'Записи. Форма просмотра',
+
+
 
 ];

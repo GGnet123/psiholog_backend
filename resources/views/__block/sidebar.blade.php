@@ -5,6 +5,7 @@
             <div class="category-content no-padding">
                 <ul class="navigation navigation-main navigation-accordion" style="padding-top: 0;">
 
+                    <li><a href="{{ route('admin_record') }}"><i class="icon-file-text"></i> <span>{{ __('sidebar.admin_record') }}</span></a></li>
                     <li><a href="{{ route('admin_support') }}"><i class="icon-envelop3"></i> <span>{{ __('sidebar.admin_support') }}</span></a></li>
                     <li><a href="{{ route('admin_claim') }}"><i class="icon-pencil7"></i> <span>{{ __('sidebar.admin_claim') }}</span></a></li>
                     <li><a href="{{ route('admin_doctor') }}"><i class="icon-user-tie"></i> <span>{{ __('sidebar.admin_doctor') }}</span></a></li>

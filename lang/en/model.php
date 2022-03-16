@@ -44,6 +44,23 @@ return [
         'file_id' => 'Вложенный файл',
         'is_done' => 'Закрыто'
     ],
-
+    'record_doctor' => [
+        'customer_id' => 'Посетитель',
+        'doctor_id' => 'Доктор',
+        'doctor_name' => 'Посетитель',
+        'customer_name' => 'Доктор',
+        'sum' => 'Сумма',
+        'record_date' => 'Дата приема',
+        'record_time' => 'Время приема',
+        'record_str' => 'Дата и время приема',
+        'status_id' => 'Статус',
+        'status_1' => 'Создан',
+        'status_2' => 'Одобрен врачом',
+        'status_3' => 'Оплачен',
+        'status_4' => 'В работе',
+        'status_5' => 'Закончен',
+        'is_canceled' => 'Закрыт',
+        'is_moved' => 'Перенесен'
+    ],
 
 ];

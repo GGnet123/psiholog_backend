@@ -22,7 +22,9 @@ class RecordDoctor extends Model {
         'record_time' => 'string',
         'status_id' => 'int',
         'is_canceled' => 'boolean',
-        'is_moved' => 'boolean'
+        'is_moved' => 'boolean',
+        'doctor_name' => 'function',
+        'customer_name' => 'function'
     ];
 
     protected $casts = [
@@ -41,6 +43,8 @@ class RecordDoctor extends Model {
     CONST ON_WORK_STATUS = 4;
     CONST DONE_STATUS = 5;
 
+    static $ar_status_ru = [];
+
     static function getArStatus () : array
     {
         return [
@@ -50,6 +54,18 @@ class RecordDoctor extends Model {
             STATIC::ON_WORK_STATUS => 'ON_WORK. seance is begin',
             STATIC::DONE_STATUS => 'DONE. seance is finished',
         ];
+    }
+
+    function scopeDoctorName($q, $name){
+        return $q->whereHas('relDoctor', function($b) use ($name){
+            $b->where('name', 'like', $name);
+        });
+    }
+
+    function scopeCustomerName($q, $name){
+        return $q->whereHas('relCustomer', function($b) use ($name){
+            $b->where('name', 'like', $name);
+        });
     }
 
     function getStatusNameAttribute(){
@@ -66,6 +82,30 @@ class RecordDoctor extends Model {
 
     function relDoctor(){
         return $this->belongsTo(User::class, 'doctor_id');
+    }
+
+    function relLogs(){
+        return $this->hasMany(RecordLog::class, 'record_id');
+    }
+
+    function getRecordStrAttribute(){
+        return $this->record_date.' '.$this->record_time;
+    }
+
+    function getArStatusRuAttribute(){
+        if (count(static::$ar_status_ru) > 0)
+            return static::$ar_status_ru;
+
+        static::$ar_status_ru = [];
+        foreach (RecordDoctor::getArStatus() as $status_id => $v){
+            static::$ar_status_ru[$status_id] = $this->label('status_'.$status_id);
+        }
+
+        return static::$ar_status_ru;
+    }
+
+    function getStatusRuAttribute(){
+        return (isset($this->ar_status_ru[$this->status_id]) ? $this->ar_status_ru[$this->status_id] : null);
     }
 
 }

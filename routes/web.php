@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\Main\ClaimController;
 use App\Http\Controllers\Admin\Main\DoctorController;
 use App\Http\Controllers\Admin\Main\SupportController;
 use App\Http\Controllers\Admin\Main\UserController;
+use App\Http\Controllers\Admin\Record\RecordController;
 use Illuminate\Support\Facades\Route;
 use Hmurich\Swagger\Controllers\SwaggerViewController;
 
@@ -24,6 +25,14 @@ Route::group(['prefix' => 'admin/login'], function () {
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () {
     Route::get('/', [\App\Http\Controllers\Admin\IndexController::class, 'index'])->name('admin_index');
+
+
+    Route::group(['prefix' => 'record'], function () {
+        Route::group(['prefix' => 'record'], function () {
+            Route::get('/', [RecordController::class, 'index'])->name('admin_record');
+            Route::get('show/{item}', [RecordController::class, 'view'])->name('admin_record_show');
+        });
+    });
 
     Route::group(['prefix' => 'main'], function () {
         Route::group(['prefix' => 'users'], function () {
