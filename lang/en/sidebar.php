@@ -14,5 +14,5 @@ return [
     'admin_claim' => 'Жалобы',
     'admin_record' => 'Записи',
     'admin_balancer' => 'Финансы',
-
+    'admin_subscription' => 'Подписки',
 ];

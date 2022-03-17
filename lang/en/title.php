@@ -36,6 +36,6 @@ return [
     'admin_balancer' => 'Финансовые записи',
     'admin_balancer_show' => 'Финансовые записи. Форма просмотра',
 
-
-
+    'admin_subscription' => 'Подписки',
+    'admin_subscription_show' => 'Подписки. Форма просмотра',
 ];

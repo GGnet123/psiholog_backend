@@ -19,9 +19,10 @@ class Subscription extends Model {
     CONST COST_YEAR = 9500;
 
     protected $ar_filter = [
-        'is_active' => 'boolean',
+        'is_active' => 'boolean_str',
         'user_id' => 'int',
-        'date_e' => 'string'
+        'date_e' => 'string',
+        'user_name' => 'function'
     ];
 
     protected $casts = [
@@ -33,6 +34,19 @@ class Subscription extends Model {
 
     function relUser(){
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    function scopeUserName($q, $name){
+        return $q->whereHas('relUser', function($b) use ($name){
+            $b->where('name', 'like', $name);
+        });
+    }
+
+    function getTypeRuAttribute(){
+        if ($this->by_month)
+            return $this->label('by_month');
+
+        return $this->label('by_year');
     }
 
 }
