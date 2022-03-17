@@ -9,10 +9,11 @@ use App\Traits\LabelModelTrait;
 use App\Traits\SortModelTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Support extends Model
 {
-    use HasFactory, LabelModelTrait, SortModelTrait, FilterModelTrait;
+    use HasFactory, LabelModelTrait, SortModelTrait, FilterModelTrait, Notifiable;
     protected $table = 'support';
     protected $fillable = [
         'name',

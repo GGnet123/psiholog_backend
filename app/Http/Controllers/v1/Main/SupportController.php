@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Main\StoreSupportRequest;
 use App\Http\Resources\Main\SupportResource;
 use App\Models\Main\Support;
+use App\Notifications\NewSupportMessageNotifications;
 use Illuminate\Http\Request;
 
 class SupportController extends Controller
@@ -23,6 +24,7 @@ class SupportController extends Controller
         $data['is_closed'] = false;
 
         $model = (new MainStoreAction(new Support(), $data))->run();
+        $model->notify(new NewSupportMessageNotifications());
 
         return new SupportResource($model);
     }
