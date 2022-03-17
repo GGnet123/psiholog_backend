@@ -33,6 +33,9 @@ return [
     'admin_record' => 'Записи',
     'admin_record_show' => 'Записи. Форма просмотра',
 
+    'admin_balancer' => 'Финансовые записи',
+    'admin_balancer_show' => 'Финансовые записи. Форма просмотра',
+
 
 
 ];

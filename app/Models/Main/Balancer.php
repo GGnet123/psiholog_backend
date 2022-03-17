@@ -15,14 +15,16 @@ class Balancer extends Model {
         'is_done', 'is_canceled', 'user_id', 'sum', 'record_id', 'subscription_id', 'need_returned', 'is_returned'];
 
     protected $ar_filter = [
-        'is_done' => 'boolean',
-        'is_canceled' => 'boolean',
+        'is_done' => 'boolean_str',
+        'is_canceled' => 'boolean_str',
         'user_id' => 'int',
         'sum' => 'int',
         'record_id' => 'int',
         'subscription_id' => 'int',
-        'need_returned' => 'boolean',
-        'is_returned' => 'boolean',
+        'need_returned' => 'boolean_str',
+        'is_returned' => 'boolean_str',
+        'user_name' => 'function',
+
     ];
 
     protected $casts = [
@@ -39,5 +41,18 @@ class Balancer extends Model {
 
     function relRecord(){
         return $this->belongsTo(RecordDoctor::class, 'record_id');
+    }
+
+    function scopeUserName($q, $name){
+        return $q->whereHas('relUser', function($b) use ($name){
+            $b->where('name', 'like', $name);
+        });
+    }
+
+    function getTypeRuAttribute(){
+        if ($this->relRecord)
+            return $this->label('type_record');
+
+        return $this->label('type_subscription');
     }
 }

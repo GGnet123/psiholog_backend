@@ -44,6 +44,7 @@ return [
         'file_id' => 'Вложенный файл',
         'is_done' => 'Закрыто'
     ],
+
     'record_doctor' => [
         'customer_id' => 'Посетитель',
         'doctor_id' => 'Доктор',
@@ -62,5 +63,20 @@ return [
         'is_canceled' => 'Закрыт',
         'is_moved' => 'Перенесен'
     ],
+
+    'balancer' => [
+        'is_done' => 'Завершен платеж',
+        'is_canceled' => 'Отменен платеж',
+        'user_id' => 'Пользователь',
+        'sum' => 'Сумма',
+        'record_id' => 'Запись на прием',
+        'subscription_id' => 'Запись на подписку',
+        'need_returned' => 'Надо вернуть',
+        'is_returned' => 'Возврашено пользователю',
+        'user_name' => 'Пользователь',
+        'type' => 'Тип платежа',
+        'type_record' => 'Платеж за прием',
+        'type_subscription' => 'Платеж за подписку',
+    ]
 
 ];

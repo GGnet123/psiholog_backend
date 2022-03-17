@@ -26,6 +26,12 @@ trait FilterModelTrait {
             if ($ar_filter[$k] == 'boolean' && !$v)
                 $q->where($k, false);
 
+            if ($ar_filter[$k] == 'boolean_str' && $v == 'Y')
+                $q->where($k, true);
+
+            if ($ar_filter[$k] == 'boolean_str' && $v == 'N')
+                $q->where($k, false);
+
             if ($ar_filter[$k] == 'function' && $v) {
                 $func = Str::camel($k);
                 $q->{$func}($v);

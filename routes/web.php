@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\Content\FaqController;
 use App\Http\Controllers\Admin\Content\TermOfUseController;
 use App\Http\Controllers\Admin\Lib\LibSpecializationController;
+use App\Http\Controllers\Admin\Main\BalancerController;
 use App\Http\Controllers\Admin\Main\ClaimController;
 use App\Http\Controllers\Admin\Main\DoctorController;
 use App\Http\Controllers\Admin\Main\SupportController;
@@ -35,6 +36,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
     });
 
     Route::group(['prefix' => 'main'], function () {
+        Route::group(['prefix' => 'balancer'], function () {
+            Route::get('/', [BalancerController::class, 'index'])->name('admin_balancer');
+            Route::get('show/{item}', [BalancerController::class, 'view'])->name('admin_balancer_show');
+            Route::get('returned/{item}', [BalancerController::class, 'returned'])->name('admin_balancer_returned');
+        });
+
         Route::group(['prefix' => 'users'], function () {
             Route::get('/', [UserController::class, 'index'])->name('admin_main_user');
             Route::get('show/{item}', [UserController::class, 'view'])->name('admin_main_user_show');
