@@ -10,10 +10,11 @@ use App\Traits\SortModelTrait;
 use App\Traits\TranslateModelTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Claim extends Model
 {
-    use HasFactory, TranslateModelTrait, LabelModelTrait, SortModelTrait, FilterModelTrait;
+    use HasFactory, TranslateModelTrait, LabelModelTrait, SortModelTrait, FilterModelTrait, Notifiable;
     protected $table = 'claim_user';
     protected $fillable = [
         'user_id',

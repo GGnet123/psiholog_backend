@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Main\SaveClaimRequest;
 use App\Http\Resources\Main\ClaimResource;
 use App\Models\Main\Claim;
+use App\Notifications\NewClaimNotifications;
 use Illuminate\Http\Request;
 
 class ClaimController extends Controller
@@ -28,6 +29,7 @@ class ClaimController extends Controller
         $data = $request->validated();
         $data['from_user_id'] = $request->user()->id;
         $item = (new MainStoreAction(new Claim(), $data))->run();
+        $item->notify(new NewClaimNotifications());
 
         return new ClaimResource($item);
     }
