@@ -10,6 +10,8 @@ use App\Actions\Record\FinishRecordAction;
 use App\Actions\Record\MoveRecordAction;
 use App\Actions\Record\PayRecordAction;
 use App\Actions\Record\StartSeanceRecordAction;
+use App\Exceptions\Record\CurrentUserIsBlockedException;
+use App\Exceptions\Record\DoctorIsBlockedException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Record\CreateRecordRequest;
 use App\Http\Requests\Record\FreeHourRequest;
@@ -23,12 +25,22 @@ use DateTime;
 class ManageRecordController extends Controller
 {
     function getDoctorFreeHour(FreeHourRequest $request, User $doctor){
+        if ($doctor->is_blocked_seance)
+            throw new DoctorIsBlockedException();
+        if ($request->user()->is_blocked_seance)
+            throw new CurrentUserIsBlockedException();
+
         $date =  new DateTime($request->record_date);
 
         return $this->data_response(DoctorFreeHourService::getHour($doctor, $date));
     }
 
     function createRecord(CreateRecordRequest $request, User $doctor){
+        if ($doctor->is_blocked_seance)
+            throw new DoctorIsBlockedException();
+        if ($request->user()->is_blocked_seance)
+            throw new CurrentUserIsBlockedException();
+
         $model = (new CreateRecordAction($doctor, $request->validated()))->run();
 
         return new RecordResource($model);

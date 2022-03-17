@@ -22,6 +22,7 @@ class UserResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'login' => $this->login,
+            'is_blocked_seance' => $this->is_blocked_seance,
             'type' => 'admin'
         ];
     }
@@ -47,6 +48,7 @@ class UserResource extends JsonResource
             'notify_all' => $this->notify_all,
             'notify_meditation' => $this->notify_meditation,
             'notify_app' => $this->notify_app,
+            'is_blocked_seance' => $this->is_blocked_seance,
             'type' => 'doctor'
         ];
     }
@@ -61,6 +63,7 @@ class UserResource extends JsonResource
             'notify_all' => $this->notify_all,
             'notify_meditation' => $this->notify_meditation,
             'notify_app' => $this->notify_app,
+            'is_blocked_seance' => $this->is_blocked_seance,
             'type' => 'user'
         ];
     }

@@ -31,6 +31,7 @@
                     <th ><x-sortLink :name='$model->label("login")' attr="name_en" :request="$request" /></th>
                     <th>{{ $model->label('lang') }}</th>
                     <th>{{ $model->label('is_blocked') }}</th>
+                    <th>{{ $model->label('is_blocked_seance') }}</th>
                     <th data-breakpoints="all">{{ $model->label('created_at') }}</th>
                     <th data-breakpoints="all">{{ $model->label('updated_at') }}</th>
                     <th>
@@ -44,7 +45,8 @@
                         <td>{{ $i->name }}</td>
                         <td>{{ $i->login }}</td>
                         <td>{{ $i->lang }}</td>
-                        <td>{{ $i->is_blocked ? 'Да' : 'Нет' }}</td>
+                        <td><a href="{{ route($route_path.'_block', $i) }}">{{ $i->is_blocked ? 'Да' : 'Нет' }}</a></td>
+                        <td><a href="{{ route($route_path.'_block_seance', $i) }}">{{ $i->is_blocked_seance ? 'Да' : 'Нет' }}</a></td>
                         <td>{{ $i->created_at }}</td>
                         <td>{{ $i->updated_at }}</td>
                         <th>

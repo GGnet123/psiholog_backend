@@ -38,7 +38,8 @@ class User extends Authenticatable
         'notify_all',
         'notify_meditation',
         'notify_app',
-        'is_blocked'
+        'is_blocked',
+        'is_blocked_seance'
     ];
 
     CONST ADMIN_TYPE = 1;

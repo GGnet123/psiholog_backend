@@ -43,4 +43,10 @@ class  UserController extends Controller{
         return redirect()->back()->with('success', __('main.updated_model'));
     }
 
+    function blockedSeance(Request $request, Model $item){
+        $item->update(['is_blocked_seance' => ($item->is_blocked_seance ? false : true)]);
+
+        return redirect()->back()->with('success', __('main.updated_model'));
+    }
+
 }

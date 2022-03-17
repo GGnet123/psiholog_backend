@@ -53,12 +53,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
             Route::get('/', [UserController::class, 'index'])->name('admin_main_user');
             Route::get('show/{item}', [UserController::class, 'view'])->name('admin_main_user_show');
             Route::get('block/{item}', [UserController::class, 'blocked'])->name('admin_main_user_block');
+            Route::get('block-seance/{item}', [UserController::class, 'blockedSeance'])->name('admin_main_user_block_seance');
         });
 
         Route::group(['prefix' => 'doctor'], function () {
             Route::get('/', [DoctorController::class, 'index'])->name('admin_doctor');
             Route::get('show/{item}', [DoctorController::class, 'view'])->name('admin_doctor_show');
             Route::get('block/{item}', [DoctorController::class, 'blocked'])->name('admin_doctor_block');
+            Route::get('block-seance/{item}', [DoctorController::class, 'blockedSeance'])->name('admin_doctor_block_seance');
         });
 
         Route::group(['prefix' => 'support'], function(){
