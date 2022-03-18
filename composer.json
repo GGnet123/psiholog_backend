@@ -9,6 +9,7 @@
         "fruitcake/laravel-cors": "^2.0.5",
         "guzzlehttp/guzzle": "^7.4",
         "hmurich/swagger": "dev-master",
+        "kreait/laravel-firebase": "^4.1",
         "laravel-notification-channels/telegram": "^2.0",
         "laravel/framework": "^9.0",
         "laravel/sanctum": "^2.14.1",

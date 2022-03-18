@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'v1'], function () {
     Route::post('login', [\App\Http\Controllers\v1\AuthController::class, 'login']);
+    Route::post('firebase-login', [\App\Http\Controllers\v1\FirebaseAuthController::class, 'login']);
 
     Route::group(['prefix' => 'registration'], function () {
         Route::post('step1', [\App\Http\Controllers\v1\RegistrationController::class, 'step1']);
@@ -35,6 +36,7 @@ Route::group(['prefix' => 'v1'], function () {
                 Route::post('approve-record/{record}', [ManageRecordController::class, 'approveRecord']);
                 Route::post('pay-record/{record}', [ManageRecordController::class, 'payRecord']);
                 Route::post('start-seance-record/{record}', [ManageRecordController::class, 'startSeanceRecord']);
+                Route::get('get-agora-data/{record}', [ManageRecordController::class, 'getAgoraData']);
                 Route::post('finish-record/{record}', [ManageRecordController::class, 'finishRecord']);
                 Route::post('move-record/{record}', [ManageRecordController::class, 'moveRecord']);
                 Route::post('cancel-record/{record}', [ManageRecordController::class, 'cancelRecord']);

@@ -36,4 +36,9 @@ return [
         'chat_id' => '-1001794821398'
     ],
 
+    'agora' => [
+        'app_id' => 'c067d0cde328417fb1342776098f6cd6',
+        'certificate_id' => '57dd89d9209441249c883ec0af72e90f'
+    ]
+
 ];

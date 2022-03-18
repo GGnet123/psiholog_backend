@@ -12,6 +12,7 @@ use App\Actions\Record\PayRecordAction;
 use App\Actions\Record\StartSeanceRecordAction;
 use App\Exceptions\Record\CurrentUserIsBlockedException;
 use App\Exceptions\Record\DoctorIsBlockedException;
+use App\Exceptions\Record\RecordIsNotOnWorkException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Record\CreateRecordRequest;
 use App\Http\Requests\Record\FreeHourRequest;
@@ -19,8 +20,10 @@ use App\Http\Requests\Record\MoveRecordRequest;
 use App\Http\Resources\Record\RecordResource;
 use App\Models\Record\RecordDoctor;
 use App\Models\User;
+use App\Services\AgoraService;
 use App\Services\DoctorFreeHourService;
 use DateTime;
+use Illuminate\Http\Request;
 
 class ManageRecordController extends Controller
 {
@@ -82,6 +85,14 @@ class ManageRecordController extends Controller
         $model = (new CancelRecordAction($record))->run();
 
         return new RecordResource($model);
+    }
 
+    function getAgoraData(Request $request, RecordDoctor $record){
+        if ($record->status_id != RecordDoctor::ON_WORK_STATUS)
+            throw new RecordIsNotOnWorkException();
+
+        $data = AgoraService::token('record_'.$record->id, $request->user()->id);
+
+        return $this->data_response($data);
     }
 }
