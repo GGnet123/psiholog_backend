@@ -124,6 +124,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
 
         Route::get('sms', [\App\Http\Controllers\Admin\Sample\SmsController::class, 'index'])->name('sample_sms');
         Route::post('sms', [\App\Http\Controllers\Admin\Sample\SmsController::class, 'save'])->name('sample_sms_save');
+
+        Route::get('firebase-auth', [\App\Http\Controllers\Admin\Sample\FirebaseAuthController::class, 'index'])->name('sample_firebase_auth');
     });
 });
 

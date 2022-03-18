@@ -10,7 +10,8 @@ class FirebaseAuthRequest extends FormRequest
     public function rules()
     {
         return [
-            'firebase_token' => 'required|string|max:255'
+            'firebase_token' => 'required|string',
+            'firebase_provider' => 'required|string'
         ];
     }
 }

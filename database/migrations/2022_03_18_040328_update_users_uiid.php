@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('firebaseUID')->nullable();
+            $table->string('firebaseProvider')->nullable();
         });
     }
 
@@ -27,6 +28,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('firebaseUID');
+            $table->dropColumn('firebaseProvider');
         });
     }
 };
