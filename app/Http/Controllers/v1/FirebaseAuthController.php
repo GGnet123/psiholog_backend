@@ -16,6 +16,7 @@ class FirebaseAuthController extends Controller
         $id = CheckFirebaseAuthProviderService::check($request->firebase_token, $request->firebase_provider);
         if (!$id)
             return $this->false('Wrong credentials');
+
         $user = User::where(['firebaseUID' => $id, 'firebaseProvider' => $request->firebase_provider])->first();
         if (!$user){
             $user = new User();
