@@ -39,9 +39,8 @@ class RecordDoctor extends Model {
 
     CONST CREATED_STATUS = 1;
     CONST APPROVED_STATUS = 2;
-    CONST PAYED_STATUS = 3;
-    CONST ON_WORK_STATUS = 4;
-    CONST DONE_STATUS = 5;
+    CONST ON_WORK_STATUS = 3;
+    CONST DONE_STATUS = 4;
 
     static $ar_status_ru = [];
 
@@ -50,7 +49,6 @@ class RecordDoctor extends Model {
         return [
             STATIC::CREATED_STATUS => 'CREATED. need approve',
             STATIC::APPROVED_STATUS => 'APPROVED. need pay',
-            STATIC::PAYED_STATUS => 'PAYED. wait seance',
             STATIC::ON_WORK_STATUS => 'ON_WORK. seance is begin',
             STATIC::DONE_STATUS => 'DONE. seance is finished',
         ];

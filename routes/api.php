@@ -37,7 +37,6 @@ Route::group(['prefix' => 'v1'], function () {
                 Route::get('free-hour/{doctor}', [ManageRecordController::class, 'getDoctorFreeHour']);
                 Route::post('create-record/{doctor}', [ManageRecordController::class, 'createRecord']);
                 Route::post('approve-record/{record}', [ManageRecordController::class, 'approveRecord']);
-                Route::post('pay-record/{record}', [ManageRecordController::class, 'payRecord']);
                 Route::post('start-seance-record/{record}', [ManageRecordController::class, 'startSeanceRecord']);
                 Route::get('get-agora-data/{record}', [ManageRecordController::class, 'getAgoraData']);
                 Route::post('finish-record/{record}', [ManageRecordController::class, 'finishRecord']);
@@ -59,26 +58,6 @@ Route::group(['prefix' => 'v1'], function () {
             Route::group(['prefix' => 'subscription'], function () {
                 Route::get('/', [SubscriptionController::class, 'index']);
                 Route::post('/', [SubscriptionController::class, 'create']);
-            });
-
-            Route::group(['prefix' => 'galary-video'], function () {
-                Route::get('/', [\App\Http\Controllers\v1\Main\VideoGalaryController::class, 'index']);
-                Route::get('{item}', [\App\Http\Controllers\v1\Main\VideoGalaryController::class, 'item']);
-            });
-
-            Route::group(['prefix' => 'galary-music'], function () {
-                Route::get('/', [\App\Http\Controllers\v1\Main\MusicGalaryController::class, 'index']);
-                Route::get('{item}', [\App\Http\Controllers\v1\Main\MusicGalaryController::class, 'item']);
-            });
-
-            Route::group(['prefix' => 'lib-music'], function () {
-                Route::get('/', [\App\Http\Controllers\v1\Main\LibMusicGalaryController::class, 'index']);
-                Route::get('{item}', [\App\Http\Controllers\v1\Main\LibMusicGalaryController::class, 'item']);
-            });
-
-            Route::group(['prefix' => 'lib-video'], function () {
-                Route::get('/', [\App\Http\Controllers\v1\Main\LibVideoGalaryController::class, 'index']);
-                Route::get('{item}', [\App\Http\Controllers\v1\Main\LibVideoGalaryController::class, 'item']);
             });
 
 

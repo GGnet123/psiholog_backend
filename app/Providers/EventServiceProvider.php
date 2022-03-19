@@ -40,12 +40,10 @@ class EventServiceProvider extends ServiceProvider
             CreateRecordLogListner::class
         ],
         ApprovedRecordEvent::class => [
-            ApprovedRecordLogListner::class,
-            CreateRecordBalanceListner::class
+            ApprovedRecordLogListner::class
         ],
         PayedRecordEvent::class => [
-            PayedRecordRecordLogListner::class,
-            PayedRecordBalanceListner::class
+            PayedRecordRecordLogListner::class
         ],
         StartSeanceRecordEvent::class => [
             StartSeanceRecordLogListner::class
@@ -57,11 +55,9 @@ class EventServiceProvider extends ServiceProvider
             MoveSeanceRecordLogListner::class
         ],
         CancelRecordEvent::class => [
-            CancelRecordLogListner::class,
-            CancelRecordBalanceListner::class
+            CancelRecordLogListner::class
         ],
         CreateSubscriptionEvent::class => [
-            CreateSubscriptionBalancerLister::class
         ]
     ];
 

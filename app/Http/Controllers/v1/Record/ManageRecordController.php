@@ -55,11 +55,6 @@ class ManageRecordController extends Controller
         return new RecordResource($model);
     }
 
-    function payRecord(RecordDoctor $record){
-        $model = (new PayRecordAction($record))->run();
-
-        return new RecordResource($model);
-    }
 
     function startSeanceRecord(RecordDoctor $record){
         $model = (new StartSeanceRecordAction($record))->run();

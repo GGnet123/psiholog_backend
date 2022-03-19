@@ -17,7 +17,7 @@ class StartSeanceRecordAction extends AbstractAction {
         if ($record->doctor_id != Auth::user()->id)
             throw new HasNoteAccessException();
 
-        if ($record->status_id != RecordDoctor::PAYED_STATUS)
+        if ($record->status_id != RecordDoctor::APPROVED_STATUS)
             throw new CantChangeRecordStatusException();
 
         $record->update(['status_id' => RecordDoctor::ON_WORK_STATUS]);
