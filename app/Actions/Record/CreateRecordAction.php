@@ -6,6 +6,7 @@ use App\Events\CreateRecordEvent;
 use App\Exceptions\Record\RecordHourBusyException;
 use App\Exceptions\Record\UserNotDoctorException;
 use App\Models\Record\RecordDoctor;
+use App\Services\CreateRecordTransactionService;
 use App\Services\DoctorFreeHourService;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
@@ -34,6 +35,8 @@ class CreateRecordAction extends AbstractAction {
         $item->save();
 
         event(new CreateRecordEvent($item, Auth::user()));
+
+        CreateRecordTransactionService::do(Auth::user(), $item);
 
         return $item;
     }

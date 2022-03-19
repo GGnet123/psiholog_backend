@@ -26,7 +26,8 @@ class CardTransaction extends Model
         'subscription_id',
         'record_id',
         'is_done',
-        'is_returned'
+        'is_returned',
+        'sum_transaction'
     ];
 
     protected $ar_filter = [

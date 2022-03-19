@@ -68,7 +68,7 @@ class DoctorFreeHourService {
     private function calcDoctorRecords(){
         $this->doctor_records = RecordDoctor::where(['doctor_id' => $this->user->id, 'record_date' => $this->date->format('Y-m-d')])
                                                 ->whereIn('status_id', [RecordDoctor::CREATED_STATUS, RecordDoctor::APPROVED_STATUS,
-                                                                        RecordDoctor::ON_WORK_STATUS, RecordDoctor::PAYED_STATUS])
+                                                                        RecordDoctor::ON_WORK_STATUS])
                                                 ->where('is_canceled', false)->pluck('record_time', 'record_time')->toArray();
 
 

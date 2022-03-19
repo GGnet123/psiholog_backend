@@ -48,7 +48,7 @@ class RecordDoctor extends Model {
     {
         return [
             STATIC::CREATED_STATUS => 'CREATED. need approve',
-            STATIC::APPROVED_STATUS => 'APPROVED. need pay',
+            STATIC::APPROVED_STATUS => 'APPROVED. waiting seance',
             STATIC::ON_WORK_STATUS => 'ON_WORK. seance is begin',
             STATIC::DONE_STATUS => 'DONE. seance is finished',
         ];
