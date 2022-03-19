@@ -30,6 +30,8 @@
                     <th>{{ $model->label('is_active') }}</th>
                     <th>{{ $model->label('date_e') }}</th>
                     <th>{{ $model->label('type_ru') }}</th>
+                    <th>{{ $model->label('is_cancel_by_user') }}</th>
+                    <th>{{ $model->label('is_cancel_by_system') }}</th>
                     <th data-breakpoints="all">{{ $model->label('created_at') }}</th>
                     <th data-breakpoints="all">{{ $model->label('updated_at') }}</th>
                     <th>
@@ -44,6 +46,8 @@
                         <td>{{ $i->is_active ? 'Да' : 'Нет' }}</td>
                         <td>{{ $i->date_e }}</td>
                         <td>{{ $i->type_ru }}</td>
+                        <td>{{ $i->is_cancel_by_user ? 'Да' : 'Нет' }}</td>
+                        <td>{{ $i->is_cancel_by_system ? 'Да' : 'Нет' }}</td>
                         <td>{{ $i->created_at }}</td>
                         <td>{{ $i->updated_at }}</td>
                         <th>
