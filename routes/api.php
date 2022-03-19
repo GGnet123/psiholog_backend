@@ -70,6 +70,7 @@ Route::group(['prefix' => 'v1'], function () {
             Route::group(['prefix' => 'subscription'], function () {
                 Route::get('/', [SubscriptionController::class, 'index']);
                 Route::post('/', [SubscriptionController::class, 'create']);
+                Route::delete('/', [SubscriptionController::class, 'cancelSubscription']);
             });
 
 

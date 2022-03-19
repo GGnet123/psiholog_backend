@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\v1\Main;
 
+use App\Actions\Main\CancelSubscription;
 use App\Actions\Main\SaveSubscriptionAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Main\SaveSubscriptionRequest;
@@ -21,5 +22,12 @@ class SubscriptionController extends Controller
         $item = (new SaveSubscriptionAction(new Subscription(), $request->all()))->run();
 
         return new SubscriptionResource($item);
+    }
+
+    function cancelSubscription(Request $request){
+        $item = (new CancelSubscription())->run();
+
+        return new SubscriptionResource($item);
+
     }
 }
