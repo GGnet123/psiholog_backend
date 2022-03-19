@@ -38,6 +38,7 @@ Route::group(['prefix' => 'v1'], function () {
             Route::group(['prefix' => 'credit-card'], function () {
                 Route::get('/', [CreditCardController::class, 'index']);
                 Route::get('show/{item}', [CreditCardController::class, 'item']);
+                Route::get('active', [CreditCardController::class, 'active']);
                 Route::post('create', [CreditCardController::class, 'create']);
                 Route::delete('remove/{item}', [CreditCardController::class, 'remove']);
             });

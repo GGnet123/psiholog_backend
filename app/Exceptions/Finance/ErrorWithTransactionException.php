@@ -11,6 +11,9 @@ class  ErrorWithTransactionException extends CustomException {
     function __construct(int $status_code = 0){
         if ($status_code != 0)
             $this->message = __('finance.error.'.$status_code);
+
+        if ($status_code != 0)
+            $this->code = $status_code;
     }
 
 }

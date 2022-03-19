@@ -27,6 +27,15 @@ class CreditCardController extends Controller
         return new CreditCardResource($item);
     }
 
+    function active(Request $request){
+        $item = CreditCard::where('user_id', $request->user()->id)->where(['is_active' => true, 'is_removed'=> false])->latest()->first();
+
+        if (!$item)
+            return $this->data_response([]);
+
+        return new CreditCardResource($item);
+    }
+
     function create(CreateCreditCardRequest $request){
         $data = $request->validated();
         $data['user_id'] = $request->user()->id;
