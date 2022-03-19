@@ -23,6 +23,7 @@ class UserResource extends JsonResource
             'name' => $this->name,
             'login' => $this->login,
             'is_blocked_seance' => $this->is_blocked_seance,
+            'has_active_credit_card' => $this->hasActiveCreditCard(),
             'type' => 'admin'
         ];
     }
@@ -49,6 +50,7 @@ class UserResource extends JsonResource
             'notify_meditation' => $this->notify_meditation,
             'notify_app' => $this->notify_app,
             'is_blocked_seance' => $this->is_blocked_seance,
+            'has_active_credit_card' => $this->hasActiveCreditCard(),
             'type' => 'doctor'
         ];
     }
@@ -64,6 +66,7 @@ class UserResource extends JsonResource
             'notify_meditation' => $this->notify_meditation,
             'notify_app' => $this->notify_app,
             'is_blocked_seance' => $this->is_blocked_seance,
+            'has_active_credit_card' => $this->hasActiveCreditCard(),
             'type' => 'user'
         ];
     }

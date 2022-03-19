@@ -1,8 +1,6 @@
 <?php
 namespace App\Services;
 
-use App\Exceptions\Registration\PhoneNoteFoundedInFirebaseException;
-use App\Exceptions\Registration\WrongPinException;
 use Illuminate\Support\Facades\Http;
 
 class CheckSmsService {

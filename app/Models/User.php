@@ -178,4 +178,8 @@ class User extends Authenticatable
         $item = $this->relCreditCards()->where(['is_active' => true, 'is_removed'=> false])->count();
         return ($item ? true : false);
     }
+
+    function getActiveCreditCard(){
+        return $this->relCreditCards()->where(['is_active' => true, 'is_removed'=> false])->first();
+    }
 }

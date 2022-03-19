@@ -16,6 +16,7 @@ class SimpleUserResource extends JsonResource
             'date_b' => $this->date_b,
             'is_blocked_seance' => $this->is_blocked_seance,
             'avatar' => ($this->relAvatar ? new UploaderFileResource($this->relAvatar) : null),
+            'has_active_credit_card' => $this->hasActiveCreditCard(),
         ];
     }
 

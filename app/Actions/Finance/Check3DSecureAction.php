@@ -60,7 +60,7 @@ class Check3DSecureAction extends AbstractAction {
     }
 
     private function rollbackTransaction($res_model){
-        $result = CloudPay::transactionsRefund(['TransactionId' => $res_model->TransactionId, 'Amount' => '100']);
+        $result = CloudPay::transactionsRefund(['TransactionId' => $res_model->TransactionId, 'Amount' => config('finance.cost_test')]);
 
     }
 

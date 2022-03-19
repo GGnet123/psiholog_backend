@@ -36,7 +36,7 @@ class CreateCreditCardAction extends AbstractAction {
 
     function testCharge(){
         $array = [
-            'Amount' => 100, // Required
+            'Amount' => config('finance.cost_test'), // Required
             'Currency' => 'KZT', // Required
             'Name' => $this->user->name, // Required
             'IpAddress' => $this->model->ip, // Required
@@ -81,7 +81,7 @@ class CreateCreditCardAction extends AbstractAction {
     }
 
     private function rollbackTransaction($res_model){
-        CloudPay::transactionsRefund(['TransactionId' => $res_model->TransactionId, 'Amount' => '100']);
+        CloudPay::transactionsRefund(['TransactionId' => $res_model->TransactionId, 'Amount' => config('finance.cost_test')]);
     }
 
     private function create3DSecure($res_model){

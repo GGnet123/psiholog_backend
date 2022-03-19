@@ -4,6 +4,7 @@ namespace App\Actions\Main;
 use App\Actions\AbstractAction;
 use App\Exceptions\Main\HasActiveSubscriptionException;
 use App\Models\Main\Subscription;
+use App\Services\CreateSubscriptionTransactionService;
 use Illuminate\Support\Facades\Auth;
 
 class SaveSubscriptionAction extends AbstractAction {
@@ -30,6 +31,8 @@ class SaveSubscriptionAction extends AbstractAction {
         $record->is_active = true;
         $record->date_e = $now->format('Y-m-d');
         $record->save();
+
+        CreateSubscriptionTransactionService::do($user, $record);
 
         return $record;
     }

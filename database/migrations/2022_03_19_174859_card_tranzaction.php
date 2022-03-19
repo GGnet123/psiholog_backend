@@ -25,6 +25,7 @@ return new class extends Migration
             $table->bigInteger('record_id')->nullable();
             $table->boolean('is_done')->nullable();
             $table->boolean('is_returned')->nullable();
+            $table->timestamps();
         });
     }
 

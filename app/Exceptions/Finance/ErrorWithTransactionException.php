@@ -16,4 +16,8 @@ class  ErrorWithTransactionException extends CustomException {
             $this->code = $status_code;
     }
 
+    function getPublicCode(){
+        return $this->code;
+    }
+
 }
