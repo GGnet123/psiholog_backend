@@ -126,7 +126,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
         Route::post('sms', [\App\Http\Controllers\Admin\Sample\SmsController::class, 'save'])->name('sample_sms_save');
 
         Route::get('firebase-auth', [\App\Http\Controllers\Admin\Sample\FirebaseAuthController::class, 'index'])->name('sample_firebase_auth');
+        Route::any('cloud-pay', [\App\Http\Controllers\Admin\Sample\CloudPaymentController::class, 'index'])->name('sample_pay');
+        Route::get('cloud-pay/charge', [\App\Http\Controllers\Admin\Sample\CloudPaymentController::class, 'charge'])->name('sample_pay_charge');
+        Route::get('cloud-pay/chargefree', [\App\Http\Controllers\Admin\Sample\CloudPaymentController::class, 'chargefree'])->name('sample_pay_chargefree');
+        Route::get('cloud-pay/secure-form', [\App\Http\Controllers\Admin\Sample\CloudPaymentController::class, 'secure'])->name('sample_pay_secure');
+        Route::get('cloud-pay/token', [\App\Http\Controllers\Admin\Sample\CloudPaymentController::class, 'token'])->name('sample_pay_token');
+        Route::get('cloud-pay/return', [\App\Http\Controllers\Admin\Sample\CloudPaymentController::class, 'returnPay'])->name('sample_pay_return');
+        Route::get('cloud-pay/refund', [\App\Http\Controllers\Admin\Sample\CloudPaymentController::class, 'transactionsRefund'])->name('sample_pay_refund');
     });
 });
 
+Route::any('cloud-pay', [\App\Http\Controllers\Admin\Sample\CloudPaymentController::class, 'index'])->name('sample_pay');
 
