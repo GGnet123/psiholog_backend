@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\v1\Finance\CreditCardController;
 use App\Http\Controllers\v1\Main\SubscriptionController;
 use App\Http\Controllers\v1\Record\ManageRecordController;
 use App\Http\Controllers\v1\Record\RecordController;
@@ -31,6 +32,16 @@ Route::group(['prefix' => 'v1'], function () {
 
         Route::post('create-password', [\App\Http\Controllers\v1\CreatePasswordController::class, 'save']);
         Route::post('create-password/check-login', [\App\Http\Controllers\v1\CreatePasswordController::class, 'checkLogin']);
+
+
+        Route::group(['prefix' => 'finance'], function () {
+            Route::group(['prefix' => 'credit-card'], function () {
+                Route::get('/', [CreditCardController::class, 'index']);
+                Route::get('show/{item}', [CreditCardController::class, 'item']);
+                Route::post('create', [CreditCardController::class, 'create']);
+                Route::delete('remove/{item}', [CreditCardController::class, 'remove']);
+            });
+        });
 
         Route::group(['prefix' => 'record'], function () {
             Route::group(['prefix' => 'manage'], function () {
@@ -150,6 +161,8 @@ Route::group(['prefix' => 'v1'], function () {
         });
     });
 
-
-
+    Route::post('accept-3d-secure/{item}', [CreditCardController::class, 'checkSecure'])->name('check_3d_pay');
 });
+
+
+

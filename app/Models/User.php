@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Finance\CreditCard;
 use App\Models\Main\LibSpecialization;
 use App\Models\Profile\UserCertificat;
 use App\Models\Profile\UserSpecialization;
@@ -82,7 +83,8 @@ class User extends Authenticatable
         'notify_meditation' => 'boolean',
         'notify_app' => 'boolean',
         'date_b' => 'date',
-        'is_blocked' => 'boolean'
+        'is_blocked' => 'boolean',
+        'is_blocked_seance' => 'boolean'
     ];
 
     function scopeSpecializationId($q, $id){
@@ -166,5 +168,14 @@ class User extends Authenticatable
         if (!$item)
             TimetablePlan::create(['user_id' => $this->id]);
 
+    }
+
+    function relCreditCards(){
+        return $this->hasMany(CreditCard::class, 'user_id');
+    }
+
+    function hasActiveCreditCard(){
+        $item = $this->relCreditCards()->where(['is_active' => true, 'is_removed'=> false])->count();
+        return ($item ? true : false);
     }
 }
