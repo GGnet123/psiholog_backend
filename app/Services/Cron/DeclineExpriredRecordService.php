@@ -45,7 +45,14 @@ class DeclineExpriredRecordService {
 
     private function calcRecords(){
         $this->recors = RecordDoctor::where('status_id', RecordDoctor::CREATED_STATUS)
-                                    ->where('record_date', '<', $this->now->format('Y-m-d'))
+                                    ->where(function($q){
+                                        $q->where('record_date', '<', $this->now->format('Y-m-d'))
+                                            ->orWhere(function($b){
+                                                $b->where('record_date',$this->now->format('Y-m-d'))
+                                                    ->orWhere('record_time', '<', $this->now->format('H:i:').':00');
+
+                                            });
+                                    })
                                     ->where('is_canceled', false)
                                     ->get();
     }
@@ -56,6 +63,8 @@ class DeclineExpriredRecordService {
         $datetime = new DateTime();
         $timezone = new DateTimeZone('Asia/Dhaka');
         $datetime->setTimezone($timezone);
+
+        $datetime->modify('-12 hours');
 
         $this->now = $datetime;
     }

@@ -50,7 +50,7 @@ class CreateRecordAction extends AbstractAction {
         $now = new DateTime();
         $timezone = new DateTimeZone('Asia/Dhaka');
         $now->setTimezone($timezone);
-        $now->modify('+24 hours');
+        $now->modify('+12 hours');
 
         $record_date = new DateTime($this->data['record_date'].' '.$this->hour_str);
 
