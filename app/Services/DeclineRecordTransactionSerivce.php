@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class DeclineRecordTransactionSerivce {
     private RecordDoctor $record;
-    private CardTransaction $transaction;
+    private ?CardTransaction $transaction;
 
     static function do(RecordDoctor $record){
         $el = new DeclineRecordTransactionSerivce();

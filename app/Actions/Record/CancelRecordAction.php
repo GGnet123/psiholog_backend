@@ -5,6 +5,7 @@ use App\Actions\AbstractAction;
 use App\Events\CancelRecordEvent;
 use App\Exceptions\Record\CantCancelRecordException;
 use App\Models\Record\RecordDoctor;
+use App\Services\DeclineRecordTransactionSerivce;
 use Illuminate\Support\Facades\Auth;
 
 class CancelRecordAction extends AbstractAction {
@@ -21,6 +22,8 @@ class CancelRecordAction extends AbstractAction {
         $record->update(['is_canceled' => true]);
 
         event(new CancelRecordEvent($record, Auth::user()));
+
+        DeclineRecordTransactionSerivce::do($record);
 
         return $record;
     }
