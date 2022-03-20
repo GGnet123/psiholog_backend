@@ -5,7 +5,7 @@ use App\Exceptions\CustomException;
 
 class  WrongCredentialDataException extends CustomException {
     protected $message = 'Wrong credit card data';
-    protected $code = 00;
-    public $HTTP_CODE = 401;
+    protected $code = 305;
+    public $HTTP_CODE = 400;
 
 }

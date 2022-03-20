@@ -5,8 +5,8 @@ use App\Exceptions\CustomException;
 
 class  ErrorWithTransactionException extends CustomException {
     protected $message = 'Error with transaction';
-    protected $code = 00;
-    public $HTTP_CODE = 401;
+    protected $code = 303;
+    public $HTTP_CODE = 400;
 
     function __construct(int $status_code = 0){
         if ($status_code != 0)

@@ -5,6 +5,7 @@ use App\Exceptions\CustomException;
 
 class  RecordDateAndTimeExpiredException extends CustomException {
     protected $message = 'record time is expired';
-    protected $code = 01;
+    protected $code = 408;
+    public $HTTP_CODE = 400;
 
 }

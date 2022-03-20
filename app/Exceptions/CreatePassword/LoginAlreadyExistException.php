@@ -5,7 +5,7 @@ use App\Exceptions\CustomException;
 
 class  LoginAlreadyExistException extends CustomException {
     protected $message = 'This login already exist';
-    protected $code = 00;
-    public $HTTP_CODE = 401;
+    protected $code = 001;
+    public $HTTP_CODE = 400;
 
 }

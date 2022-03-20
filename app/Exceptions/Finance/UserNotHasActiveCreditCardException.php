@@ -5,8 +5,8 @@ use App\Exceptions\CustomException;
 
 class  UserNotHasActiveCreditCardException extends CustomException {
     protected $message = 'User not has active credit card';
-    protected $code = 00;
-    public $HTTP_CODE = 401;
+    protected $code = 304;
+    public $HTTP_CODE = 400;
 
 
 

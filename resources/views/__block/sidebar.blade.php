@@ -5,17 +5,17 @@
             <div class="category-content no-padding">
                 <ul class="navigation navigation-main navigation-accordion" style="padding-top: 0;">
 
-                    <li><a href="{{ route('admin_stat') }}"><i class="icon-file-text"></i> <span>{{ __('sidebar.admin_index') }}</span></a></li>
+                    <li><a href="{{ route('admin_stat') }}"><i class="icon-home"></i> <span>{{ __('sidebar.admin_index') }}</span></a></li>
                     <li><a href="{{ route('admin_record') }}"><i class="icon-file-text"></i> <span>{{ __('sidebar.admin_record') }}</span></a></li>
                     <li><a href="{{ route('admin_support') }}"><i class="icon-envelop3"></i> <span>{{ __('sidebar.admin_support') }}</span></a></li>
                     <li><a href="{{ route('admin_claim') }}"><i class="icon-pencil7"></i> <span>{{ __('sidebar.admin_claim') }}</span></a></li>
-                    <li><a href="{{ route('admin_subscription') }}"><i class="icon-file-text"></i> <span>{{ __('sidebar.admin_subscription') }}</span></a></li>
+                    <li><a href="{{ route('admin_subscription') }}"><i class="icon-newspaper"></i> <span>{{ __('sidebar.admin_subscription') }}</span></a></li>
                     <li><a href="{{ route('admin_transaction') }}"><i class="icon-coin-dollar"></i> <span>{{ __('sidebar.admin_transaction') }}</span></a></li>
                     <li><a href="{{ route('admin_doctor') }}"><i class="icon-user-tie"></i> <span>{{ __('sidebar.admin_doctor') }}</span></a></li>
                     <li><a href="{{ route('admin_main_user') }}"><i class="icon-users"></i> <span>{{ __('sidebar.admin_main_user') }}</span></a></li>
 
                     <li>
-                        <a href="#" class="has-ul"><i class="icon-file-text"></i> <span>{{ __('sidebar.content') }}</span></a>
+                        <a href="#" class="has-ul"><i class="icon-book2"></i> <span>{{ __('sidebar.content') }}</span></a>
                         <ul class="hidden-ul">
                             <li><a href="{{ route('admin_faq') }}"> <span>{{ __('sidebar.admin_faq') }}</span></a></li>
                             <li><a href="{{ route('admin_term') }}"> <span>{{ __('sidebar.admin_term') }}</span></a></li>

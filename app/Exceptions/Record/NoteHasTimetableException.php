@@ -5,6 +5,7 @@ use App\Exceptions\CustomException;
 
 class  NoteHasTimetableException extends CustomException {
     protected $message = 'this doctor note has timetable';
-    protected $code = 01;
+    protected $code = 407;
+    public $HTTP_CODE = 400;
 
 }

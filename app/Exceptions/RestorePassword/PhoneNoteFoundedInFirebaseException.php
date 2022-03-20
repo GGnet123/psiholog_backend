@@ -5,6 +5,7 @@ use App\Exceptions\CustomException;
 
 class  PhoneNoteFoundedInFirebaseForRestoreException extends CustomException {
     protected $message = 'this phone note founded in firebase';
-    protected $code = 04;
+    protected $code = 1112;
+    public $HTTP_CODE = 400;
 
 }

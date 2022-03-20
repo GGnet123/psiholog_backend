@@ -5,6 +5,7 @@ use App\Exceptions\CustomException;
 
 class  AlreadyDoneRegistration extends CustomException {
     protected $message = 'this phone already finish registration';
-    protected $code = 01;
+    protected $code = 1001;
+    public $HTTP_CODE = 400;
 
 }

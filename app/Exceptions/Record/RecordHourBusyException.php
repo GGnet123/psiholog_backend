@@ -5,6 +5,7 @@ use App\Exceptions\CustomException;
 
 class  RecordHourBusyException extends CustomException {
     protected $message = 'record hour is busy at this doctor';
-    protected $code = 01;
+    protected $code = 409;
+    public $HTTP_CODE = 400;
 
 }
