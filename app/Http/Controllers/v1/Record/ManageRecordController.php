@@ -6,6 +6,7 @@ use App\Actions\AbstractAction;
 use App\Actions\Record\ApproveRecordAction;
 use App\Actions\Record\CancelRecordAction;
 use App\Actions\Record\CreateRecordAction;
+use App\Actions\Record\DeclineRecordAction;
 use App\Actions\Record\FinishRecordAction;
 use App\Actions\Record\MoveRecordAction;
 use App\Actions\Record\PayRecordAction;
@@ -55,12 +56,17 @@ class ManageRecordController extends Controller
         return new RecordResource($model);
     }
 
+    function declineRecord(RecordDoctor $record){
+        $model = (new DeclineRecordAction($record))->run();
+
+        return new RecordResource($model);
+    }
+
 
     function startSeanceRecord(RecordDoctor $record){
         $model = (new StartSeanceRecordAction($record))->run();
 
         return new RecordResource($model);
-
     }
 
     function finishRecord(RecordDoctor $record){

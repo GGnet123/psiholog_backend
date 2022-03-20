@@ -49,6 +49,7 @@ Route::group(['prefix' => 'v1'], function () {
                 Route::get('free-hour/{doctor}', [ManageRecordController::class, 'getDoctorFreeHour']);
                 Route::post('create-record/{doctor}', [ManageRecordController::class, 'createRecord']);
                 Route::post('approve-record/{record}', [ManageRecordController::class, 'approveRecord']);
+                Route::post('decline-record/{record}', [ManageRecordController::class, 'declineRecord']);
                 Route::post('start-seance-record/{record}', [ManageRecordController::class, 'startSeanceRecord']);
                 Route::get('get-agora-data/{record}', [ManageRecordController::class, 'getAgoraData']);
                 Route::post('finish-record/{record}', [ManageRecordController::class, 'finishRecord']);

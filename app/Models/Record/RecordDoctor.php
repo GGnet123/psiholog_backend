@@ -41,6 +41,8 @@ class RecordDoctor extends Model {
     CONST APPROVED_STATUS = 2;
     CONST ON_WORK_STATUS = 3;
     CONST DONE_STATUS = 4;
+    CONST DECLINE_BY_DOCTOR = 5;
+    CONST DECLINE_BY_SYSTEM = 6;
 
     static $ar_status_ru = [];
 
@@ -51,6 +53,8 @@ class RecordDoctor extends Model {
             STATIC::APPROVED_STATUS => 'APPROVED. waiting seance',
             STATIC::ON_WORK_STATUS => 'ON_WORK. seance is begin',
             STATIC::DONE_STATUS => 'DONE. seance is finished',
+            STATIC::DECLINE_BY_DOCTOR => 'DECLINE_BY_DOCTOR. doctor is decline approve',
+            STATIC::DECLINE_BY_SYSTEM => 'DECLINE_BY_SYSTEM. system is decline approve. if moment for approve expired',
         ];
     }
 

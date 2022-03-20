@@ -59,10 +59,11 @@ return [
         'status_id' => 'Статус',
         'status_1' => 'Создан',
         'status_2' => 'Одобрен врачом',
-        'status_3' => 'Оплачен',
-        'status_4' => 'В работе',
-        'status_5' => 'Закончен',
-        'is_canceled' => 'Закрыт',
+        'status_3' => 'В работе',
+        'status_4' => 'Закончен',
+        'status_5' => 'Отменено врачом',
+        'status_6' => 'Отменено системой',
+        'is_canceled' => 'Отменено пользователем',
         'is_moved' => 'Перенесен'
     ],
 
@@ -77,7 +78,8 @@ return [
         'user_name' => 'Пользователь',
         'transaction_id' => 'Номер транзакции',
         'last_request' => 'Запрос',
-        'last_response' => 'Ответ'
+        'last_response' => 'Ответ',
+        'returned_response' => 'Ответ при возврате'
     ],
 
     'subscription' => [

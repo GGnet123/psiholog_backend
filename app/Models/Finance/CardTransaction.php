@@ -27,7 +27,8 @@ class CardTransaction extends Model
         'record_id',
         'is_done',
         'is_returned',
-        'sum_transaction'
+        'sum_transaction',
+        'returned_response'
     ];
 
     protected $ar_filter = [
@@ -45,7 +46,8 @@ class CardTransaction extends Model
         'is_done' => 'boolean',
         'is_returned' => 'boolean',
         'last_request' => 'array',
-        'last_response' => 'array'
+        'last_response' => 'array',
+        'returned_response' => 'array'
     ];
 
     CONST TYPE_SUBSCRIPTION = 1;
