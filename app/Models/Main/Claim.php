@@ -26,7 +26,10 @@ class Claim extends Model
 
     protected $ar_filter = [
         'note' => 'string',
-        'user_id' => 'int'
+        'user_id' => 'int',
+        'user_name' => 'function',
+        'from_user_name' => 'function',
+        'is_done' => 'boolean_str',
     ];
 
     function relFile(){
@@ -39,6 +42,18 @@ class Claim extends Model
 
     function relFromUser(){
         return $this->belongsTo(User::class, 'from_user_id');
+    }
+
+    function scopeFromUserName($q, $name){
+        return $q->whereHas('relFromUser', function($b) use ($name){
+            $b->where('name', 'like', '%'.$name.'%');
+        });
+    }
+
+    function scopeUserName($q, $name){
+        return $q->whereHas('relUser', function($b) use ($name){
+            $b->where('name', 'like', '%'.$name.'%');
+        });
     }
 
 

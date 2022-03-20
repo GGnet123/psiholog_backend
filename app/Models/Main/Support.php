@@ -29,7 +29,9 @@ class Support extends Model
     ];
 
     protected $ar_filter = [
-        'name' => 'string'
+        'name' => 'string',
+        'from_user_name' => 'function',
+        'is_closed' => 'boolean_str',
     ];
 
     function relFile(){
@@ -38,6 +40,12 @@ class Support extends Model
 
     function relFromUser(){
         return $this->belongsTo(User::class, 'from_user_id');
+    }
+
+    function scopeFromUserName($q, $name){
+        return $q->whereHas('relFromUser', function($b) use ($name){
+            $b->where('name', 'like', '%'.$name.'%');
+        });
     }
 
 }

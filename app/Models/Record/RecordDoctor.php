@@ -60,13 +60,13 @@ class RecordDoctor extends Model {
 
     function scopeDoctorName($q, $name){
         return $q->whereHas('relDoctor', function($b) use ($name){
-            $b->where('name', 'like', $name);
+            $b->where('name', 'like', '%'.$name.'%');
         });
     }
 
     function scopeCustomerName($q, $name){
         return $q->whereHas('relCustomer', function($b) use ($name){
-            $b->where('name', 'like', $name);
+            $b->where('name', 'like', '%'.$name.'%');
         });
     }
 
@@ -91,7 +91,7 @@ class RecordDoctor extends Model {
     }
 
     function getRecordStrAttribute(){
-        return $this->record_date.' '.$this->record_time;
+        return $this->getDateStr().' '.$this->record_time;
     }
 
     function getArStatusRuAttribute(){
@@ -108,6 +108,15 @@ class RecordDoctor extends Model {
 
     function getStatusRuAttribute(){
         return (isset($this->ar_status_ru[$this->status_id]) ? $this->ar_status_ru[$this->status_id] : null);
+    }
+
+    function getDateStr(){
+        $date  = new \DateTime($this->record_date->format('Y-m-d'));
+
+        if (!$date)
+            return null;
+
+        return $date->format('Y-m-d');
     }
 
 }

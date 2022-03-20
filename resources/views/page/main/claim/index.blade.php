@@ -7,12 +7,20 @@
         <form  method="get" >
             <x-form.filter >
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <x-input.int name="id" :model="$model" :value="$request->id" />
                     </div>
 
-                    <div class="col-md-8">
-                        <x-input.text name="name" id="name" :model="$model" :value="$request->name" />
+                    <div class="col-md-3">
+                        <x-input.text name="user_name" id="user_name" :model="$model" :value="$request->user_name" />
+                    </div>
+
+                    <div class="col-md-3">
+                        <x-input.text name="from_user_name" id="from_user_name" :model="$model" :value="$request->from_user_name" />
+                    </div>
+
+                    <div class="col-md-3">
+                        <x-input.filterBool name="is_done" id="is_done" :model="$model" :value="$request->is_done" />
                     </div>
                 </div>
             </x-form.filter>

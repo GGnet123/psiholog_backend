@@ -40,7 +40,7 @@ class Subscription extends Model {
 
     function scopeUserName($q, $name){
         return $q->whereHas('relUser', function($b) use ($name){
-            $b->where('name', 'like', $name);
+            $b->where('name', 'like', '%'.$name.'%');
         });
     }
 

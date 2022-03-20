@@ -14,6 +14,14 @@
                     <div class="col-md-8">
                         <x-input.text name="name" id="name" :model="$model" :value="$request->name" />
                     </div>
+
+                    <div class="col-md-8">
+                        <x-input.text name="from_user_name" id="from_user_name" :model="$model" :value="$request->from_user_name" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <x-input.filterBool name="is_closed" id="is_closed" :model="$model" :value="$request->is_closed" />
+                    </div>
                 </div>
             </x-form.filter>
         </form>
