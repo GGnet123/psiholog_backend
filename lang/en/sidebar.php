@@ -15,4 +15,5 @@ return [
     'admin_record' => 'Записи',
     'admin_transaction' => 'Финансы',
     'admin_subscription' => 'Подписки',
+    'admin_index' => 'Главная'
 ];

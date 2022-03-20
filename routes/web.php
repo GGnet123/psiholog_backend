@@ -27,6 +27,7 @@ Route::group(['prefix' => 'admin/login'], function () {
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () {
     Route::get('/', [\App\Http\Controllers\Admin\IndexController::class, 'index'])->name('admin_index');
+    Route::get('stat', [\App\Http\Controllers\Admin\IndexController::class, 'stat'])->name('admin_stat');
 
     Route::group(['prefix' => 'finance'], function () {
         Route::group(['prefix' => 'transaction'], function () {
