@@ -3,6 +3,7 @@ namespace App\Services;
 
 use Albakov\LaravelCloudPayments\Facade as CloudPay;
 use App\Exceptions\Finance\ErrorWithTransactionException;
+use App\Exceptions\Finance\WrongCredentialDataException;
 use App\Models\Finance\CardTransaction;
 use App\Models\Finance\CreditCard;
 use Exception;
@@ -31,7 +32,7 @@ class MakeTransactionService {
         $result = CloudPay::tokensCharge($this->data);
 
         $result = (object) $result;
-        if ($result->Model)
+        if (property_exists($result, 'Model'))
             $res_model = (object)$result->Model;
 
         if (!$result->Success && $result->Message)

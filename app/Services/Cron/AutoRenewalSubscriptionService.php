@@ -1,39 +1,35 @@
 <?php
 namespace App\Services\Cron;
 
+use App\Models\Main\Subscription;
 use App\Models\Record\RecordDoctor;
-use App\Services\DeclineRecordTransactionSerivce;
 use DateTime;
 use DateTimeZone;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class DeclineExpriredRecordService {
-    private Collection $recors;
+class AutoRenewalSubscriptionService {
+    private Collection $subscriptions;
     private DateTime $now;
     static function do(){
-        $el = new DeclineExpriredRecordService();
+        $el = new AutoRenewalSubscriptionService();
         $el->start();
     }
 
     function start(){
         $this->calcNow();
-        $this->calcRecords();
+        $this->calcSubscriptions();
 
-        if ($this->recors->count() > 0)
-            $this->declineRecords();
+        if ($this->subscriptions->count() > 0)
+            $this->renewalSubscriptions();
     }
 
-    private function declineRecords(){
-
-
-        foreach ($this->recors as $r){
+    private function renewalSubscriptions(){
+        foreach ($this->subscriptions as $s){
             DB::beginTransaction();
             try {
-                $r->update(['status_id' => RecordDoctor::DECLINE_BY_SYSTEM]);
-
-                DeclineRecordTransactionSerivce::do($r);
+                RenewalSingleSubscriptionService::do($s);
                 DB::commit();
             } catch (\Exception $e) {
                 DB::rollBack();
@@ -43,11 +39,12 @@ class DeclineExpriredRecordService {
         }
     }
 
-    private function calcRecords(){
-        $this->recors = RecordDoctor::where('status_id', RecordDoctor::CREATED_STATUS)
-                                    ->where('record_date', '<', $this->now->format('Y-m-d'))
-                                    ->where('is_canceled', false)
-                                    ->get();
+    private function calcSubscriptions(){
+        $this->subscriptions = Subscription::where('is_active', RecordDoctor::CREATED_STATUS)
+            ->where('date_e',  $this->now->format('Y-m-d'))
+            ->where('is_cancel_by_user', false)
+            ->where('is_cancel_by_system', false)
+            ->get();
     }
 
     private function  calcNow(){
@@ -56,6 +53,7 @@ class DeclineExpriredRecordService {
         $datetime = new DateTime();
         $timezone = new DateTimeZone('Asia/Dhaka');
         $datetime->setTimezone($timezone);
+        $datetime->modify('+1 Day');
 
         $this->now = $datetime;
     }
