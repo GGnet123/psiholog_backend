@@ -3,12 +3,14 @@ namespace App\Actions\Record;
 
 use App\Actions\AbstractAction;
 use App\Events\CreateRecordEvent;
+use App\Exceptions\Record\RecordDateAndTimeExpiredException;
 use App\Exceptions\Record\RecordHourBusyException;
 use App\Exceptions\Record\UserNotDoctorException;
 use App\Models\Record\RecordDoctor;
 use App\Services\CreateRecordTransactionService;
 use App\Services\DoctorFreeHourService;
 use DateTime;
+use DateTimeZone;
 use Illuminate\Support\Facades\Auth;
 
 class CreateRecordAction extends AbstractAction {
@@ -21,6 +23,7 @@ class CreateRecordAction extends AbstractAction {
 
         $this->hour_str = str_pad($this->data['record_time'], 2, '0', STR_PAD_LEFT).':00';
 
+        $this->checkDateTimeExpired();
         $this->checkHour();
 
         $item = new RecordDoctor();
@@ -39,6 +42,20 @@ class CreateRecordAction extends AbstractAction {
         CreateRecordTransactionService::do(Auth::user(), $item);
 
         return $item;
+    }
+
+    private function checkDateTimeExpired(){
+        date_default_timezone_set('Asia/Dhaka');
+
+        $now = new DateTime();
+        $timezone = new DateTimeZone('Asia/Dhaka');
+        $now->setTimezone($timezone);
+        $now->modify('+24 hours');
+
+        $record_date = new DateTime($this->data['record_date'].' '.$this->hour_str);
+
+        if ($record_date < $now)
+            throw new RecordDateAndTimeExpiredException();
     }
 
     function checkHour(){
