@@ -38,6 +38,7 @@ class CardTransaction extends Model
         'record_id' => 'int',
         'is_done' => 'boolean_str',
         'is_returned' => 'boolean_str',
+        'user_name' => 'function',
     ];
 
     protected $casts = [
@@ -56,5 +57,11 @@ class CardTransaction extends Model
 
     function relCreditCard(){
         return $this->belongsTo(CreditCard::class, 'credit_card_id');
+    }
+
+    function scopeUserName($q, $name){
+        return $q->whereHas('relUser', function($b) use ($name){
+            $b->where('name', 'like', $name);
+        });
     }
 }

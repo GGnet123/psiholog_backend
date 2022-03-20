@@ -13,6 +13,6 @@ return [
     'admin_support' => 'Поддержка',
     'admin_claim' => 'Жалобы',
     'admin_record' => 'Записи',
-    'admin_balancer' => 'Финансы',
+    'admin_transaction' => 'Финансы',
     'admin_subscription' => 'Подписки',
 ];

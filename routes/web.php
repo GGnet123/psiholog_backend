@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Content\FaqController;
 use App\Http\Controllers\Admin\Content\TermOfUseController;
+use App\Http\Controllers\Admin\Finance\TransactionController;
 use App\Http\Controllers\Admin\Lib\LibSpecializationController;
 use App\Http\Controllers\Admin\Main\ClaimController;
 use App\Http\Controllers\Admin\Main\DoctorController;
@@ -26,6 +27,14 @@ Route::group(['prefix' => 'admin/login'], function () {
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () {
     Route::get('/', [\App\Http\Controllers\Admin\IndexController::class, 'index'])->name('admin_index');
+
+    Route::group(['prefix' => 'finance'], function () {
+        Route::group(['prefix' => 'transaction'], function () {
+            Route::get('/', [TransactionController::class, 'index'])->name('admin_transaction');
+            Route::get('show/{item}', [TransactionController::class, 'view'])->name('admin_transaction_show');
+            Route::get('cancel/{item}', [TransactionController::class, 'cancel'])->name('admin_transaction_cancel');
+        });
+    });
 
 
     Route::group(['prefix' => 'record'], function () {

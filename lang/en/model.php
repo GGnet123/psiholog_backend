@@ -43,7 +43,8 @@ return [
         'user_id' => 'На пользователя',
         'note' => 'Текст жалобы',
         'file_id' => 'Вложенный файл',
-        'is_done' => 'Закрыто'
+        'is_done' => 'Закрыто',
+        'name' => 'На пользователя'
     ],
 
     'record_doctor' => [
@@ -65,19 +66,18 @@ return [
         'is_moved' => 'Перенесен'
     ],
 
-    'balancer' => [
-        'is_done' => 'Завершен платеж',
-        'is_canceled' => 'Отменен платеж',
+    'card_transaction' => [
         'user_id' => 'Пользователь',
-        'sum' => 'Сумма',
-        'record_id' => 'Запись на прием',
-        'subscription_id' => 'Запись на подписку',
-        'need_returned' => 'Надо вернуть',
-        'is_returned' => 'Возврашено пользователю',
+        'type' => 'Тип',
+        'subscription_id' => 'Id подписки',
+        'record_id' => 'Id записи',
+        'is_done' => 'Завершен платеж',
+        'is_returned' => 'Возврат платежа',
+        'sum_transaction' => 'Сумма',
         'user_name' => 'Пользователь',
-        'type' => 'Тип платежа',
-        'type_record' => 'Платеж за прием',
-        'type_subscription' => 'Платеж за подписку',
+        'transaction_id' => 'Номер транзакции',
+        'last_request' => 'Запрос',
+        'last_response' => 'Ответ'
     ],
 
     'subscription' => [

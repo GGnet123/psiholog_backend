@@ -33,8 +33,8 @@ return [
     'admin_record' => 'Записи',
     'admin_record_show' => 'Записи. Форма просмотра',
 
-    'admin_balancer' => 'Финансовые записи',
-    'admin_balancer_show' => 'Финансовые записи. Форма просмотра',
+    'admin_transaction' => 'Финансовые записи',
+    'admin_transaction_show' => 'Финансовые записи. Форма просмотра',
 
     'admin_subscription' => 'Подписки',
     'admin_subscription_show' => 'Подписки. Форма просмотра',
