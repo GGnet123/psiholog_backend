@@ -15,7 +15,7 @@
             <div class="panel panel-flat">
                 <div class="panel-body">
                     <form id="paymentFormSample" autocomplete="off" >
-                        <input type="text" data-cp="cardNumber" value="5555 5555 5555 4444">
+                        <input type="text" data-cp="cardNumber" value="4111 1111 1111 1111">
                         <input type="text" data-cp="expDateMonth" value="12">
                         <input type="text" data-cp="expDateYear" value="24">
                         <input type="text" data-cp="cvv" value="988">

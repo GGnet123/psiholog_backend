@@ -128,6 +128,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
         Route::get('sms', [\App\Http\Controllers\Admin\Sample\SmsController::class, 'index'])->name('sample_sms');
         Route::post('sms', [\App\Http\Controllers\Admin\Sample\SmsController::class, 'save'])->name('sample_sms_save');
 
+
+        Route::any('fcm', [\App\Http\Controllers\Admin\Sample\FcmTokenSampleController::class, 'index']);
         Route::get('firebase-auth', [\App\Http\Controllers\Admin\Sample\FirebaseAuthController::class, 'index'])->name('sample_firebase_auth');
         Route::any('cloud-pay', [\App\Http\Controllers\Admin\Sample\CloudPaymentController::class, 'index'])->name('sample_pay');
         Route::get('cloud-pay/charge', [\App\Http\Controllers\Admin\Sample\CloudPaymentController::class, 'charge'])->name('sample_pay_charge');

@@ -102,7 +102,7 @@ class User extends Authenticatable
 
 
     public function routeNotificationForFcm(){
-        return $this->fcm_token;
+        return [$this->fcm_token];
     }
 
     function scopePriceB($q, $price){

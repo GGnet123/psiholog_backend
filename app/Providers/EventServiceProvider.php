@@ -14,14 +14,11 @@ use App\Events\CancelRecordEvent;
 
 use App\Listeners\CreateRecordLogListner;
 use App\Listeners\ApprovedRecordLogListner;
-use App\Listeners\CreateRecordBalanceListner;
 use App\Listeners\PayedRecordRecordLogListner;
-use App\Listeners\PayedRecordBalanceListner;
 use App\Listeners\StartSeanceRecordLogListner;
 use App\Listeners\FinishSeanceRecordLogListner;
 use App\Listeners\MoveSeanceRecordLogListner;
 use App\Listeners\CancelRecordLogListner;
-use App\Listeners\CancelRecordBalanceListner;
 
 
 use App\Events\CreateSubscriptionEvent;
@@ -58,7 +55,10 @@ class EventServiceProvider extends ServiceProvider
             CancelRecordLogListner::class
         ],
         CreateSubscriptionEvent::class => [
-        ]
+        ],
+        \App\Events\CreateRecordCardEvent::class => [
+            \App\Listeners\Notify\NotifyCreateRecordCardListner::class,
+        ],
     ];
 
     /**

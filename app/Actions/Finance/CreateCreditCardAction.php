@@ -3,6 +3,7 @@ namespace App\Actions\Finance;
 
 use Albakov\LaravelCloudPayments\Facade as CloudPay;
 use App\Actions\AbstractAction;
+use App\Events\CreateRecordCardEvent;
 use App\Exceptions\Finance\AlreadyHasActiveCreditCardException;
 use App\Exceptions\Finance\ErrorWithTransactionException;
 use App\Exceptions\Finance\WrongCredentialDataException;
@@ -15,11 +16,16 @@ class CreateCreditCardAction extends AbstractAction {
     protected function do(){
         $card = $this->model;
         $this->user = Auth::user();
+
         if ($this->user->hasActiveCreditCard())
             throw new AlreadyHasActiveCreditCardException();
 
         $this->createCard();
+
+        event(new CreateRecordCardEvent($this->model));
         $this->testCharge();
+
+
 
         return $card;
     }
@@ -76,6 +82,7 @@ class CreateCreditCardAction extends AbstractAction {
         $this->model->is_active = true;
         $this->model->data_to_check_3d_secure = null;
         $this->model->save();
+
 
         $this->rollbackTransaction($res_model);
     }
