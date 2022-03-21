@@ -50,11 +50,11 @@ class IndexController extends Controller {
     }
 
     function stat(){
-        //DeclineExpriredRecordService::do();
-        //AutoRenewalSubscriptionService::do();
+        // DeclineExpriredRecordService::do(); ++
+        // AutoRenewalSubscriptionService::do(); ++
 
-        //CalcWillRecordService::calc();
-        //CalcWillPayedSubscriptionService::calc();
+         //CalcWillRecordService::calc();
+         //CalcWillPayedSubscriptionService::calc();
 
         //NeedDoMeditationService::do();
         //NeedDoAffirmationService::do();
