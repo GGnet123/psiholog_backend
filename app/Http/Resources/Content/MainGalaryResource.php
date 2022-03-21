@@ -16,6 +16,8 @@ class MainGalaryResource extends JsonResource
             'cat' => ($this->relCat ? $this->relCat->title : null),
             'title' => $this->title,
             'slug' => $this->slug,
+            'type' => $this->type,
+            'need_subscription' => $this->need_subscription,
             'music' => ($this->relMusic ? new UploaderFileResource($this->relMusic) : null),
             'video' => ($this->relVideo ? new UploaderFileResource($this->relVideo) : null),
             'image' => ($this->relImage ? new UploaderFileResource($this->relImage) : null),

@@ -107,7 +107,8 @@ return [
         'image_id' => 'Картинка',
         'doctor_id' => 'Доктор',
         'type'  => 'Тип',
-        'null_cat' => 'Единичный элемент'
+        'null_cat' => 'Единичный элемент',
+        'need_subscription' => 'Только для подписки'
     ],
 
     'content_main_gallery_cat' => [
@@ -118,7 +119,8 @@ return [
         'video_id' => 'Видео',
         'image_id' => 'Картинка',
         'doctor_id' => 'Доктор',
-        'type'  => 'Тип'
+        'type'  => 'Тип',
+        'need_subscription' => 'Только для подписки'
     ],
 
 ];

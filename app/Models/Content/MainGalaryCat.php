@@ -19,11 +19,16 @@ class MainGalaryCat extends Model
     protected $fillable = [
         'title',
         'image_id',
-        'type'
+        'type',
+        'need_subscription'
     ];
 
     protected $ar_filter = [
         'title' => 'string',
+    ];
+
+    protected $casts = [
+        'need_subscription' => 'boolean'
     ];
 
     function relImage(){

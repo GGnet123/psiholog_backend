@@ -24,7 +24,8 @@ class MainGalary extends Model
         'video_id',
         'image_id',
         'doctor_id',
-        'type'
+        'type',
+        'need_subscription'
     ];
 
     protected $ar_filter = [
@@ -32,6 +33,10 @@ class MainGalary extends Model
         'title' => 'string',
         'slug' => 'string',
         'doctor_id' => 'int'
+    ];
+
+    protected $casts = [
+        'need_subscription' => 'boolean'
     ];
 
     CONST TYPE_NATURE = 'TYPE_NATURE';

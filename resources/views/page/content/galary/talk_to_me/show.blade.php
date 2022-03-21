@@ -10,6 +10,7 @@
             <x-show.def name="slug"  :model="$model"   />
             <x-show.file name="video_id"  :model="$model" :value="$model->relVideo"  />
             <x-show.file name="image_id"  :model="$model" :value="$model->relImage"  />
+            <x-show.def name="need_subscription"  :model="$model"  :value="$model->need_subscription ? 'Да' : 'Нет'"  />
         </x-form.show>
     </div>
 @endsection

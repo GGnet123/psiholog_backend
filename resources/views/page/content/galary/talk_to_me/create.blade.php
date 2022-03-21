@@ -9,6 +9,7 @@
             <x-input.text name="slug" :model="$model" required  />
             <x-input.file name="video_id"  :model="$model" type="video" required  />
             <x-input.file name="image_id"  :model="$model" required  />
+            <x-input.bool name="need_subscription"  :model="$model" required  />
         </x-form.create>
     </div>
 @endsection
