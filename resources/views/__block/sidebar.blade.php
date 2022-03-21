@@ -15,6 +15,21 @@
                     <li><a href="{{ route('admin_main_user') }}"><i class="icon-users"></i> <span>{{ __('sidebar.admin_main_user') }}</span></a></li>
 
                     <li>
+                        <a href="#" class="has-ul"><i class="icon-video-camera"></i> <span>{{ __('sidebar.main_page') }}</span></a>
+                        <ul class="hidden-ul">
+                            <li><a href="{{ route('admin_gal_affirmation') }}"> <span>{{ __('sidebar.admin_gal_affirmation') }}</span></a></li>
+                            <li><a href="{{ route('admin_gal_mantra') }}"> <span>{{ __('sidebar.admin_gal_mantra') }}</span></a></li>
+                            <li><a href="{{ route('admin_gal_med_audio') }}"> <span>{{ __('sidebar.admin_gal_med_audio') }}</span></a></li>
+                            <li><a href="{{ route('admin_gal_meditation') }}"> <span>{{ __('sidebar.admin_gal_meditation') }}</span></a></li>
+                            <li><a href="{{ route('admin_gal_nature') }}"> <span>{{ __('sidebar.admin_gal_nature') }}</span></a></li>
+                            <li><a href="{{ route('admin_gal_sleep') }}"> <span>{{ __('sidebar.admin_gal_sleep') }}</span></a></li>
+                            <li><a href="{{ route('admin_gal_talk_to_me') }}"> <span>{{ __('sidebar.admin_gal_talk_to_me') }}</span></a></li>
+                            <li><a href="{{ route('admin_gal_vdoh') }}"> <span>{{ __('sidebar.admin_gal_vdoh') }}</span></a></li>
+                            <li><a href="{{ route('admin_gal_yoga') }}"> <span>{{ __('sidebar.admin_gal_yoga') }}</span></a></li>
+                        </ul>
+                    </li>
+
+                    <li>
                         <a href="#" class="has-ul"><i class="icon-book2"></i> <span>{{ __('sidebar.content') }}</span></a>
                         <ul class="hidden-ul">
                             <li><a href="{{ route('admin_faq') }}"> <span>{{ __('sidebar.admin_faq') }}</span></a></li>

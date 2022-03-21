@@ -96,6 +96,29 @@ return [
         'is_cancel_by_user' => 'Отменена пользователем',
         'is_cancel_by_system' => 'Отменена системой',
         'user_name' => 'Пользователь'
-    ]
+    ],
+
+    'content_main_gallery' => [
+        'cat_id' => 'Категория',
+        'title' => 'Заголовок',
+        'slug' => 'Текст',
+        'music_id' => 'Музыка',
+        'video_id' => 'Видео',
+        'image_id' => 'Картинка',
+        'doctor_id' => 'Доктор',
+        'type'  => 'Тип',
+        'null_cat' => 'Единичный элемент'
+    ],
+
+    'content_main_gallery_cat' => [
+        'cat_id' => 'Категория',
+        'title' => 'Заголовок',
+        'slug' => 'Текст',
+        'music_id' => 'Музыка',
+        'video_id' => 'Видео',
+        'image_id' => 'Картинка',
+        'doctor_id' => 'Доктор',
+        'type'  => 'Тип'
+    ],
 
 ];

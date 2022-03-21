@@ -7,13 +7,42 @@ use App\Models\Main\Claim;
 use App\Models\Main\Subscription;
 use App\Models\Main\Support;
 use App\Models\Record\RecordDoctor;
+use App\Models\Services\UploaderFile;
 use App\Models\User;
 use App\Services\Cron\AutoRenewalSubscriptionService;
 use App\Services\Cron\CalcWillPayedSubscriptionService;
 use App\Services\Cron\CalcWillRecordService;
 use App\Services\Cron\DeclineExpriredRecordService;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class IndexController extends Controller {
+    function saveFile(Request $request){
+        $file = $request->file('upload_file');
+
+        $file_name = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+        $file_name = Str::slug($file_name);
+
+        $file_path = $file->storeAs(
+            'store/'.date('Y').'/'.date('m').'/'.date('d').'/'.rand(1000, 9999),
+            $file_name.'.'.$file->getClientOriginalExtension());
+
+        $size = $file->getSize();
+
+        $title = $request->title && $request->title != '' ? $request->title : $file->getClientOriginalName();
+
+        $model = UploaderFile::create([
+            'path' => $file_path,
+            'filesize' => $size,
+            'filename' => $file_name,
+            'extension' => $file->getClientOriginalExtension(),
+            'title' => $title,
+            'type_id' => $request->type_id
+        ]);
+
+        return $model;
+    }
+
     function index(){
         return redirect()->route('admin_stat');
     }

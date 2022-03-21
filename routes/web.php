@@ -1,6 +1,15 @@
 <?php
 
 use App\Http\Controllers\Admin\Content\FaqController;
+use App\Http\Controllers\Admin\Content\Galary\AffirmationController;
+use App\Http\Controllers\Admin\Content\Galary\MantraController;
+use App\Http\Controllers\Admin\Content\Galary\MeditationAudioController;
+use App\Http\Controllers\Admin\Content\Galary\MeditationController;
+use App\Http\Controllers\Admin\Content\Galary\NatureController;
+use App\Http\Controllers\Admin\Content\Galary\SleepController;
+use App\Http\Controllers\Admin\Content\Galary\TalkToMeController;
+use App\Http\Controllers\Admin\Content\Galary\VdohController;
+use App\Http\Controllers\Admin\Content\Galary\YogaController;
 use App\Http\Controllers\Admin\Content\TermOfUseController;
 use App\Http\Controllers\Admin\Finance\TransactionController;
 use App\Http\Controllers\Admin\Lib\LibSpecializationController;
@@ -28,6 +37,7 @@ Route::group(['prefix' => 'admin/login'], function () {
 Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () {
     Route::get('/', [\App\Http\Controllers\Admin\IndexController::class, 'index'])->name('admin_index');
     Route::get('stat', [\App\Http\Controllers\Admin\IndexController::class, 'stat'])->name('admin_stat');
+    Route::post('save-file', [\App\Http\Controllers\Admin\IndexController::class, 'saveFile'])->name('admin_save_file');
 
     Route::group(['prefix' => 'finance'], function () {
         Route::group(['prefix' => 'transaction'], function () {
@@ -116,6 +126,100 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
     Route::group(['prefix' => 'profile'], function () {
         Route::get('/', [\App\Http\Controllers\Admin\ProfileController::class, 'index'])->name('admin_profile');
         Route::post('/', [\App\Http\Controllers\Admin\ProfileController::class, 'save'])->name('admin_profile_save');
+    });
+
+
+    Route::group(['prefix' => 'galary'], function () {
+        Route::group(['prefix' => 'affirmation'], function () {
+            Route::get('/', [AffirmationController::class, 'index'])->name('admin_gal_affirmation');
+            Route::get('create', [AffirmationController::class, 'create'])->name('admin_gal_affirmation_create');
+            Route::post('create', [AffirmationController::class, 'saveCreate'])->name('admin_gal_affirmation_create_save');
+            Route::get('update/{item}', [AffirmationController::class, 'update'])->name('admin_gal_affirmation_update');
+            Route::post('update/{item}', [AffirmationController::class, 'saveUpdate'])->name('admin_gal_affirmation_update_save');
+            Route::get('show/{item}', [AffirmationController::class, 'view'])->name('admin_gal_affirmation_show');
+            Route::get('delete/{item}', [AffirmationController::class, 'delete'])->name('admin_gal_affirmation_delete');
+        });
+
+        Route::group(['prefix' => 'mantra'], function () {
+            Route::get('/', [MantraController::class, 'index'])->name('admin_gal_mantra');
+            Route::get('create', [MantraController::class, 'create'])->name('admin_gal_mantra_create');
+            Route::post('create', [MantraController::class, 'saveCreate'])->name('admin_gal_mantra_create_save');
+            Route::get('update/{item}', [MantraController::class, 'update'])->name('admin_gal_mantra_update');
+            Route::post('update/{item}', [MantraController::class, 'saveUpdate'])->name('admin_gal_mantra_update_save');
+            Route::get('show/{item}', [MantraController::class, 'view'])->name('admin_gal_mantra_show');
+            Route::get('delete/{item}', [MantraController::class, 'delete'])->name('admin_gal_mantra_delete');
+        });
+
+        Route::group(['prefix' => 'med-audio'], function () {
+            Route::get('/', [MeditationAudioController::class, 'index'])->name('admin_gal_med_audio');
+            Route::get('create', [MeditationAudioController::class, 'create'])->name('admin_gal_med_audio_create');
+            Route::post('create', [MeditationAudioController::class, 'saveCreate'])->name('admin_gal_med_audio_create_save');
+            Route::get('update/{item}', [MeditationAudioController::class, 'update'])->name('admin_gal_med_audio_update');
+            Route::post('update/{item}', [MeditationAudioController::class, 'saveUpdate'])->name('admin_gal_med_audio_update_save');
+            Route::get('show/{item}', [MeditationAudioController::class, 'view'])->name('admin_gal_med_audio_show');
+            Route::get('delete/{item}', [MeditationAudioController::class, 'delete'])->name('admin_gal_med_audio_delete');
+        });
+
+        Route::group(['prefix' => 'med'], function () {
+            Route::get('/', [MeditationController::class, 'index'])->name('admin_gal_meditation');
+            Route::get('create', [MeditationController::class, 'create'])->name('admin_gal_meditation_create');
+            Route::post('create', [MeditationController::class, 'saveCreate'])->name('admin_gal_meditation_create_save');
+            Route::get('update/{item}', [MeditationController::class, 'update'])->name('admin_gal_meditation_update');
+            Route::post('update/{item}', [MeditationController::class, 'saveUpdate'])->name('admin_gal_meditation_update_save');
+            Route::get('show/{item}', [MeditationController::class, 'view'])->name('admin_gal_meditation_show');
+            Route::get('delete/{item}', [MeditationController::class, 'delete'])->name('admin_gal_meditation_delete');
+        });
+
+        Route::group(['prefix' => 'nature'], function () {
+            Route::get('/', [NatureController::class, 'index'])->name('admin_gal_nature');
+            Route::get('create', [NatureController::class, 'create'])->name('admin_gal_nature_create');
+            Route::post('create', [NatureController::class, 'saveCreate'])->name('admin_gal_nature_create_save');
+            Route::get('update/{item}', [NatureController::class, 'update'])->name('admin_gal_nature_update');
+            Route::post('update/{item}', [NatureController::class, 'saveUpdate'])->name('admin_gal_nature_update_save');
+            Route::get('show/{item}', [NatureController::class, 'view'])->name('admin_gal_nature_show');
+            Route::get('delete/{item}', [NatureController::class, 'delete'])->name('admin_gal_nature_delete');
+        });
+
+        Route::group(['prefix' => 'sleep'], function () {
+            Route::get('/', [SleepController::class, 'index'])->name('admin_gal_sleep');
+            Route::get('create', [SleepController::class, 'create'])->name('admin_gal_sleep_create');
+            Route::post('create', [SleepController::class, 'saveCreate'])->name('admin_gal_sleep_create_save');
+            Route::get('update/{item}', [SleepController::class, 'update'])->name('admin_gal_sleep_update');
+            Route::post('update/{item}', [SleepController::class, 'saveUpdate'])->name('admin_gal_sleep_update_save');
+            Route::get('show/{item}', [SleepController::class, 'view'])->name('admin_gal_sleep_show');
+            Route::get('delete/{item}', [SleepController::class, 'delete'])->name('admin_gal_sleep_delete');
+        });
+
+        Route::group(['prefix' => 'talk-to-me'], function () {
+            Route::get('/', [TalkToMeController::class, 'index'])->name('admin_gal_talk_to_me');
+            Route::get('create', [TalkToMeController::class, 'create'])->name('admin_gal_talk_to_me_create');
+            Route::post('create', [TalkToMeController::class, 'saveCreate'])->name('admin_gal_talk_to_me_create_save');
+            Route::get('update/{item}', [TalkToMeController::class, 'update'])->name('admin_gal_talk_to_me_update');
+            Route::post('update/{item}', [TalkToMeController::class, 'saveUpdate'])->name('admin_gal_talk_to_me_update_save');
+            Route::get('show/{item}', [TalkToMeController::class, 'view'])->name('admin_gal_talk_to_me_show');
+            Route::get('delete/{item}', [TalkToMeController::class, 'delete'])->name('admin_gal_talk_to_me_delete');
+        });
+
+        Route::group(['prefix' => 'vdoh'], function () {
+            Route::get('/', [VdohController::class, 'index'])->name('admin_gal_vdoh');
+            Route::get('create', [VdohController::class, 'create'])->name('admin_gal_vdoh_create');
+            Route::post('create', [VdohController::class, 'saveCreate'])->name('admin_gal_vdoh_create_save');
+            Route::get('update/{item}', [VdohController::class, 'update'])->name('admin_gal_vdoh_update');
+            Route::post('update/{item}', [VdohController::class, 'saveUpdate'])->name('admin_gal_vdoh_update_save');
+            Route::get('show/{item}', [VdohController::class, 'view'])->name('admin_gal_vdoh_show');
+            Route::get('delete/{item}', [VdohController::class, 'delete'])->name('admin_gal_vdoh_delete');
+        });
+
+        Route::group(['prefix' => 'yoga'], function () {
+            Route::get('/', [YogaController::class, 'index'])->name('admin_gal_yoga');
+            Route::get('create', [YogaController::class, 'create'])->name('admin_gal_yoga_create');
+            Route::post('create', [YogaController::class, 'saveCreate'])->name('admin_gal_yoga_create_save');
+            Route::get('update/{item}', [YogaController::class, 'update'])->name('admin_gal_yoga_update');
+            Route::post('update/{item}', [YogaController::class, 'saveUpdate'])->name('admin_gal_yoga_update_save');
+            Route::get('show/{item}', [YogaController::class, 'view'])->name('admin_gal_yoga_show');
+            Route::get('delete/{item}', [YogaController::class, 'delete'])->name('admin_gal_yoga_delete');
+        });
+
     });
 
     Route::get('logout', [\App\Http\Controllers\Admin\LoginController::class, 'logout'])->name('admin_logout');

@@ -15,5 +15,14 @@ return [
     'admin_record' => 'Записи',
     'admin_transaction' => 'Финансы',
     'admin_subscription' => 'Подписки',
-    'admin_index' => 'Главная'
+    'main_page' => 'Модули главной страницы',
+    'admin_gal_affirmation' => 'Aффирмации',
+    'admin_gal_mantra' => 'Моя мантра',
+    'admin_gal_med_audio' => 'Музыка для медитаций',
+    'admin_gal_meditation' => 'Медитации',
+    'admin_gal_nature' => 'Звуки природы',
+    'admin_gal_sleep' => 'Колыбельные',
+    'admin_gal_talk_to_me' => 'TalktoMe',
+    'admin_gal_vdoh' => 'Вдох-выдох',
+    'admin_gal_yoga' => 'YogatoMe'
 ];
