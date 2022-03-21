@@ -29,7 +29,7 @@ class RenewalSingleSubscriptionService {
         } catch (\Exception $e) {
             $this->cancelNewSubscription();
 
-            event(new ErrorPaySubscriptionEvent($this->subscription));
+            event(new ErrorPaySubscriptionEvent($this->subscription->relUser));
 
             Log::error($e);
         }

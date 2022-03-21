@@ -13,11 +13,10 @@ class NotifyErrorPaySubscription
 
     public function handle(\App\Events\ErrorPaySubscriptionEvent $event)
     {
-        $subscription = $event->subscription;
-        $customer = $subscription->relUser;
+        $customer = $event->user;
 
         if ($customer && $customer->fcm_token && $customer->notify_all){
-            $customer->notify(new ErrorPaySubscriptionNotification($subscription));
+            $customer->notify(new ErrorPaySubscriptionNotification($customer));
         }
     }
 }

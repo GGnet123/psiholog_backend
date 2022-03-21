@@ -20,7 +20,7 @@
                         <input type="text" data-cp="expDateYear" value="24">
                         <input type="text" data-cp="cvv" value="988">
                         <input type="text" data-cp="name" value="asdasd">
-                        <button type="submit">Оплатить 100 р.</button>
+                        <button type="button" onclick="myFunction()">Оплатить 100 р.</button>
                     </form>
 
                 </div>
@@ -36,13 +36,14 @@
         container: document.getElementById("paymentFormSample")
     });
 
-
-    checkout.createPaymentCryptogram()
-        .then((cryptogram) => {
-            console.log(cryptogram, 222); // криптограмма
-        }).catch((errors) => {
-        console.log(errors)
-    });
+    function myFunction(e) {
+        checkout.createPaymentCryptogram()
+            .then((cryptogram) => {
+                console.log(cryptogram, 222); // криптограмма
+            }).catch((errors) => {
+            console.log(errors)
+        });
+    }
 </script>
 </body>
 </html>

@@ -13,11 +13,10 @@ class NotifyErrorPayRecord
 
     public function handle(\App\Events\ErrorErrorPayRecordEvent $event)
     {
-        $record = $event->record;
-        $customer = $record->relCustomer;
+        $customer = $event->user;
 
         if ($customer && $customer->fcm_token && $customer->notify_all){
-            $customer->notify(new ErrorPayRecordNotification($record));
+            $customer->notify(new ErrorPayRecordNotification($customer));
         }
     }
 }

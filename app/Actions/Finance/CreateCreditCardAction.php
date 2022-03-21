@@ -58,18 +58,18 @@ class CreateCreditCardAction extends AbstractAction {
         $this->model->save();
 
         $result = (object) $result;
-        if ($result->Model)
+        if (property_exists($result, 'Model'))
             $res_model = (object)$result->Model;
 
         if (!$result->Success && $result->Message) {
-            event(new ErrorCreateCreditCardEvent(new CreditCard()));
+            event(new ErrorCreateCreditCardEvent($this->model));
 
             throw new WrongCredentialDataException();
         }
 
 
         if (!$result->Success && property_exists($res_model, 'ReasonCode')) {
-            event(new ErrorCreateCreditCardEvent(new CreditCard()));
+            event(new ErrorCreateCreditCardEvent($this->model));
             throw new ErrorWithTransactionException($res_model->ReasonCode);
         }
 
@@ -77,7 +77,7 @@ class CreateCreditCardAction extends AbstractAction {
             return $this->create3DSecure($res_model);
 
         if (!$result->Success) {
-            event(new ErrorCreateCreditCardEvent(new CreditCard()));
+            event(new ErrorCreateCreditCardEvent($this->model));
 
             throw new ErrorWithTransactionException();
         }

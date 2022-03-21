@@ -3,6 +3,7 @@
 namespace App\Events;
 
 use App\Models\Record\RecordDoctor;
+use App\Models\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -15,11 +16,11 @@ class ErrorErrorPayRecordEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public RecordDoctor $record;
+    public User $user;
 
-    public function __construct(RecordDoctor $record)
+    public function __construct(User $user)
     {
-        $this->record = $record;
+        $this->user = $user;
     }
 
     /**

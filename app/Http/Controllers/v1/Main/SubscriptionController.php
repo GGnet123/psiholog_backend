@@ -27,7 +27,7 @@ class SubscriptionController extends Controller
             event(new PaedSubscriptoinEvent($item));
         }
         catch (\Exception $exception){
-            event(new ErrorPaySubscriptionEvent(new Subscription()));
+            event(new ErrorPaySubscriptionEvent($request->user()));
 
             throw $exception;
         }

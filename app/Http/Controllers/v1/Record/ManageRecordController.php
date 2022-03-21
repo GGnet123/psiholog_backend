@@ -53,7 +53,7 @@ class ManageRecordController extends Controller
             event(new PayedRecordNotificationEvent($model));
         }
         catch (\Exception $exception){
-            event(new ErrorErrorPayRecordEvent(new RecordDoctor()));
+            event(new ErrorErrorPayRecordEvent($request->user()));
 
             throw $exception;
         }

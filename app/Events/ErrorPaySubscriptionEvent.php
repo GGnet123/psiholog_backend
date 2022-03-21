@@ -3,6 +3,7 @@
 namespace App\Events;
 
 use App\Models\Main\Subscription;
+use App\Models\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -16,11 +17,11 @@ class ErrorPaySubscriptionEvent
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
 
-    public Subscription $subscription;
+    public User $user;
 
-    public function __construct(Subscription $subscription)
+    public function __construct(User $user)
     {
-        $this->subscription = $subscription;
+        $this->user = $user;
     }
 
     /**
