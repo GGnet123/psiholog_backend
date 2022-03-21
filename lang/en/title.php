@@ -92,4 +92,14 @@ return [
     'admin_gal_yoga_update' => 'YogatoMe. Форма редактирования',
     'admin_gal_yoga_show' => 'YogatoMe. Форма просмотра',
 
+    'meditation_cat' => 'Категории Медитации',
+    'meditation_cat_create' => 'Категории Медитации. Форма создания',
+    'meditation_cat_update' => 'Категории Медитации. Форма редактирования',
+    'meditation_cat_show' => 'Категории Медитации. Форма просмотра',
+
+    'yoga_cat' => 'Категории YogatoMe',
+    'yoga_cat_create' => 'Категории YogatoMe. Форма создания',
+    'yoga_cat_update' => 'Категории YogatoMe. Форма редактирования',
+    'yoga_cat_show' => 'Категории YogatoMe. Форма просмотра',
+
 ];

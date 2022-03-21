@@ -24,5 +24,7 @@ return [
     'admin_gal_sleep' => 'Колыбельные',
     'admin_gal_talk_to_me' => 'TalktoMe',
     'admin_gal_vdoh' => 'Вдох-выдох',
-    'admin_gal_yoga' => 'YogatoMe'
+    'admin_gal_yoga' => 'YogatoMe',
+    'yoga_cat' => 'Категории YogatoMe',
+    'meditation_cat' => 'Категории Медитации'
 ];

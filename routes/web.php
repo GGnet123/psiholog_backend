@@ -4,12 +4,14 @@ use App\Http\Controllers\Admin\Content\FaqController;
 use App\Http\Controllers\Admin\Content\Galary\AffirmationController;
 use App\Http\Controllers\Admin\Content\Galary\MantraController;
 use App\Http\Controllers\Admin\Content\Galary\MeditationAudioController;
+use App\Http\Controllers\Admin\Content\Galary\MeditationCatController;
 use App\Http\Controllers\Admin\Content\Galary\MeditationController;
 use App\Http\Controllers\Admin\Content\Galary\NatureController;
 use App\Http\Controllers\Admin\Content\Galary\SleepController;
 use App\Http\Controllers\Admin\Content\Galary\TalkToMeController;
 use App\Http\Controllers\Admin\Content\Galary\VdohController;
 use App\Http\Controllers\Admin\Content\Galary\YogaController;
+use App\Http\Controllers\Admin\Content\Galary\YogatoMeCatController;
 use App\Http\Controllers\Admin\Content\TermOfUseController;
 use App\Http\Controllers\Admin\Finance\TransactionController;
 use App\Http\Controllers\Admin\Lib\LibSpecializationController;
@@ -150,7 +152,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
             Route::get('delete/{item}', [MantraController::class, 'delete'])->name('admin_gal_mantra_delete');
         });
 
-        Route::group(['prefix' => 'med-audio'], function () {
+        Route::group(['prefix' => 'medaudio'], function () {
             Route::get('/', [MeditationAudioController::class, 'index'])->name('admin_gal_med_audio');
             Route::get('create', [MeditationAudioController::class, 'create'])->name('admin_gal_med_audio_create');
             Route::post('create', [MeditationAudioController::class, 'saveCreate'])->name('admin_gal_med_audio_create_save');
@@ -160,7 +162,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
             Route::get('delete/{item}', [MeditationAudioController::class, 'delete'])->name('admin_gal_med_audio_delete');
         });
 
-        Route::group(['prefix' => 'med'], function () {
+        Route::group(['prefix' => 'meditems'], function () {
             Route::get('/', [MeditationController::class, 'index'])->name('admin_gal_meditation');
             Route::get('create', [MeditationController::class, 'create'])->name('admin_gal_meditation_create');
             Route::post('create', [MeditationController::class, 'saveCreate'])->name('admin_gal_meditation_create_save');
@@ -210,7 +212,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
             Route::get('delete/{item}', [VdohController::class, 'delete'])->name('admin_gal_vdoh_delete');
         });
 
-        Route::group(['prefix' => 'yoga'], function () {
+        Route::group(['prefix' => 'yogaitems'], function () {
             Route::get('/', [YogaController::class, 'index'])->name('admin_gal_yoga');
             Route::get('create', [YogaController::class, 'create'])->name('admin_gal_yoga_create');
             Route::post('create', [YogaController::class, 'saveCreate'])->name('admin_gal_yoga_create_save');
@@ -218,6 +220,26 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
             Route::post('update/{item}', [YogaController::class, 'saveUpdate'])->name('admin_gal_yoga_update_save');
             Route::get('show/{item}', [YogaController::class, 'view'])->name('admin_gal_yoga_show');
             Route::get('delete/{item}', [YogaController::class, 'delete'])->name('admin_gal_yoga_delete');
+        });
+
+        Route::group(['prefix' => 'yogacat'], function () {
+            Route::get('/', [YogatoMeCatController::class, 'index'])->name('yoga_cat');
+            Route::get('create', [YogatoMeCatController::class, 'create'])->name('yoga_cat_create');
+            Route::post('create', [YogatoMeCatController::class, 'saveCreate'])->name('yoga_cat_create_save');
+            Route::get('update/{item}', [YogatoMeCatController::class, 'update'])->name('yoga_cat_update');
+            Route::post('update/{item}', [YogatoMeCatController::class, 'saveUpdate'])->name('yoga_cat_update_save');
+            Route::get('show/{item}', [YogatoMeCatController::class, 'view'])->name('yoga_cat_show');
+            Route::get('delete/{item}', [YogatoMeCatController::class, 'delete'])->name('yoga_cat_delete');
+        });
+
+        Route::group(['prefix' => 'medcat'], function () {
+            Route::get('/', [MeditationCatController::class, 'index'])->name('meditation_cat');
+            Route::get('create', [MeditationCatController::class, 'create'])->name('meditation_cat_create');
+            Route::post('create', [MeditationCatController::class, 'saveCreate'])->name('meditation_cat_create_save');
+            Route::get('update/{item}', [MeditationCatController::class, 'update'])->name('meditation_cat_update');
+            Route::post('update/{item}', [MeditationCatController::class, 'saveUpdate'])->name('meditation_cat_update_save');
+            Route::get('show/{item}', [MeditationCatController::class, 'view'])->name('meditation_cat_show');
+            Route::get('delete/{item}', [MeditationCatController::class, 'delete'])->name('meditation_cat_delete');
         });
 
     });

@@ -20,11 +20,13 @@
                             <li><a href="{{ route('admin_gal_affirmation') }}"> <span>{{ __('sidebar.admin_gal_affirmation') }}</span></a></li>
                             <li><a href="{{ route('admin_gal_mantra') }}"> <span>{{ __('sidebar.admin_gal_mantra') }}</span></a></li>
                             <li><a href="{{ route('admin_gal_med_audio') }}"> <span>{{ __('sidebar.admin_gal_med_audio') }}</span></a></li>
+                            <li><a href="{{ route('meditation_cat') }}"> <span>{{ __('sidebar.meditation_cat') }}</span></a></li>
                             <li><a href="{{ route('admin_gal_meditation') }}"> <span>{{ __('sidebar.admin_gal_meditation') }}</span></a></li>
                             <li><a href="{{ route('admin_gal_nature') }}"> <span>{{ __('sidebar.admin_gal_nature') }}</span></a></li>
                             <li><a href="{{ route('admin_gal_sleep') }}"> <span>{{ __('sidebar.admin_gal_sleep') }}</span></a></li>
                             <li><a href="{{ route('admin_gal_talk_to_me') }}"> <span>{{ __('sidebar.admin_gal_talk_to_me') }}</span></a></li>
                             <li><a href="{{ route('admin_gal_vdoh') }}"> <span>{{ __('sidebar.admin_gal_vdoh') }}</span></a></li>
+                            <li><a href="{{ route('yoga_cat') }}"> <span>{{ __('sidebar.yoga_cat') }}</span></a></li>
                             <li><a href="{{ route('admin_gal_yoga') }}"> <span>{{ __('sidebar.admin_gal_yoga') }}</span></a></li>
                         </ul>
                     </li>
