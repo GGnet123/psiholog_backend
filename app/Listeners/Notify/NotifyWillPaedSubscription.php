@@ -11,7 +11,7 @@ use Illuminate\Queue\InteractsWithQueue;
 class NotifyWillPaedSubscription
 {
 
-    public function handle(CreateRecordCardEvent $event)
+    public function handle(\App\Events\WillPaedSubscriptionEvent $event)
     {
         $subscription = $event->subscription;
         $customer = $subscription->relUser;

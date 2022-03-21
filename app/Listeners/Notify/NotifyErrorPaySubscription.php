@@ -11,7 +11,7 @@ use Illuminate\Queue\InteractsWithQueue;
 class NotifyErrorPaySubscription
 {
 
-    public function handle(CreateRecordCardEvent $event)
+    public function handle(\App\Events\ErrorPaySubscriptionEvent $event)
     {
         $subscription = $event->subscription;
         $customer = $subscription->relUser;

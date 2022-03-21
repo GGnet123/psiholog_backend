@@ -11,7 +11,7 @@ use Illuminate\Queue\InteractsWithQueue;
 class NotifyErrorCreateCreditCard
 {
 
-    public function handle(CreateRecordCardEvent $event)
+    public function handle(\App\Events\ErrorCreateCreditCardEvent $event)
     {
         $card = $event->card;
         $user = $card->relUser;

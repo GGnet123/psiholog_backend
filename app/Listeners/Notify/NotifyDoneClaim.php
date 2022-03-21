@@ -11,7 +11,7 @@ use Illuminate\Queue\InteractsWithQueue;
 class NotifyDoneClaim
 {
 
-    public function handle(CreateRecordCardEvent $event)
+    public function handle(\App\Events\DoneClaimEvent $event)
     {
         $claim = $event->claim;
         $user = $claim->relUser;

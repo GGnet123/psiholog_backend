@@ -11,7 +11,7 @@ use Illuminate\Queue\InteractsWithQueue;
 class NotifyPayedRecordNotification
 {
 
-    public function handle(CreateRecordCardEvent $event)
+    public function handle(\App\Events\PayedRecordNotificationEvent $event)
     {
         $record = $event->record;
         $customer = $record->relCustomer;

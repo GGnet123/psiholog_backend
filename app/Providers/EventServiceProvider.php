@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Listeners\Notify\NotifyCancelRecordByUser;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 use App\Events\CreateRecordEvent;
@@ -49,16 +50,56 @@ class EventServiceProvider extends ServiceProvider
             FinishSeanceRecordLogListner::class
         ],
         MoveSeanceRecordEvent::class => [
-            MoveSeanceRecordLogListner::class
+            MoveSeanceRecordLogListner::class,
+            \App\Listeners\Notify\NotifyRemovedRecordByUser::class,
         ],
         CancelRecordEvent::class => [
-            CancelRecordLogListner::class
+            CancelRecordLogListner::class,
+            NotifyCancelRecordByUser::class
         ],
         CreateSubscriptionEvent::class => [
         ],
         \App\Events\CreateRecordCardEvent::class => [
             \App\Listeners\Notify\NotifyCreateRecordCardListner::class,
         ],
+        \App\Events\CancelRecordByDoctorEvent::class => [
+            \App\Listeners\Notify\NotifyCancelRecordByDoctor::class,
+        ],
+        \App\Events\CancelRecordBySystemEvent::class => [
+            \App\Listeners\Notify\NotifyCancelRecordBySystem::class,
+        ],
+        \App\Events\UserIsBlockedEvent::class => [
+            \App\Listeners\Notify\NotifyCurrentUserIsBlocked::class,
+        ],
+        \App\Events\DoneClaimEvent::class => [
+            \App\Listeners\Notify\NotifyDoneClaim::class,
+        ],
+        \App\Events\DoneDoneSupportEvent::class => [
+            \App\Listeners\Notify\NotifyDoneSupport::class,
+        ],
+        \App\Events\ErrorCreateCreditCardEvent::class => [
+            \App\Listeners\Notify\NotifyErrorCreateCreditCard::class,
+        ],
+        \App\Events\ErrorErrorPayRecordEvent::class => [
+            \App\Listeners\Notify\NotifyErrorPayRecord::class,
+        ],
+        \App\Events\ErrorPaySubscriptionEvent::class => [
+            \App\Listeners\Notify\NotifyErrorPaySubscription::class,
+        ],
+        \App\Events\PaedSubscriptoinEvent::class => [
+            \App\Listeners\Notify\NotifyPaedSubscriptoin::class,
+        ],
+        \App\Events\PayedRecordNotificationEvent::class => [
+            \App\Listeners\Notify\NotifyPayedRecordNotification::class,
+        ],
+        \App\Events\WillPaedSubscriptionEvent::class => [
+            \App\Listeners\Notify\NotifyWillPaedSubscription::class,
+        ],
+        \App\Events\WillRecordEvent::class => [
+            \App\Listeners\Notify\NotifyWillRecord::class,
+        ],
+
+
     ];
 
     /**

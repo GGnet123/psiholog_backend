@@ -2,16 +2,15 @@
 
 namespace App\Listeners\Notify;
 
-use App\Events\CreateRecordCardEvent;
+use App\Events\CancelRecordEvent;
 use App\Notifications\Fcm\CancelRecordByUserNotification;
-use App\Notifications\Fcm\CreateCreditCardNotifications;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
 class NotifyCancelRecordByUser
 {
 
-    public function handle(CreateRecordCardEvent $event)
+    public function handle(CancelRecordEvent $event)
     {
         $record = $event->record;
 

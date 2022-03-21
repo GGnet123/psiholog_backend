@@ -11,7 +11,7 @@ use Illuminate\Queue\InteractsWithQueue;
 class NotifyCancelRecordByDoctor
 {
 
-    public function handle(CreateRecordCardEvent $event)
+    public function handle(\App\Events\CancelRecordByDoctorEvent $event)
     {
         $record = $event->record;
         $customer = $record->relCustomer;

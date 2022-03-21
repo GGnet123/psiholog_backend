@@ -11,7 +11,7 @@ use Illuminate\Queue\InteractsWithQueue;
 class NotifyDoneSupport
 {
 
-    public function handle(CreateRecordCardEvent $event)
+    public function handle(\App\Events\DoneDoneSupportEvent $event)
     {
         $support = $event->support;
         $user = $support->relFromUser;

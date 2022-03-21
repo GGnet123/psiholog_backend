@@ -11,7 +11,7 @@ use Illuminate\Queue\InteractsWithQueue;
 class NotifyCurrentUserIsBlocked
 {
 
-    public function handle(CreateRecordCardEvent $event)
+    public function handle(\App\Events\UserIsBlockedEvent $event)
     {
         $user = $event->user;
 

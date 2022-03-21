@@ -11,7 +11,7 @@ use Illuminate\Queue\InteractsWithQueue;
 class NotifyWillRecord
 {
 
-    public function handle(CreateRecordCardEvent $event)
+    public function handle(\App\Events\WillRecordEvent $event)
     {
         $record = $event->record;
         $customer = $record->relCustomer;
