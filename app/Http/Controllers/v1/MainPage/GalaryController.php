@@ -49,7 +49,7 @@ class GalaryController extends Controller
                 $res[$type]['items'] = $types;
             }
 
-            $res[$type]['items'] = MainGalaryResource::collection(MainGalary::where('type', $request->type)->inRandomOrder()->take(10)->get());
+            $res[$type]['items'] = MainGalaryResource::collection(MainGalary::where('type', $type)->inRandomOrder()->take(10)->get());
         }
 
         return $this->data_response($res);
