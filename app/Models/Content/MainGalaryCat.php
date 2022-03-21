@@ -29,4 +29,8 @@ class MainGalaryCat extends Model
     function relImage(){
         return $this->belongsTo(UploaderFile::class, 'image_id');
     }
+
+    function relGalary(){
+        return $this->hasMany(MainGalary::class, 'cat_id');
+    }
 }

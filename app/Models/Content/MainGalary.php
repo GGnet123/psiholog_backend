@@ -44,6 +44,19 @@ class MainGalary extends Model
     CONST TYPE_MANTRA = 'TYPE_MANTRA';
     CONST TYPE_SLEEP = 'TYPE_SLEEP';
 
+    static function getArType(){
+        return [
+            static::TYPE_NATURE,
+            static::TYPE_TACK_TO_ME,
+            static::TYPE_MEDITATION,
+            static::TYPE_AFFIRMATION,
+            static::TYPE_MEDITATION_AUDIO,
+            static::TYPE_VDOH,
+            static::TYPE_MANTRA,
+            static::TYPE_SLEEP,
+        ];
+    }
+
     function relDoctor(){
         return $this->belongsTo(User::class, 'doctor_id');
     }

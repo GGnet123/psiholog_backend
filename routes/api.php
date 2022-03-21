@@ -3,6 +3,7 @@
 use App\Http\Controllers\v1\FavoriteController;
 use App\Http\Controllers\v1\Finance\CreditCardController;
 use App\Http\Controllers\v1\Main\SubscriptionController;
+use App\Http\Controllers\v1\MainPage\GalaryController;
 use App\Http\Controllers\v1\Record\ManageRecordController;
 use App\Http\Controllers\v1\Record\RecordController;
 use Illuminate\Http\Request;
@@ -37,6 +38,16 @@ Route::group(['prefix' => 'v1'], function () {
 
         Route::post('save-fcm-token', [\App\Http\Controllers\v1\FcmTokenController::class, 'save']);
 
+
+        Route::group(['prefix' => 'main-page'], function () {
+            Route::group(['prefix' => 'galary'], function () {
+                Route::get('/', [GalaryController::class, 'index']);
+                Route::get('cats', [GalaryController::class, 'cats']);
+                Route::get('types', [GalaryController::class, 'types']);
+                Route::get('mainPage', [GalaryController::class, 'mainPage']);
+
+            });
+        });
 
         Route::group(['prefix' => 'favorite'], function () {
             Route::get('ar-type', [FavoriteController::class, 'getArType']);
