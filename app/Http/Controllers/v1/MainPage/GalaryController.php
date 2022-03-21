@@ -46,7 +46,7 @@ class GalaryController extends Controller
                 $items = MainGalaryResource::collection(MainGalary::where('type', $request->type)->inRandomOrder()->take(5)->get());
 
                 $res[$type]['types'] = $types;
-                $res[$type]['items'] = $types;
+                $res[$type]['items'] = $items;
             }
 
             $res[$type]['items'] = MainGalaryResource::collection(MainGalary::where('type', $type)->inRandomOrder()->take(10)->get());
