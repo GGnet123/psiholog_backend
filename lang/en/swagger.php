@@ -22,9 +22,15 @@ return [
         'RecordManageRecord' => 'RecordManage',
         'RecordRecord' => 'Record',
         'MainSubscription' => 'Subscription',
-        'v1FcmToken' => 'FcmToken'
+        'v1FcmToken' => 'FcmToken',
+        'v1Favorite' => 'Favorites'
     ],
     'path' => [
+        'favorites' => [
+            'getArType' => 'Получить список всех возможных типов модулей для избранного'  ,
+            'save' => 'Сохранить что нить в избранном, нужно указать тип модуля и id елемента'  ,
+            'delete' => 'Удаить что нить из избранного. нужно указать тип модуля и id елемент'  ,
+        ],
         'fcm-token' => [
             'save' => 'Роут для сохранения fcm токена'
         ],

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\v1\FavoriteController;
 use App\Http\Controllers\v1\Finance\CreditCardController;
 use App\Http\Controllers\v1\Main\SubscriptionController;
 use App\Http\Controllers\v1\Record\ManageRecordController;
@@ -36,6 +37,12 @@ Route::group(['prefix' => 'v1'], function () {
 
         Route::post('save-fcm-token', [\App\Http\Controllers\v1\FcmTokenController::class, 'save']);
 
+
+        Route::group(['prefix' => 'favorite'], function () {
+            Route::get('ar-type', [FavoriteController::class, 'getArType']);
+            Route::post('save', [FavoriteController::class, 'save']);
+            Route::delete('delete', [FavoriteController::class, 'delete']);
+        });
 
         Route::group(['prefix' => 'finance'], function () {
             Route::group(['prefix' => 'credit-card'], function () {
