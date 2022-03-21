@@ -4,6 +4,8 @@ namespace App\Http\Controllers\v1\Main;
 
 use App\Actions\Main\CancelSubscription;
 use App\Actions\Main\SaveSubscriptionAction;
+use App\Events\ErrorPaySubscriptionEvent;
+use App\Events\PaedSubscriptoinEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Main\SaveSubscriptionRequest;
 use App\Http\Resources\Main\SubscriptionResource;
@@ -19,7 +21,16 @@ class SubscriptionController extends Controller
     }
 
     function create(SaveSubscriptionRequest $request){
-        $item = (new SaveSubscriptionAction(new Subscription(), $request->all()))->run();
+        try {
+            $item = (new SaveSubscriptionAction(new Subscription(), $request->all()))->run();
+
+            event(new PaedSubscriptoinEvent($item));
+        }
+        catch (\Exception $exception){
+            event(new ErrorPaySubscriptionEvent(new Subscription()));
+
+            throw $exception;
+        }
 
         return new SubscriptionResource($item);
     }

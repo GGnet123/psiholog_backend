@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Admin\Main;
 
+use App\Events\UserIsBlockedEvent;
 use App\Http\Controllers\Controller;
 use App\Models\Profile\UserCertificat;
 use App\Models\User as Model;
@@ -53,6 +54,9 @@ class  DoctorController extends Controller{
 
     function blockedSeance(Request $request, Model $item){
         $item->update(['is_blocked_seance' => ($item->is_blocked_seance ? false : true)]);
+
+        if ($item->is_blocked_seance)
+            event(new UserIsBlockedEvent($item));
 
         return redirect()->back()->with('success', __('main.updated_model'));
     }

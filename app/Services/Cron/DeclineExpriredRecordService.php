@@ -1,6 +1,7 @@
 <?php
 namespace App\Services\Cron;
 
+use App\Events\CancelRecordBySystemEvent;
 use App\Models\Record\RecordDoctor;
 use App\Services\DeclineRecordTransactionSerivce;
 use DateTime;
@@ -34,6 +35,8 @@ class DeclineExpriredRecordService {
                 $r->update(['status_id' => RecordDoctor::DECLINE_BY_SYSTEM]);
 
                 DeclineRecordTransactionSerivce::do($r);
+
+                event(new CancelRecordBySystemEvent($r));
                 DB::commit();
             } catch (\Exception $e) {
                 DB::rollBack();

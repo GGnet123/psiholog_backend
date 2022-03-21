@@ -1,9 +1,11 @@
 <?php
 namespace App\Services\Cron;
 
+use App\Events\ErrorPaySubscriptionEvent;
 use App\Models\Main\Subscription;
 use App\Services\CreateSubscriptionTransactionService;
 use DateTime;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -26,6 +28,9 @@ class RenewalSingleSubscriptionService {
             $this->acceptNewSubscription();
         } catch (\Exception $e) {
             $this->cancelNewSubscription();
+
+            event(new ErrorPaySubscriptionEvent($this->subscription));
+
             Log::error($e);
         }
     }

@@ -2,6 +2,7 @@
 namespace App\Actions\Record;
 
 use App\Actions\AbstractAction;
+use App\Events\CancelRecordByDoctorEvent;
 use App\Exceptions\HasNoteAccessException;
 use App\Exceptions\Record\CantChangeRecordStatusException;
 use App\Models\Record\RecordDoctor;
@@ -22,6 +23,8 @@ class DeclineRecordAction extends AbstractAction {
         $record->update(['status_id' => RecordDoctor::DECLINE_BY_DOCTOR]);
 
         DeclineRecordTransactionSerivce::do($record);
+
+        event(new CancelRecordByDoctorEvent($record));
 
         return $record;
     }

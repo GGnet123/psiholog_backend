@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Admin\Main;
 
 use App\Actions\MainUpdateAction;
+use App\Events\DoneClaimEvent;
 use App\Http\Controllers\Controller;
 use App\Models\Main\Claim as Model;
 use Illuminate\Http\Request;
@@ -48,6 +49,8 @@ class  ClaimController extends Controller{
 
         try {
             $action->run();
+
+            event(new DoneClaimEvent($item));
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }

@@ -11,6 +11,8 @@ use App\Actions\Record\FinishRecordAction;
 use App\Actions\Record\MoveRecordAction;
 use App\Actions\Record\PayRecordAction;
 use App\Actions\Record\StartSeanceRecordAction;
+use App\Events\ErrorErrorPayRecordEvent;
+use App\Events\PayedRecordNotificationEvent;
 use App\Exceptions\Record\CurrentUserIsBlockedException;
 use App\Exceptions\Record\DoctorIsBlockedException;
 use App\Exceptions\Record\RecordIsNotOnWorkException;
@@ -45,7 +47,17 @@ class ManageRecordController extends Controller
         if ($request->user()->is_blocked_seance)
             throw new CurrentUserIsBlockedException();
 
-        $model = (new CreateRecordAction($doctor, $request->validated()))->run();
+        try {
+            $model = (new CreateRecordAction($doctor, $request->validated()))->run();
+
+            event(new PayedRecordNotificationEvent($model));
+        }
+        catch (\Exception $exception){
+            event(new ErrorErrorPayRecordEvent(new RecordDoctor()));
+
+            throw $exception;
+        }
+
 
         return new RecordResource($model);
     }

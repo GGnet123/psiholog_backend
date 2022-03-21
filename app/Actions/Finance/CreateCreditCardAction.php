@@ -4,9 +4,11 @@ namespace App\Actions\Finance;
 use Albakov\LaravelCloudPayments\Facade as CloudPay;
 use App\Actions\AbstractAction;
 use App\Events\CreateRecordCardEvent;
+use App\Events\ErrorCreateCreditCardEvent;
 use App\Exceptions\Finance\AlreadyHasActiveCreditCardException;
 use App\Exceptions\Finance\ErrorWithTransactionException;
 use App\Exceptions\Finance\WrongCredentialDataException;
+use App\Models\Finance\CreditCard;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,11 +23,7 @@ class CreateCreditCardAction extends AbstractAction {
             throw new AlreadyHasActiveCreditCardException();
 
         $this->createCard();
-
-
         $this->testCharge();
-
-
 
         return $card;
     }
@@ -63,18 +61,26 @@ class CreateCreditCardAction extends AbstractAction {
         if ($result->Model)
             $res_model = (object)$result->Model;
 
-        if (!$result->Success && $result->Message)
+        if (!$result->Success && $result->Message) {
+            event(new ErrorCreateCreditCardEvent(new CreditCard()));
+
             throw new WrongCredentialDataException();
+        }
 
 
-        if (!$result->Success && property_exists($res_model, 'ReasonCode'))
+        if (!$result->Success && property_exists($res_model, 'ReasonCode')) {
+            event(new ErrorCreateCreditCardEvent(new CreditCard()));
             throw new ErrorWithTransactionException($res_model->ReasonCode);
+        }
 
         if (!$result->Success && $res_model->AcsUrl)
             return $this->create3DSecure($res_model);
 
-        if (!$result->Success)
+        if (!$result->Success) {
+            event(new ErrorCreateCreditCardEvent(new CreditCard()));
+
             throw new ErrorWithTransactionException();
+        }
 
 
         $this->model->is_accepted = true;
@@ -82,6 +88,8 @@ class CreateCreditCardAction extends AbstractAction {
         $this->model->is_active = true;
         $this->model->data_to_check_3d_secure = null;
         $this->model->save();
+
+        event(new CreateRecordCardEvent($this->model));
 
 
         $this->rollbackTransaction($res_model);

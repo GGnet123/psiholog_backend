@@ -3,8 +3,11 @@ namespace App\Actions\Finance;
 
 use Albakov\LaravelCloudPayments\Facade as CloudPay;
 use App\Actions\AbstractAction;
+use App\Events\CreateRecordCardEvent;
+use App\Events\ErrorCreateCreditCardEvent;
 use App\Exceptions\Finance\ErrorWithTransactionException;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
 class Check3DSecureAction extends AbstractAction {
@@ -38,6 +41,9 @@ class Check3DSecureAction extends AbstractAction {
             $this->model->note = 'WrongCredentail';
             $this->model->save();
 
+
+            event(new ErrorCreateCreditCardEvent($this->model));
+
             return;
         }
 
@@ -47,6 +53,8 @@ class Check3DSecureAction extends AbstractAction {
             $this->model->note = __('finance.error.'.$res_model->ReasonCode);
             $this->model->save();
 
+            event(new ErrorCreateCreditCardEvent($this->model));
+
             return;
         }
 
@@ -55,6 +63,8 @@ class Check3DSecureAction extends AbstractAction {
         $this->model->is_active = true;
         $this->model->data_to_check_3d_secure = null;
         $this->model->save();
+
+        event(new CreateRecordCardEvent($this->model));
 
         $this->rollbackTransaction($res_model);
     }
