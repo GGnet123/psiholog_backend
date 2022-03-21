@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Content;
 
 use App\Http\Resources\Services\UploaderFileResource;
+use App\Models\Favorite;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class MainGalaryCatResource extends JsonResource
@@ -14,7 +15,8 @@ class MainGalaryCatResource extends JsonResource
             'title' => $this->title,
             'type' => $this->type,
             'image' => ($this->relImage ? new UploaderFileResource($this->relImage) : null),
-            'count_el' => $this->relGalary()->count()
+            'count_el' => $this->relGalary()->count(),
+            'favorite' => Favorite::getFavorBool('galary_cat', $this->id)
         ];
     }
 

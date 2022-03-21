@@ -20,7 +20,9 @@ class Favorite extends Model
 
     static function getArType(){
         return [
-            'doctor'
+            'doctor',
+            'galary_item',
+            'galary_cat'
         ];
     }
 

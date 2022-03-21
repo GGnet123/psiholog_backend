@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Content;
 
 use App\Http\Resources\Services\UploaderFileResource;
+use App\Models\Favorite;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class MainGalaryResource extends JsonResource
@@ -18,6 +19,7 @@ class MainGalaryResource extends JsonResource
             'music' => ($this->relMusic ? new UploaderFileResource($this->relMusic) : null),
             'video' => ($this->relVideo ? new UploaderFileResource($this->relVideo) : null),
             'image' => ($this->relImage ? new UploaderFileResource($this->relImage) : null),
+            'favorite' => Favorite::getFavorBool('galary_item', $this->id)
         ];
     }
 
