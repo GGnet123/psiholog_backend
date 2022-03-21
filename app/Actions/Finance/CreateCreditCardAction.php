@@ -22,7 +22,7 @@ class CreateCreditCardAction extends AbstractAction {
 
         $this->createCard();
 
-        event(new CreateRecordCardEvent($this->model));
+
         $this->testCharge();
 
 
