@@ -13,6 +13,8 @@ use App\Services\Cron\AutoRenewalSubscriptionService;
 use App\Services\Cron\CalcWillPayedSubscriptionService;
 use App\Services\Cron\CalcWillRecordService;
 use App\Services\Cron\DeclineExpriredRecordService;
+use App\Services\Cron\NeedDoAffirmationService;
+use App\Services\Cron\NeedDoMeditationService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -53,6 +55,9 @@ class IndexController extends Controller {
 
         //CalcWillRecordService::calc();
         //CalcWillPayedSubscriptionService::calc();
+
+        //NeedDoMeditationService::do();
+        //NeedDoAffirmationService::do();
 
         return view('stat.index', [
             'stat' => [
