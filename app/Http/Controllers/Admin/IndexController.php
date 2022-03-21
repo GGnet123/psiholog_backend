@@ -9,6 +9,8 @@ use App\Models\Main\Support;
 use App\Models\Record\RecordDoctor;
 use App\Models\User;
 use App\Services\Cron\AutoRenewalSubscriptionService;
+use App\Services\Cron\CalcWillPayedSubscriptionService;
+use App\Services\Cron\CalcWillRecordService;
 use App\Services\Cron\DeclineExpriredRecordService;
 
 class IndexController extends Controller {
@@ -17,8 +19,11 @@ class IndexController extends Controller {
     }
 
     function stat(){
-        DeclineExpriredRecordService::do();
-        AutoRenewalSubscriptionService::do();
+        //DeclineExpriredRecordService::do();
+        //AutoRenewalSubscriptionService::do();
+
+        //CalcWillRecordService::calc();
+        //CalcWillPayedSubscriptionService::calc();
 
         return view('stat.index', [
             'stat' => [
