@@ -40,7 +40,8 @@ class User extends Authenticatable
         'notify_meditation',
         'notify_app',
         'is_blocked',
-        'is_blocked_seance'
+        'is_blocked_seance',
+        'fcm_token'
     ];
 
     CONST ADMIN_TYPE = 1;
@@ -97,6 +98,11 @@ class User extends Authenticatable
         $q->whereHas('relSpecilization', function($b) use ($ar){
             $b->whereIn('lib_specialization_id', $ar);
         });
+    }
+
+
+    public function routeNotificationForFcm(){
+        return $this->fcm_token;
     }
 
     function scopePriceB($q, $price){

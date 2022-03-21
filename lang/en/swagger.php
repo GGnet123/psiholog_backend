@@ -22,8 +22,12 @@ return [
         'RecordManageRecord' => 'RecordManage',
         'RecordRecord' => 'Record',
         'MainSubscription' => 'Subscription',
+        'v1FcmToken' => 'FcmToken'
     ],
     'path' => [
+        'fcm-token' => [
+            'save' => 'Роут для сохранения fcm токена'
+        ],
         'auth' => [
             'login' => 'Логин',
             'logout' => 'Выход'

@@ -34,6 +34,9 @@ Route::group(['prefix' => 'v1'], function () {
         Route::post('create-password/check-login', [\App\Http\Controllers\v1\CreatePasswordController::class, 'checkLogin']);
 
 
+        Route::post('save-fcm-token', [\App\Http\Controllers\v1\FcmTokenController::class, 'save']);
+
+
         Route::group(['prefix' => 'finance'], function () {
             Route::group(['prefix' => 'credit-card'], function () {
                 Route::get('/', [CreditCardController::class, 'index']);
@@ -73,7 +76,6 @@ Route::group(['prefix' => 'v1'], function () {
                 Route::post('/', [SubscriptionController::class, 'create']);
                 Route::delete('/', [SubscriptionController::class, 'cancelSubscription']);
             });
-
 
             Route::group(['prefix' => 'support'], function () {
                 Route::get('/', [\App\Http\Controllers\v1\Main\SupportController::class, 'index']);
