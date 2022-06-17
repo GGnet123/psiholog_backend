@@ -32,6 +32,7 @@
             </x-form.panel>
         </div>
         <div class="col-md-4">
+            @if ($timetable)
             <x-form.panel title="Расписание" >
                 <div class="form-group">
                     <label>Дни недели</label> <br/>
@@ -92,8 +93,7 @@
                     @endfor
                 </div>
             </x-form.panel>
-
-
+            @endif
             <x-form.panel title="Сертификаты" >
                 <div class="row">
                     @foreach($certificats as $c)
