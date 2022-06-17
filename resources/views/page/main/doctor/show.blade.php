@@ -12,6 +12,7 @@
                 <x-show.file name="avatar_id"  :model="$model"  :value="$model->relAvatar"  />
                 <x-show.def name="price"  :model="$model"   />
                 <x-show.def name="date_b"  :model="$model"   />
+                <x-show.def name="card_data"  :model="$model"   />
                 <x-show.def name="specializations"  :model="$model"  :value="implode(', ', $specializations)"  />
             </x-form.show>
 

@@ -41,7 +41,8 @@ class User extends Authenticatable
         'notify_app',
         'is_blocked',
         'is_blocked_seance',
-        'fcm_token'
+        'fcm_token',
+        'card_data'
     ];
 
     CONST ADMIN_TYPE = 1;
