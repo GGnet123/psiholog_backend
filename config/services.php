@@ -37,8 +37,8 @@ return [
     ],
 
     'agora' => [
-        'app_id' => 'c067d0cde328417fb1342776098f6cd6',
-        'certificate_id' => '57dd89d9209441249c883ec0af72e90f'
+        'app_id' => 'cc9ec218532b4591a1ed3a409b5c9058',
+        'certificate_id' => 'b39b35e8ddf04a58892a9f47eeb9ec24'
     ]
 
 ];
