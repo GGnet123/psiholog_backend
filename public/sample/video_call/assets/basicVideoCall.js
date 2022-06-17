@@ -34,7 +34,7 @@ var remoteUsers = {};
  * On initiation. `client` is not attached to any project or channel for any specific user.
  */
 var options = {
-  appid: 'c067d0cde328417fb1342776098f6cd6',
+  appid: 'cc9ec218532b4591a1ed3a409b5c9058',
   channel: 'user_1',
   uid: 1,
   token: null
