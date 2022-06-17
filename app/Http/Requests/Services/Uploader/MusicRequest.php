@@ -10,7 +10,7 @@ class MusicRequest extends FormRequest
     public function rules()
     {
         return [
-            'upload_file' => 'required|file|mimes:mp3|max:8000',
+            'upload_file' => 'required|file|mimes:mp3|max:30000',
             'title' => 'nullable|string'
         ];
     }
