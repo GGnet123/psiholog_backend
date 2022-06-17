@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'apiSecret' => '442c192196ebe35f90f009776ce65831',
-    'publicId' => 'pk_6840c67f9779f41238f7c82ff236f',
+    'apiSecret' => 'fdf97e353c6e6564ea55de6cba3f46d9',
+    'publicId' => 'pk_a44d26012c58e1acdc55d44f8d590',
     'apiUrl' => 'https://api.cloudpayments.ru',
     'cultureName' => 'en-US', // https://cloudpayments.ru/Docs/Api#language
     'test_crypto_without3d' => '014111111111241202bWG4GNPDVkU6WHLR481UtdAb98+nuZsAl5RcS+j58vRRAWEIbAmr5VB1+3b9T+q31wCSDOBS1Rv1x6WdigKZfYKxp2LimqS4n+Fgczb2kK6ckSAf0Ij54XbEESU87FatQTYHF52PBKh1Lk+7tBHNutd1CQ0hb/9kA2qZcrfGriFJy1nA8L7J3N6RX8Blh8NDqpW+x46W7gr3NhE6WXxUg/AlfiTCX15JQtUEcnjftvaLiMfZPaWGm84cfJRk9XO02Mcu21jJq5AO0LgF2q4eq0t81OpR4aI3ZaygqrkszwfVXpGF6ONYUFt6DlHRDDNrJEHKAc8cj1oS/82R/MvH2A==',
