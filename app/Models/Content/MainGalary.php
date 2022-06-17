@@ -19,7 +19,9 @@ class MainGalary extends Model
     protected $fillable = [
         'cat_id',
         'title',
+        'title_en',
         'slug',
+        'slog_en',
         'music_id',
         'video_id',
         'image_id',

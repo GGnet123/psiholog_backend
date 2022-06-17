@@ -18,6 +18,7 @@ class MainGalaryCat extends Model
     protected $table = 'content_main_gallery_cat';
     protected $fillable = [
         'title',
+        'title_en',
         'image_id',
         'type',
         'need_subscription'

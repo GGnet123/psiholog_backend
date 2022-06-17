@@ -102,6 +102,8 @@ return [
         'cat_id' => 'Категория',
         'title' => 'Заголовок',
         'slug' => 'Текст',
+        'slug_en' => 'Текст на английском',
+        'title_en' => 'Заголовок на английском',
         'music_id' => 'Музыка',
         'video_id' => 'Видео',
         'image_id' => 'Картинка',
@@ -110,13 +112,17 @@ return [
         'null_cat' => 'Единичный элемент',
         'need_subscription' => 'Только для подписки',
         'notification_ru'  => 'Текст уведомления на русском',
-        'notification_en'  => 'Текст уведомления на английском'
+        'notification_en'  => 'Текст уведомления на английском',
+        'google_drive_music' => 'Ссылка на музыку(Google Drive)',
+        'google_drive_video' => 'Ссылка на видео(Google Drive)',
     ],
 
     'content_main_gallery_cat' => [
         'cat_id' => 'Категория',
         'title' => 'Заголовок',
+        'title_en' => 'Заголовок на английском',
         'slug' => 'Текст',
+        'slug_en' => 'Текст на английском',
         'music_id' => 'Музыка',
         'video_id' => 'Видео',
         'image_id' => 'Картинка',
