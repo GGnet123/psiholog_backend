@@ -10,10 +10,10 @@ class CancelRecordByUserNotification extends Notification {
 
     public function __construct(RecordDoctor $item) {
         $this->setData(
-            'title_en',
-            'title_ru',
-            'body_en',
-            'body_ru',
+            'TalktoMe',
+            'TalktoMe',
+            'The entry has been canceled by the user!',
+            'Запись была отменена пользователем!',
             'record',
             'cancel_by_user',
             $item->id

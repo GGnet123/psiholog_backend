@@ -19,13 +19,19 @@ class MainGalary extends Model
     protected $fillable = [
         'cat_id',
         'title',
+        'title_en',
         'slug',
+        'slog_en',
         'music_id',
         'video_id',
         'image_id',
         'doctor_id',
         'type',
-        'need_subscription'
+        'need_subscription',
+        'notification_ru',
+        'notification_en',
+        'google_drive_music',
+        'google_drive_video'
     ];
 
     protected $ar_filter = [

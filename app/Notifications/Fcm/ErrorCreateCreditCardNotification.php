@@ -10,10 +10,10 @@ class ErrorCreateCreditCardNotification extends Notification {
 
     public function __construct(CreditCard $item) {
         $this->setData(
-            'title_en',
-            'title_ru',
-            'body_en',
-            'body_ru',
+            'TalktoMe',
+            'TalktoMe',
+            'There was an error linking a bank card!',
+            'Произошла ошибка привязки банковской карты!',
             'credit_card',
             'error_on_create',
             $item->id

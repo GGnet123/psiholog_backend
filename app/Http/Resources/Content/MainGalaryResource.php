@@ -15,11 +15,12 @@ class MainGalaryResource extends JsonResource
             'cat_id' => $this->cat_id,
             'cat' => ($this->relCat ? $this->relCat->title : null),
             'title' => $this->title,
+            'title_en' => $this->title_en,
             'slug' => $this->slug,
             'type' => $this->type,
             'need_subscription' => $this->need_subscription,
-            'music' => ($this->relMusic ? new UploaderFileResource($this->relMusic) : null),
-            'video' => ($this->relVideo ? new UploaderFileResource($this->relVideo) : null),
+            'music' => $this->google_drive_music,
+            'video' => $this->google_drive_video,
             'image' => ($this->relImage ? new UploaderFileResource($this->relImage) : null),
             'favorite' => Favorite::getFavorBool('galary_item', $this->id)
         ];

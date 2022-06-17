@@ -10,10 +10,10 @@ class RemovedRecordByUserNotification extends Notification {
 
     public function __construct(RecordDoctor $item) {
         $this->setData(
-            'title_en',
-            'title_ru',
-            'body_en',
-            'body_ru',
+            'TalktoMe',
+            'TalktoMe',
+            'Changed the time of the online session on the part of the user!',
+            'Изменено время онлайн сессии со стороны пользователя! ',
             'record',
             'removed_by_user',
             $item->id

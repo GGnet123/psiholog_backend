@@ -10,10 +10,10 @@ class CancelRecordBySystemNotification extends Notification {
 
     public function __construct(RecordDoctor $item) {
         $this->setData(
-            'title_en',
-            'title_ru',
-            'body_en',
-            'body_ru',
+            'TalktoMe',
+            'TalktoMe',
+            'The registration was canceled by the system, please check your bank card and try again!',
+            'Запись была отменена со стороны системы, проверьте Вашу банковскую карту и повторите попытку! ',
             'record',
             'cancel_by_system',
             $item->id

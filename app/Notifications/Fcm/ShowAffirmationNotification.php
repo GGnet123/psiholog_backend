@@ -10,10 +10,10 @@ class ShowAffirmationNotification extends Notification {
 
     public function __construct(MainGalary $item) {
         $this->setData(
-            'title_en',
-            'title_ru',
-            'body_en',
-            'body_ru',
+            'TalktoMe',
+            'TalktoMe',
+            $item->notification_ru,
+            $item->notification_en,
             'affirmation',
             'affirmation',
             $item->id

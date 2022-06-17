@@ -10,10 +10,10 @@ class NeedDoMeditationNotification extends Notification {
 
     public function __construct(MainGalary $item) {
         $this->setData(
-            'title_en',
-            'title_ru',
-            'body_en',
-            'body_ru',
+            'TalktoMe',
+            'TalktoMe',
+            'Take a meditation course with TalktoMe!',
+            'Пройдите курс медитации вместе с TalktoMe! ',
             'meditation',
             'meditation',
             $item->id
