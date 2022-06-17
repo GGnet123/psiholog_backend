@@ -22,7 +22,6 @@ class FilterDoctorRequest extends FormRequest
     public function rules()
     {
         return [
-
             'name' => 'nullable|string|max:255',
             'price' => 'nullable|integer',
             'price_b' => 'nullable|integer',
