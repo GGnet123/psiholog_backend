@@ -25,7 +25,11 @@ class MainGalary extends Model
         'image_id',
         'doctor_id',
         'type',
-        'need_subscription'
+        'need_subscription',
+        'notification_ru',
+        'notification_en',
+        'google_drive_music',
+        'google_drive_video'
     ];
 
     protected $ar_filter = [

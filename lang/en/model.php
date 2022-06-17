@@ -108,7 +108,9 @@ return [
         'doctor_id' => 'Доктор',
         'type'  => 'Тип',
         'null_cat' => 'Единичный элемент',
-        'need_subscription' => 'Только для подписки'
+        'need_subscription' => 'Только для подписки',
+        'notification_ru'  => 'Текст уведомления на русском',
+        'notification_en'  => 'Текст уведомления на английском'
     ],
 
     'content_main_gallery_cat' => [
@@ -119,6 +121,8 @@ return [
         'video_id' => 'Видео',
         'image_id' => 'Картинка',
         'doctor_id' => 'Доктор',
+        'google_drive_music' => 'Ссылка на музыку(Google Drive)',
+        'google_drive_video' => 'Ссылка на видео(Google Drive)',
         'type'  => 'Тип',
         'need_subscription' => 'Только для подписки'
     ],

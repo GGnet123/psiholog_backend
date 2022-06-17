@@ -12,8 +12,8 @@ class ShowAffirmationNotification extends Notification {
         $this->setData(
             'TalktoMe',
             'TalktoMe',
-            'body_en',
-            'body_ru',
+            $item->notification_ru,
+            $item->notification_en,
             'affirmation',
             'affirmation',
             $item->id

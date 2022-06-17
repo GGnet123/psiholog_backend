@@ -11,7 +11,7 @@
         <x-input.label :model="$model" :name="$name" :disabled="(!isset($disabled) ? 0 : 1)" :required="(!isset($required) ? 0 : 1)"   />
 
         <input type="file"  id="{{ $id }}_file" class="form-control {{ isset($class) ? $class  : ''}}"
-        {{ isset($required) && !$model->{$name} ? 'required' : '' }}  data-file_max='2' >
+        {{ isset($required) && !$model->{$name} ? 'required' : '' }}  data-file_max='11' >
 
         <input type="hidden" name="{{ $name }}" id="{{ $id }}_value" >
     </div>

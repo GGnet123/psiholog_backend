@@ -18,8 +18,8 @@ class MainGalaryResource extends JsonResource
             'slug' => $this->slug,
             'type' => $this->type,
             'need_subscription' => $this->need_subscription,
-            'music' => ($this->relMusic ? new UploaderFileResource($this->relMusic) : null),
-            'video' => ($this->relVideo ? new UploaderFileResource($this->relVideo) : null),
+            'music' => $this->google_drive_music,
+            'video' => $this->google_drive_video,
             'image' => ($this->relImage ? new UploaderFileResource($this->relImage) : null),
             'favorite' => Favorite::getFavorBool('galary_item', $this->id)
         ];

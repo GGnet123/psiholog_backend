@@ -8,6 +8,8 @@
             <x-input.text name="title" :model="$model" required  />
             <x-input.file name="image_id"  :model="$model" required  />
             <x-input.bool name="need_subscription"  :model="$model" required  />
+            <x-input.text name="notification_ru" :model="$model"   />
+            <x-input.text name="notification_en" :model="$model"   />
 
         </x-form.create>
     </div>
