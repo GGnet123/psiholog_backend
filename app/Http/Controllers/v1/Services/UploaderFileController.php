@@ -13,6 +13,9 @@ use App\Models\Services\UploaderFile;
 
 class UploaderFileController extends Controller {
     function music(MusicRequest $request){
+        ini_set('upload_max_filesize', '30M');
+
+
         $data = $request->validated();
         $data['type_id'] = UploaderFile::IMAGE;
 
@@ -22,6 +25,8 @@ class UploaderFileController extends Controller {
     }
 
     function video(VideoRequest $request){
+        ini_set('upload_max_filesize', '30M');
+
         $data = $request->validated();
         $data['type_id'] = UploaderFile::IMAGE;
 
@@ -32,6 +37,8 @@ class UploaderFileController extends Controller {
     }
 
     function image(ImageRequest $request){
+        ini_set('upload_max_filesize', '30M');
+
         $data = $request->validated();
         $data['type_id'] = UploaderFile::IMAGE;
 

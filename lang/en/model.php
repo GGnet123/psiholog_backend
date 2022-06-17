@@ -27,7 +27,8 @@ return [
         'is_blocked_seance' => 'Заблокирован доступ к сеансам',
         'price' => 'Цена за сеанс',
         'date_b' => 'Дата рождения',
-        'specializations' => 'Специализации'
+        'specializations' => 'Специализации',
+        'card_data' => 'Данные карточки'
     ],
     'support' => [
         'name' => 'Заголовок',

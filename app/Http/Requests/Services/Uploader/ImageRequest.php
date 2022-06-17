@@ -11,7 +11,7 @@ class ImageRequest extends FormRequest
     public function rules()
     {
         return [
-            'upload_file' => 'required|file|mimes:jpeg,bmp,png,gif,svg,pdf|max:8000',
+            'upload_file' => 'required|file|mimes:jpeg,bmp,png,gif,svg,pdf|max:30000',
             'title' => 'nullable|string'
         ];
     }

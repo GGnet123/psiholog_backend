@@ -16,6 +16,7 @@ class DoctorProfileRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
+            'card_data' => 'required|string|max:255',
             'date_b' => 'required|date',
             'avatar_id' => 'nullable|integer|exists:uploaded_file,id',
             'note' => 'nullable|string',
