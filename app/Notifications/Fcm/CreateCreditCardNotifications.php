@@ -11,10 +11,10 @@ class CreateCreditCardNotifications extends Notification {
 
     public function __construct(CreditCard $card) {
         $this->setData(
-            'title_en',
-            'title_ru',
-            'body_en',
-            'body_ru',
+            'TalktoMe',
+            'TalktoMe',
+            'Your card has been successfully linked, congratulations!',
+            'Ваша карта успешно привязана, поздравляем!',
             'credit_cart',
             'create',
             $card->id

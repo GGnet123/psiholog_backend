@@ -10,10 +10,10 @@ class WillPaedSubscriptionNotification extends Notification {
 
     public function __construct(Subscription $item) {
         $this->setData(
-            'title_en',
-            'title_ru',
-            'body_en',
-            'body_ru',
+            'TalktoMe',
+            'TalktoMe',
+            'Within two days, money will be debited to renew the subscription!',
+            'В в течении двух дней пройдёт списание денег для продления подписки!',
             'subscription',
             'will_paed',
             $item->id

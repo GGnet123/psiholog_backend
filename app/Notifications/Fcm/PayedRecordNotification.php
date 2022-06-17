@@ -10,10 +10,10 @@ class PayedRecordNotification extends Notification {
 
     public function __construct(RecordDoctor $item) {
         $this->setData(
-            'title_en',
-            'title_ru',
-            'body_en',
-            'body_ru',
+            'TalktoMe',
+            'TalktoMe',
+            'Payment for an online session with a psychologist was successful!',
+            'Оплата онлайн сессии к психологу прошла успешно! ',
             'record',
             'payed',
             $item->id

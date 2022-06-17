@@ -11,10 +11,10 @@ class ErrorPayRecordNotification extends Notification {
 
     public function __construct(User $item) {
         $this->setData(
-            'title_en',
-            'title_ru',
-            'body_en',
-            'body_ru',
+            'TalktoMe',
+            'TalktoMe',
+            'There was a payment error for an online session of a psychologist',
+            'Произошла ошибка оплаты  на онлайн сессия психолога',
             'record',
             'error_on_pay',
             $item->id

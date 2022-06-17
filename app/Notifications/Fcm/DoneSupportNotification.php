@@ -10,10 +10,10 @@ class DoneSupportNotification extends Notification {
 
     public function __construct(Support $item) {
         $this->setData(
-            'title_en',
-            'title_ru',
-            'body_en',
-            'body_ru',
+            'TalktoMe',
+            'TalktoMe',
+            'Your request has been processed by the support team, please wait for a response!',
+            'Ваш запрос обработан службой поддержки, ожидайте ответ! ',
             'support',
             'done',
             $item->id

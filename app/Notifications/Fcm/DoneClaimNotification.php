@@ -10,10 +10,10 @@ class DoneClaimNotification extends Notification {
 
     public function __construct(Claim $item) {
         $this->setData(
-            'title_en',
-            'title_ru',
-            'body_en',
-            'body_ru',
+            'TalktoMe',
+            'TalktoMe',
+            'Your complaint has been processed, please wait for a response!',
+            'Ваша жалоба отработана,ожидайте ответ!',
             'claim',
             'done',
             $item->id

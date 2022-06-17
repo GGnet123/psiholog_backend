@@ -10,10 +10,10 @@ class PaedSubscriptoinNotification extends Notification {
 
     public function __construct(Subscription $item) {
         $this->setData(
-            'title_en',
-            'title_ru',
-            'body_en',
-            'body_ru',
+            'TalktoMe',
+            'TalktoMe',
+            'Subscription payment successful!',
+            'Оплата подписки прошла успешно! ',
             'subscription',
             'payed',
             $item->id

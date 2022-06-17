@@ -10,10 +10,10 @@ class CancelRecordByDoctorNotification extends Notification {
 
     public function __construct(RecordDoctor $item) {
         $this->setData(
-            'title_en',
-            'title_ru',
-            'body_en',
-            'body_ru',
+            'TalktoMe',
+            'TalktoMe',
+            'The appointment was canceled by a psychologist, try to make an appointment for another time or to another specialist!',
+            ' Запись была отменена со стороны психологом, попробуйте записаться на другое время или к другому специалисту! ',
             'record',
             'cancel_by_doctor',
             $item->id

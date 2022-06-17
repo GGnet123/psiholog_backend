@@ -33,7 +33,6 @@ Route::group(['prefix' => 'v1'], function () {
     Route::post('check-login', [\App\Http\Controllers\v1\CreatePasswordController::class, 'checkLogin']);
 
     Route::group(['middleware' => ['auth:sanctum']], function () {
-        Route::get('logout', [\App\Http\Controllers\v1\AuthController::class, 'logout']);
 
         Route::post('create-password', [\App\Http\Controllers\v1\CreatePasswordController::class, 'save']);
         Route::post('create-password/check-login', [\App\Http\Controllers\v1\CreatePasswordController::class, 'checkLogin']);
