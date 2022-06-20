@@ -9,7 +9,6 @@
                             :ar="[null=>$model->label('null_cat')] + App\Models\Content\MainGalaryCat::where('type', 'TYPE_YOGA_TO_ME')->pluck('title', 'id')->toArray()" />
             <x-input.text name="title" :model="$model" required  />
             <x-input.text name="title_en" :model="$model" required  />
-            <x-input.text name="google_drive_music" :model="$model" required  />
             <x-input.text name="google_drive_video" :model="$model" required  />
             <x-input.bool name="need_subscription"  :model="$model" required  />
         </x-form.update>

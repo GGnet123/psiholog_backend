@@ -9,7 +9,6 @@
             <x-show.def name="cat_id"  :model="$model" :value="$model->relCat ? $model->relCat->name : $model->label('null_cat')"   />
             <x-show.def name="title"  :model="$model"   />
             <x-show.def name="title_en"  :model="$model"   />
-            <x-show.def name="google_drive_music"  :model="$model"   />
             <x-show.def name="google_drive_video"  :model="$model"   />
             <x-show.def name="need_subscription"  :model="$model"  :value="$model->need_subscription ? 'Да' : 'Нет'"  />
         </x-form.show>
