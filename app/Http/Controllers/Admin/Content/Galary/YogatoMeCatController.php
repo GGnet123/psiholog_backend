@@ -15,7 +15,7 @@ class  YogatoMeCatController extends Controller{
     protected $route_path = 'yoga_cat';
     protected $title_path = 'title.yoga_cat';
     protected $def_model = Model::class;
-    protected $type = MainGalary::TYPE_TACK_TO_ME;
+    protected $type = MainGalary::TYPE_YOGA_TO_ME;
 
     public function index(Request $request){
         $this->items = $this->def_model::where('type', $this->type)->filter($request)->sort($request);
