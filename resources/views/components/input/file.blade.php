@@ -44,6 +44,7 @@
                 cache: false,
                 contentType: false,
                 processData: false,
+                async: false,
                 data: form_data,
                 success: function(returnval) {
                     console.log("asdasd");
