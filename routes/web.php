@@ -76,6 +76,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
             Route::get('show/{item}', [DoctorController::class, 'view'])->name('admin_doctor_show');
             Route::get('block/{item}', [DoctorController::class, 'blocked'])->name('admin_doctor_block');
             Route::get('block-seance/{item}', [DoctorController::class, 'blockedSeance'])->name('admin_doctor_block_seance');
+            Route::get('approve-seance/{item}', [DoctorController::class, 'approveDoctor'])->name('admin_doctor_approve_seance');
         });
 
         Route::group(['prefix' => 'support'], function(){

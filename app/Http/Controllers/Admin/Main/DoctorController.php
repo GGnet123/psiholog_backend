@@ -61,4 +61,11 @@ class  DoctorController extends Controller{
         return redirect()->back()->with('success', __('main.updated_model'));
     }
 
+
+
+    function approveDoctor(Request $request, Model $item){
+        $item->update(['is_doctor_approve' => ($item->is_doctor_approve ? false : true)]);
+
+        return redirect()->back()->with('success', __('main.updated_model'));
+    }
 }

@@ -12,7 +12,7 @@ class DoctorController extends Controller
 {
     function index(FilterDoctorRequest $request){
         return DoctorListResource::collection(
-            User::where('is_blocked_seance', false)->doctor()->filter($request)->paginate(24)
+            User::where('is_blocked_seance', false)->where('is_doctor_approve', true)->doctor()->filter($request)->paginate(24)
         );
     }
 
