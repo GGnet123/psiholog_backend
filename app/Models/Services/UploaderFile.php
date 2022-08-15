@@ -16,4 +16,5 @@ class UploaderFile extends Model
     CONST MUSIC = 1;
     CONST VIDEO = 2;
     CONST IMAGE = 3;
+    CONST DROPBOX = 4;
 }

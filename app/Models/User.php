@@ -42,7 +42,8 @@ class User extends Authenticatable
         'is_blocked',
         'is_blocked_seance',
         'fcm_token',
-        'card_data'
+        'card_data',
+        'is_doctor_approve'
     ];
 
     CONST ADMIN_TYPE = 1;
@@ -60,7 +61,8 @@ class User extends Authenticatable
         'specialization_array' => 'function',
         'price_b' => 'function',
         'price_e' => 'function',
-        'is_blocked' => 'boolean'
+        'is_blocked' => 'boolean',
+        'is_doctor_approve' => 'boolean'
     ];
 
     protected $ar_sort = [

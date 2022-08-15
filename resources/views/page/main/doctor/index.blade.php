@@ -32,6 +32,7 @@
                     <th>{{ $model->label('lang') }}</th>
                     <th>{{ $model->label('is_blocked') }}</th>
                     <th>{{ $model->label('is_blocked_seance') }}</th>
+                    <th>{{ $model->label('is_doctor_approve') }}</th>
                     <th>{{ $model->label('price') }}</th>
                     <th>{{ $model->label('date_b') }}</th>
 
@@ -50,6 +51,7 @@
                         <td>{{ $i->lang }}</td>
                         <td><a href="{{ route($route_path.'_block', $i) }}">{{ $i->is_blocked ? 'Да' : 'Нет' }}</a></td>
                         <td><a href="{{ route($route_path.'_block_seance', $i) }}">{{ $i->is_blocked_seance ? 'Да' : 'Нет' }}</a></td>
+                        <td><a href="{{ route($route_path.'_approve_seance', $i) }}">{{ $i->is_doctor_approve ? 'Да' : 'Нет' }}</a></td>
                         <td>{{ $i->price }}</td>
                         <td>{{ $i->date_b }}</td>
                         <td>{{ $i->created_at }}</td>

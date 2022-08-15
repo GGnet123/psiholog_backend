@@ -40,7 +40,6 @@ Route::group(['prefix' => 'v1'], function () {
 
         Route::post('save-fcm-token', [\App\Http\Controllers\v1\FcmTokenController::class, 'save']);
 
-
         Route::group(['prefix' => 'main-page'], function () {
             Route::group(['prefix' => 'galary'], function () {
                 Route::get('/', [GalaryController::class, 'index']);
@@ -136,6 +135,7 @@ Route::group(['prefix' => 'v1'], function () {
 
         Route::group(['prefix' => 'services'], function () {
             Route::group(['prefix' => 'uploader'], function () {
+                Route::post('dropbox', [\App\Http\Controllers\v1\Services\UploaderFileController::class, 'dropbox']);
                 Route::post('music', [\App\Http\Controllers\v1\Services\UploaderFileController::class, 'music']);
                 Route::post('video', [\App\Http\Controllers\v1\Services\UploaderFileController::class, 'video']);
                 Route::post('image', [\App\Http\Controllers\v1\Services\UploaderFileController::class, 'image']);
