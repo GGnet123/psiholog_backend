@@ -21,7 +21,7 @@ class GalaryController extends Controller
             $items = $items->where('cat_id', $request->cat_id);
 
         return MainGalaryResource::collection(
-            $items->inRandomOrder()->paginate(24)
+            $items->orderBy('need_subscription', 'asc')->paginate(24)
         );
     }
 
