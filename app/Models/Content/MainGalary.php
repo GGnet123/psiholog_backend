@@ -2,6 +2,7 @@
 
 namespace App\Models\Content;
 
+use App\Models\Favorite;
 use App\Models\Services\UploaderFile;
 use App\Models\User;
 use App\Traits\FilterModelTrait;
@@ -86,6 +87,10 @@ class MainGalary extends Model
 
     function relCat(){
         return $this->belongsTo(MainGalaryCat::class, 'cat_id');
+    }
+
+    function relFavorite(){
+        return $this->hasMany(Favorite::class, 'el_id');
     }
 
 

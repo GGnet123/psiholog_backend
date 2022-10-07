@@ -39,4 +39,10 @@ class MainGalaryCat extends Model
     function relGalary(){
         return $this->hasMany(MainGalary::class, 'cat_id');
     }
+
+
+
+    function relFavorite(){
+        return $this->hasMany(Favorite::class, 'el_id');
+    }
 }
