@@ -120,6 +120,7 @@ Route::group(['prefix' => 'v1'], function () {
 
             Route::group(['prefix' => 'doctors'], function () {
                 Route::get('/', [\App\Http\Controllers\v1\Main\DoctorController::class, 'index']);
+                Route::get('favorite/items', [\App\Http\Controllers\v1\Main\DoctorController::class, 'favorite']);
                 Route::get('{item}', [\App\Http\Controllers\v1\Main\DoctorController::class, 'item']);
             });
 

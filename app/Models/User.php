@@ -191,4 +191,8 @@ class User extends Authenticatable
     function getActiveCreditCard(){
         return $this->relCreditCards()->where(['is_active' => true, 'is_removed'=> false])->first();
     }
+
+    function relFavorite(){
+        return $this->hasMany(Favorite::class, 'el_id')->where('type', 'doctor');
+    }
 }
