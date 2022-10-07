@@ -47,6 +47,9 @@ Route::group(['prefix' => 'v1'], function () {
                 Route::get('types', [GalaryController::class, 'types']);
                 Route::get('mainPage', [GalaryController::class, 'mainPage']);
 
+
+                Route::get('favorite/items', [GalaryController::class, 'favoriteItems']);
+                Route::get('favorite/cats', [GalaryController::class, 'favoriteCats']);
             });
         });
 

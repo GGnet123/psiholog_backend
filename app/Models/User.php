@@ -193,6 +193,6 @@ class User extends Authenticatable
     }
 
     function relFavorite(){
-        return $this->hasMany(Favorite::class, 'el_id')->where('type', 'doctor');
+        return $this->hasMany(Favorite::class, 'el_id');
     }
 }

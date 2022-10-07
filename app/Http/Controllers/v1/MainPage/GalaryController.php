@@ -26,7 +26,7 @@ class GalaryController extends Controller
     }
 
     function cats(FilterCatsRequest $request){
-        $items = MainGalaryCat::where('type', $request->type)->inRandomOrder()->get();
+        $items = MainGalaryCat::where('type', $request->type)->orderBy('need_subscription', 'asc')->get();
 
         return MainGalaryCatResource::collection(
             $items
@@ -49,10 +49,35 @@ class GalaryController extends Controller
                 $res[$type]['items'] = $items;
             }
 
-            $res[$type]['items'] = MainGalaryResource::collection(MainGalary::where('type', $type)->inRandomOrder()->take(10)->get());
+            $res[$type]['items'] = MainGalaryResource::collection(MainGalary::where('type', $type)->orderBy('need_subscription', 'asc')->take(10)->get());
         }
 
         return $this->data_response($res);
+    }
+
+
+    function favoriteItems(FilterItemsRequest $request){
+        $items = MainGalary::where('type', $request->type);
+
+        if ($request->cat_id)
+            $items = $items->where('cat_id', $request->cat_id);
+
+        return MainGalaryResource::collection(
+            $items->whereHas('relFavorite', function($q) use ($request){
+                $q->where('user_id', $request->user()->id)->where('favor_type', 'galary_item');
+            })->orderBy('need_subscription', 'asc')->paginate(24)
+        );
+    }
+
+    function favoriteCats(FilterCatsRequest $request){
+        $items = MainGalaryCat::where('type', $request->type)
+                            ->whereHas('relFavorite', function($q) use ($request){
+                                $q->where('user_id', $request->user()->id)->where('favor_type', 'galary_cat');
+                            })->orderBy('need_subscription', 'asc')->get();
+
+        return MainGalaryCatResource::collection(
+            $items
+        );
     }
 
 }

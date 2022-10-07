@@ -19,7 +19,7 @@ class DoctorController extends Controller
     function favorite(FilterDoctorRequest $request){
         return DoctorListResource::collection(
             User::where('is_blocked_seance', false)->where('is_doctor_approve', true)->doctor()->whereHas('relFavorite', function($q) use ($request){
-                $q->where('user_id', $request->user()->id);
+                $q->where('user_id', $request->user()->id)->where('favor_type', 'doctor');
             })->filter($request)->paginate(24)
         );
     }
