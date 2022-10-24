@@ -11,7 +11,7 @@ class FilterCustromerRequest extends FormRequest
         return [
             'doctor_id' => 'nullable|integer|exists:users,id',
             'record_date' => 'nullable|date',
-            'status_id' => 'nullable|date'
+            'status_id' => 'nullable|integer'
         ];
     }
 }
