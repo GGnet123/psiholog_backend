@@ -20,7 +20,7 @@ class RecordResource extends JsonResource
             'customer' =>  $this->relCustomer ? new SimpleUserResource($this->relCustomer) : null,
             'doctor' => $this->relDoctor ? new SimpleUserResource($this->relDoctor) : null,
             'sum' => $this->sum,
-            'record_date' => $this->record_date,
+            'record_date' => $this->getDateStr(),
             'record_time' => $this->record_time,
             'status_id' => $this->status_id,
             'status_name' => $this->status_name,
