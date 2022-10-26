@@ -31,6 +31,8 @@
 
                             <li><a href="{{ route('audio_book_cat') }}"> <span>{{ __('sidebar.audio_book_cat') }}</span></a></li>
                             <li><a href="{{ route('night_story_cat') }}"> <span>{{ __('sidebar.night_story_cat') }}</span></a></li>
+                            <li><a href="{{ route('audio_book') }}"> <span>{{ __('sidebar.audio_book') }}</span></a></li>
+                            <li><a href="{{ route('night_story') }}"> <span>{{ __('sidebar.night_story') }}</span></a></li>
                         </ul>
                     </li>
 

@@ -32,6 +32,9 @@ return [
     'audio_book_cat' => 'Категории аудиокниги',
     'night_story_cat' => 'Категории истории на ночь',
 
+    'audio_book' => 'Аудиокниги',
+    'night_story' => 'Истории на ночь',
+
 
     'meditation_cat' => 'Категории Медитации'
 ];
