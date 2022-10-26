@@ -21,6 +21,7 @@ class MainGalaryCat extends Model
         'title_en',
         'image_id',
         'type',
+        'note',
         'need_subscription'
     ];
 

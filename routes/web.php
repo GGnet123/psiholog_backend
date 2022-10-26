@@ -2,11 +2,13 @@
 
 use App\Http\Controllers\Admin\Content\FaqController;
 use App\Http\Controllers\Admin\Content\Galary\AffirmationController;
+use App\Http\Controllers\Admin\Content\Galary\AudioBookCatController;
 use App\Http\Controllers\Admin\Content\Galary\MantraController;
 use App\Http\Controllers\Admin\Content\Galary\MeditationAudioController;
 use App\Http\Controllers\Admin\Content\Galary\MeditationCatController;
 use App\Http\Controllers\Admin\Content\Galary\MeditationController;
 use App\Http\Controllers\Admin\Content\Galary\NatureController;
+use App\Http\Controllers\Admin\Content\Galary\NightStoryCatController;
 use App\Http\Controllers\Admin\Content\Galary\SleepController;
 use App\Http\Controllers\Admin\Content\Galary\TalkToMeController;
 use App\Http\Controllers\Admin\Content\Galary\VdohController;
@@ -241,6 +243,30 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
             Route::post('update/{item}', [MeditationCatController::class, 'saveUpdate'])->name('meditation_cat_update_save');
             Route::get('show/{item}', [MeditationCatController::class, 'view'])->name('meditation_cat_show');
             Route::get('delete/{item}', [MeditationCatController::class, 'delete'])->name('meditation_cat_delete');
+        });
+
+
+
+        Route::group(['prefix' => 'cataudiobook'], function () {
+            Route::get('/', [AudioBookCatController::class, 'index'])->name('audio_book_cat');
+            Route::get('create', [AudioBookCatController::class, 'create'])->name('audio_book_cat_create');
+            Route::post('create', [AudioBookCatController::class, 'saveCreate'])->name('audio_book_cat_create_save');
+            Route::get('update/{item}', [AudioBookCatController::class, 'update'])->name('audio_book_cat_update');
+            Route::post('update/{item}', [AudioBookCatController::class, 'saveUpdate'])->name('audio_book_cat_update_save');
+            Route::get('show/{item}', [AudioBookCatController::class, 'view'])->name('audio_book_cat_show');
+            Route::get('delete/{item}', [AudioBookCatController::class, 'delete'])->name('audio_book_cat_delete');
+        });
+
+
+
+        Route::group(['prefix' => 'catnightstory'], function () {
+            Route::get('/', [NightStoryCatController::class, 'index'])->name('night_story_cat');
+            Route::get('create', [NightStoryCatController::class, 'create'])->name('night_story_cat_create');
+            Route::post('create', [NightStoryCatController::class, 'saveCreate'])->name('night_story_cat_create_save');
+            Route::get('update/{item}', [NightStoryCatController::class, 'update'])->name('night_story_cat_update');
+            Route::post('update/{item}', [NightStoryCatController::class, 'saveUpdate'])->name('night_story_cat_update_save');
+            Route::get('show/{item}', [NightStoryCatController::class, 'view'])->name('night_story_cat_show');
+            Route::get('delete/{item}', [NightStoryCatController::class, 'delete'])->name('night_story_cat_delete');
         });
 
     });

@@ -18,7 +18,8 @@ class MainGalaryCatResource extends JsonResource
             'need_subscription' => $this->need_subscription,
             'image' => ($this->relImage ? new UploaderFileResource($this->relImage) : null),
             'count_el' => $this->relGalary()->count(),
-            'favorite' => Favorite::getFavorBool('galary_cat', $this->id)
+            'favorite' => Favorite::getFavorBool('galary_cat', $this->id),
+            'note' => $this->note,
         ];
     }
 

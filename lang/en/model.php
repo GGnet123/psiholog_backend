@@ -127,6 +127,7 @@ return [
         'slug_en' => 'Текст на английском',
         'music_id' => 'Музыка',
         'video_id' => 'Видео',
+        'note' => 'Текст',
         'image_id' => 'Картинка',
         'doctor_id' => 'Доктор',
         'google_drive_music' => 'Ссылка на музыку(Google Drive)',

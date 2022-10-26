@@ -27,5 +27,11 @@ return [
     'admin_gal_vdoh' => 'Вдох-выдох',
     'admin_gal_yoga' => 'YogatoMe',
     'yoga_cat' => 'Категории YogatoMe',
+
+
+    'audio_book_cat' => 'Категории аудиокниги',
+    'night_story_cat' => 'Категории истории на ночь',
+
+
     'meditation_cat' => 'Категории Медитации'
 ];

@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class CheckSmsService {
     private string $url_get_session = 'https://identitytoolkit.googleapis.com/v1/accounts:sendVerificationCode';
@@ -26,6 +27,8 @@ class CheckSmsService {
 
         if (!$response->successful()) {
             $this->message = 'wrong_number';
+
+            Log::info($response->json());
             return false;
         }
 
