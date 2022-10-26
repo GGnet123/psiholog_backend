@@ -2,14 +2,13 @@
 namespace App\Traits;
 
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 trait FilterModelTrait {
     function scopeFilter($q, $request){
         $ar_filter = (is_array($this->ar_filter) ? $this->ar_filter : []);
 
         $ar_filter['id'] = 'int';
-
-
         foreach ($request->all() as $k => $v){
             if (!isset($ar_filter[$k]))
                 continue;
@@ -17,7 +16,8 @@ trait FilterModelTrait {
             if ($ar_filter[$k] == 'string' && trim($k) != '')
                 $q->where($k, 'like', '%'.$v.'%');
 
-            if ($ar_filter[$k] == 'date' && $date = New \DateTime()) {
+
+            if ($ar_filter[$k] == 'date' && $date = \DateTime::createFromFormat('d-m-Y', $v)) {
                 $q->where($k, 'like', '%' . $date->format('d-m-Y') . '%');
             }
 
