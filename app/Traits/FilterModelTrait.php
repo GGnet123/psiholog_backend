@@ -17,6 +17,10 @@ trait FilterModelTrait {
             if ($ar_filter[$k] == 'string' && trim($k) != '')
                 $q->where($k, 'like', '%'.$v.'%');
 
+            if ($ar_filter[$k] == 'date' && $date = New \DateTime()) {
+                $q->where($k, 'like', '%' . $date->format('d-m-Y') . '%');
+            }
+
             if ($ar_filter[$k] == 'int' && $v > 0)
                 $q->where($k, $v);
 
