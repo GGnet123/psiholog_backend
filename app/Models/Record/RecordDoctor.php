@@ -18,7 +18,7 @@ class RecordDoctor extends Model {
         'customer_id' => 'int',
         'doctor_id' => 'int',
         'sum' => 'int',
-        'record_date' => 'string',
+        'record_date' => 'date',
         'record_time' => 'string',
         'status_id' => 'int',
         'is_canceled' => 'boolean',
