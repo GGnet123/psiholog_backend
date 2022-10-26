@@ -56,16 +56,23 @@ class MainGalary extends Model
     CONST TYPE_MANTRA = 'TYPE_MANTRA';
     CONST TYPE_SLEEP = 'TYPE_SLEEP';
 
+    CONST TYPE_AUDIO_BOOK = 'TYPE_AUDIO_BOOK';
+    CONST TYPE_NIGHT_STORY = 'TYPE_NIGHT_STORY';
+
     static function getArType(){
         return [
             static::TYPE_NATURE,
             static::TYPE_TACK_TO_ME,
             static::TYPE_MEDITATION,
             static::TYPE_AFFIRMATION,
+            static::TYPE_YOGA_TO_ME,
             static::TYPE_MEDITATION_AUDIO,
             static::TYPE_VDOH,
             static::TYPE_MANTRA,
             static::TYPE_SLEEP,
+
+            static::TYPE_AUDIO_BOOK,
+            static::TYPE_NIGHT_STORY,
         ];
     }
 

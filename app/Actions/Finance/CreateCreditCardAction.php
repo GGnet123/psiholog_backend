@@ -82,7 +82,6 @@ class CreateCreditCardAction extends AbstractAction {
             throw new ErrorWithTransactionException();
         }
 
-
         $this->model->is_accepted = true;
         $this->model->card_token = $res_model->Token;
         $this->model->is_active = true;
@@ -90,7 +89,6 @@ class CreateCreditCardAction extends AbstractAction {
         $this->model->save();
 
         event(new CreateRecordCardEvent($this->model));
-
 
         $this->rollbackTransaction($res_model);
     }
