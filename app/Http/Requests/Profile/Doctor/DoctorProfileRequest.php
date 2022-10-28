@@ -20,6 +20,7 @@ class DoctorProfileRequest extends FormRequest
             'date_b' => 'required|date',
             'avatar_id' => 'nullable|integer|exists:uploaded_file,id',
             'note' => 'nullable|string',
+            'doctor_credit_card' => 'nullable|string',
             'price' => 'required|integer',
         ];
     }

@@ -43,7 +43,8 @@ class User extends Authenticatable
         'is_blocked_seance',
         'fcm_token',
         'card_data',
-        'is_doctor_approve'
+        'is_doctor_approve',
+        'doctor_credit_card'
     ];
 
     CONST ADMIN_TYPE = 1;
