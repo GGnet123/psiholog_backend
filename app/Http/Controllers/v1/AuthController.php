@@ -15,7 +15,7 @@ class AuthController extends Controller
             return $this->false('Wrong credentials');
 
         $user = Auth::user();
-        $user->tokens()->delete();
+        //$user->tokens()->delete();
 
         if ($user->is_blocked)
             return $this->false('This user is blocked');
