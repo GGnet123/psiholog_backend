@@ -24,9 +24,9 @@
                     @foreach($videos as $v)
                         <div class="col-md-6">
                             <video width="100%" height="300" controls="controls" poster="video/duel.jpg">
-                                <source src="{{ $v->path  }}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+                                <source src="/{{ $v->path  }}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
                                 Тег video не поддерживается вашим браузером.
-                                <a href="{{ $v->path  }}">Скачайте видео</a>.
+                                <a href="/{{ $v->path  }}">Скачайте видео</a>.
                             </video>
                         </div>
                     @endforeach
@@ -102,8 +102,8 @@
                     @foreach($certificats as $c)
                         <div class="col-md-6">
                             <div class="thumbnail">
-                                <a href="{{ $c->path  }}" target="_blank">
-                                    <img src="{{ $c->path  }}" alt="">
+                                <a href="/{{ $c->path  }}" target="_blank">
+                                    <img src="/{{ $c->path  }}" alt="">
                                 </a>
                             </div>
                         </div>
