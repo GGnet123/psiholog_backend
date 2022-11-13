@@ -7,6 +7,7 @@ use App\Exceptions\Finance\WrongCredentialDataException;
 use App\Models\Finance\CardTransaction;
 use App\Models\Finance\CreditCard;
 use Exception;
+use Illuminate\Support\Facades\Log;
 
 class MakeTransactionService {
     private CreditCard $card;
@@ -34,6 +35,8 @@ class MakeTransactionService {
         $result = (object) $result;
         if (property_exists($result, 'Model'))
             $res_model = (object)$result->Model;
+
+        Log::info($result);
 
         if (!$result->Success && $result->Message)
             $this->error(new WrongCredentialDataException(), (array)$result);
