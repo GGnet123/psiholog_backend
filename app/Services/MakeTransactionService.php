@@ -36,7 +36,7 @@ class MakeTransactionService {
         if (property_exists($result, 'Model'))
             $res_model = (object)$result->Model;
 
-        Log::info($result);
+        Log::info(json_encode($result));
 
         if (!$result->Success && $result->Message)
             $this->error(new WrongCredentialDataException(), (array)$result);
