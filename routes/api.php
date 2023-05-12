@@ -15,7 +15,9 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::group(['prefix' => 'registration'], function () {
         Route::post('step1', [\App\Http\Controllers\v1\RegistrationController::class, 'step1']);
+        Route::post('step1-email', [\App\Http\Controllers\v1\RegistrationController::class, 'step1Email']);
         Route::post('step2', [\App\Http\Controllers\v1\RegistrationController::class, 'step2']);
+        Route::post('step2-email', [\App\Http\Controllers\v1\RegistrationController::class, 'step2Email']);
 
         Route::group(['middleware' => ['auth:sanctum']], function () {
             Route::post('step3-doctor', [\App\Http\Controllers\v1\RegistrationController::class, 'step3Doctor']);

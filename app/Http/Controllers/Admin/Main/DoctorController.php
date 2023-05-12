@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers\Admin\Main;
 
+use App\Actions\MainUpdateAction;
+use App\Actions\Profile\LibSpecializationAction;
 use App\Events\UserIsBlockedEvent;
 use App\Http\Controllers\Controller;
 use App\Models\Profile\UserCertificat;
@@ -44,6 +46,44 @@ class  DoctorController extends Controller{
 
 
         return view($this->view_path.'.show', $data);
+    }
+
+    public function edit(Request $request, Model $item){
+        $title = __($this->title_path.'_edit');
+        
+        $data =  [
+            'title' => $title,
+            'model' => $item,
+            'ar_bread' => [
+                route($this->route_path) => __($this->title_path.'')
+            ],
+            'request' => $request,
+            'route_path' => $this->route_path,
+            'specializations' => $item->relSpecilizationMain()->pluck('name', 'lib_specialization.id')->toArray(),
+            'certificats' => $item->relCertificatsMain,
+            'videos' => $item->relVideoMain,
+            'timetable' => $item->relTimetablePlan
+        ];
+
+
+        return view($this->view_path.'.edit', $data);
+    }
+
+    public function update(Request $request, Model $item){
+        $action = new MainUpdateAction($item, $request->all());
+
+        $spec = new LibSpecializationAction($item, [
+            'specialization_array' => $request->get('specializations'),
+            'user_id' => $item->id
+        ]);
+        try {
+            $action->run();
+            $spec->run();
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+
+        return redirect()->route($this->route_path.'_show', $item)->with('success', __('main.updated_model'));
     }
 
     function blocked(Request $request, Model $item){

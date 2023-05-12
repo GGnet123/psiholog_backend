@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Main;
 use App\Events\UserIsBlockedEvent;
 use App\Http\Controllers\Controller;
 use App\Models\User as Model;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class  UserController extends Controller{
@@ -40,6 +41,15 @@ class  UserController extends Controller{
 
     function blocked(Request $request, Model $item){
         $item->update(['is_blocked' => ($item->is_blocked ? false : true)]);
+
+        return redirect()->back()->with('success', __('main.updated_model'));
+    }
+
+    function toggleDoctor(Request $request, Model $item){
+        $item->update([
+            'is_doctor_approve' => ($item->is_doctor_approve ? false : true), 
+            'type_id' => ($item->type_id == User::DOCTOR_TYPE ? User::USER_TYPE : User::DOCTOR_TYPE)
+        ]);
 
         return redirect()->back()->with('success', __('main.updated_model'));
     }

@@ -7,39 +7,35 @@ use App\Exceptions\Registration\AlreadyDoneRegistration;
 use App\Exceptions\Registration\NoteFoundedPhoneRegistrationException;
 use App\Exceptions\Registration\PhoneNoteFoundedInFirebaseException;
 use App\Exceptions\Registration\WrongPinException;
-use App\Models\PhoneRegistration;
+use App\Models\EmailRegistration;
 use App\Models\User;
 use App\Services\CheckSmsService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class Step2Action extends AbstractAction {
+class Step2EmailAction extends AbstractAction {
     protected function do(){
-        if (User::where('login', $this->data['login'])->count())
+        if (User::where('email', $this->data['email'])->count())
             throw new AlreadyDoneRegistration();
 
-        $this->model = PhoneRegistration::where(['phone' => $this->data['login']])->first();
+        $this->model = EmailRegistration::where(['email' => $this->data['email']])->first();
         if ($this->model && $this->model->accepted)
             throw new AlreadyFinishRegistrationException();
 
         if (!$this->model)
             throw new NoteFoundedPhoneRegistrationException();
 
-        
-        $res_check_pin = CheckSmsService::check($this->data['login'], $this->data['pin']);
-        if ($res_check_pin !== true && $res_check_pin == 'wrong_number')
-            throw new PhoneNoteFoundedInFirebaseException();
-        else if ($res_check_pin !== true && $res_check_pin == 'wrong_pin')
-            throw new WrongPinException();
-        
 
+        if ($this->model->pin != $this->data['pin']) {
+            throw new WrongPinException();
+        }
 
         $this->model->accepted = true;
         $this->model->save();
 
         $user = new User();
         $user->type_id = User::NOTE_FINISHED_TYPE;
-        $user->login = $this->data['login'];
+        $user->email = $this->data['email'];
         $user->password = Hash::make($this->data['password']);
         $user->name = '';
         $user->lang = User::EN_LANG;

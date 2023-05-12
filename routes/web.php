@@ -70,6 +70,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
 
         Route::group(['prefix' => 'users'], function () {
             Route::get('/', [UserController::class, 'index'])->name('admin_main_user');
+            Route::get('toggle-doctor/{item}', [UserController::class, 'toggleDoctor'])->name('admin_main_user_toggle_doctor');
             Route::get('show/{item}', [UserController::class, 'view'])->name('admin_main_user_show');
             Route::get('block/{item}', [UserController::class, 'blocked'])->name('admin_main_user_block');
             Route::get('block-seance/{item}', [UserController::class, 'blockedSeance'])->name('admin_main_user_block_seance');
@@ -78,6 +79,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
         Route::group(['prefix' => 'doctor'], function () {
             Route::get('/', [DoctorController::class, 'index'])->name('admin_doctor');
             Route::get('show/{item}', [DoctorController::class, 'view'])->name('admin_doctor_show');
+            Route::get('edit/{item}', [DoctorController::class, 'edit'])->name('admin_doctor_edit');
+            Route::post('update/{item}', [DoctorController::class, 'update'])->name('admin_doctor_update');
             Route::get('block/{item}', [DoctorController::class, 'blocked'])->name('admin_doctor_block');
             Route::get('block-seance/{item}', [DoctorController::class, 'blockedSeance'])->name('admin_doctor_block_seance');
             Route::get('approve-seance/{item}', [DoctorController::class, 'approveDoctor'])->name('admin_doctor_approve_seance');

@@ -44,7 +44,9 @@ class User extends Authenticatable
         'fcm_token',
         'card_data',
         'is_doctor_approve',
-        'doctor_credit_card'
+        'doctor_credit_card',
+        'education',
+        'therapy_methods'
     ];
 
     CONST ADMIN_TYPE = 1;
@@ -75,6 +77,8 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    protected $specializations = [];
 
     /**
      * The attributes that should be cast.
