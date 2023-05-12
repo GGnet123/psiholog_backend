@@ -30,7 +30,10 @@ return [
         'price' => 'Цена за сеанс',
         'date_b' => 'Дата рождения',
         'specializations' => 'Специализации',
-        'card_data' => 'Данные карточки'
+        'specializations[]' => 'Специализации',
+        'card_data' => 'Данные карточки',
+        'education' => 'Образование',
+        'therapy_methods' => 'Методы терапии'
     ],
     'support' => [
         'name' => 'Заголовок',

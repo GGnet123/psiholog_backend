@@ -62,6 +62,7 @@
                                     <i class="icon-menu7"></i>
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a href="{{ route($route_path.'_edit', $i) }}">{{ __('main.update') }} </a></li>
                                     <li><a href="{{ route($route_path.'_show', $i) }}">{{ __('main.show') }} </a></li>
                                 </ul>
                             </div>

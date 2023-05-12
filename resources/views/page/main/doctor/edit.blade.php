@@ -5,23 +5,25 @@
 @section('content')
     <div class="row">
         <div class="col-md-8">
-            <x-form.show :title="$title" :model="$model">
-                <x-show.def name="name"  :model="$model"   />
-                <x-show.def name="login"  :model="$model"   />
-                <x-show.def name="lang"  :model="$model"   />
-                <x-show.def name="doctor_credit_card"  :model="$model"   />
+            <x-form.update :action="route($route_path.'_update', $model)" :title="$title" :model="$model">
+                <x-input.text name="name"  :model="$model"   />
+                <x-input.text name="login"  :model="$model"   />
+                <x-input.text name="lang"  :model="$model"   />
+                <x-input.text name="doctor_credit_card"  :model="$model"   />
 
-                <x-show.file name="avatar_id"  :model="$model"  :value="$model->relAvatar"  />
-                <x-show.def name="price"  :model="$model"   />
-                <x-show.def name="date_b"  :model="$model"   />
-                <x-show.def name="card_data"  :model="$model"   />
-                <x-show.def name="specializations"  :model="$model"  :value="implode(', ', $specializations)"  />
-                <x-show.def name="education"  :model="$model"   />
-                <x-show.def name="therapy_methods"  :model="$model"   />
-            </x-form.show>
+                <x-input.file name="avatar_id"  :model="$model"  :value="$model->relAvatar"  />
+                <x-input.int name="price"  :model="$model"   />
+                <x-input.date name="date_b"  :model="$model" :value="date('Y-m-d', strtotime($model->date_b))" />
+                <x-input.textarea name="card_data"  :model="$model"   />
+                <x-input.multiSelect name="specializations[]"  :model="$model"
+                :dataar="[null=>'<Выберите из списка>'] + App\Models\Main\LibSpecialization::all()->pluck('name', 'id')->toArray()"
+                :value="array_keys($specializations)" />
+                <x-input.text name="education"  :model="$model"   />
+                <x-input.text name="therapy_methods"  :model="$model"   />
+            </x-form.update>
 
 
-            <x-form.panel title="Видео" >
+            <!-- <x-form.panel title="Видео" >
                 <div class="row">
                     @foreach($videos as $v)
                         <div class="col-md-6">
@@ -34,7 +36,7 @@
                     @endforeach
 
                 </div>
-            </x-form.panel>
+            </x-form.panel> -->
         </div>
         <div class="col-md-4">
             @if ($timetable)
