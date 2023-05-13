@@ -16,7 +16,7 @@ class UserProfileRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'avatar_id' => 'nullable|integer|exists:uploaded_file,id',
+            'avatar_id' => 'nullable|integer|exists:uploaded_file,id'
         ];
     }
 }

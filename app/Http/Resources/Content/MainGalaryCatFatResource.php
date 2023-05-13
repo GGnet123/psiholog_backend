@@ -15,6 +15,7 @@ class MainGalaryCatFatResource extends JsonResource
             'title' => $this->title,
             'title_en' => $this->title_en,
             'type' => $this->type,
+			'note' => $this->note,
             'need_subscription' => $this->need_subscription,
             'image' => ($this->relImage ? new UploaderFileResource($this->relImage) : null),
             'count_el' => $this->relGalary()->count(),

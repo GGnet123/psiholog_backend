@@ -10,16 +10,28 @@ use App\Http\Requests\Profile\ChangeLangRequest;
 use App\Http\Requests\Profile\ChangePasswordRequest;
 use App\Http\Requests\Profile\CheckPasswordRequest;
 use App\Http\Requests\Profile\User\UserProfileRequest;
+use App\Http\Requests\Profile\ChangePhoneRequest;
 use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class UserProfileController extends Controller
 {
     function data(Request $request){
         return new UserResource($request->user());
     }
+	
+	function changePhone(ChangePhoneRequest $request){
+		if (User::where('login', $request->login)->where('id', '<>', $request->user())->count() > 0)
+			return $this->false('Текуший логин уже используется');
+		
+		$request->user()->update(['login'=> $request->login]);
+		
+		return true;
+	}
 
     function save(UserProfileRequest $request){
+			
         $model = (new MainUpdateAction($request->user(), $request->validated()))->run();
 
         return new UserResource($model);
