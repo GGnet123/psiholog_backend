@@ -21,7 +21,7 @@ class GalaryController extends Controller
             $items = $items->where('cat_id', $request->cat_id);
 
         return MainGalaryResource::collection(
-            $items->orderBy('need_subscription', 'asc')->paginate(24)
+            $items->orderBy('need_subscription', 'asc')->orderBy('id', 'asc')->paginate(24)
         );
     }
 
@@ -49,7 +49,7 @@ class GalaryController extends Controller
                 $res[$type]['items'] = $items;
             }
 
-            $res[$type]['items'] = MainGalaryResource::collection(MainGalary::where('type', $type)->orderBy('need_subscription', 'asc')->take(10)->get());
+            $res[$type]['items'] = MainGalaryResource::collection(MainGalary::where('type', $type)->inRandomOrder()->take(10)->get());
         }
 
         return $this->data_response($res);

@@ -12,6 +12,7 @@ use App\Http\Requests\Profile\CheckPasswordRequest;
 use App\Http\Requests\Profile\Doctor\DoctorProfileRequest;
 use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class DoctorProfileController extends Controller
 {
@@ -20,6 +21,9 @@ class DoctorProfileController extends Controller
     }
 
     function save(DoctorProfileRequest $request){
+		//if (User::where('login', $request->login)->where('id', '<>', $request->user())->count() > 0)
+		//	return $this->false('Текуший логин уже используется');
+		
         $model = (new MainUpdateAction($request->user(), $request->validated()))->run();
 
         return new UserResource($model);

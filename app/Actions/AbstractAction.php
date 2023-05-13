@@ -27,6 +27,7 @@ abstract class AbstractAction {
             $result = $this->do();
             DB::commit();
         } catch (\Exception $e) {
+			Log::info($e);
             DB::rollBack();
             throw $e;
         }

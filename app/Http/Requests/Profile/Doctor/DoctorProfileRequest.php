@@ -21,7 +21,7 @@ class DoctorProfileRequest extends FormRequest
             'avatar_id' => 'nullable|integer|exists:uploaded_file,id',
             'note' => 'nullable|string',
             'doctor_credit_card' => 'nullable|string',
-            'price' => 'required|integer',
+            'price' => 'required|integer'
         ];
     }
 }
