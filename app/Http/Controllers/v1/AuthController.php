@@ -10,13 +10,10 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    const AUTH_TYPE_EMAIL = 'email';
-    const AUTH_TYPE_PHONE = 'phone';
     function login(AuthRequest $request){
-        $type = $request->input('type', self::AUTH_TYPE_PHONE);
-        if (!Auth::attempt([($type == self::AUTH_TYPE_PHONE ? 'login'  : 'email') => $request->input('login') , 'password' => $request->input('password')]) )
-            return $this->false('Wrong credentials');
-
+        if (!Auth::attempt(['login' => $request->input('login'), 'password' => $request->input('password')]))
+            if (!Auth::attempt(['email' => $request->input('login'), 'password' => $request->input('password')]))
+                return $this->false('Wrong credentials');
         $user = Auth::user();
         //$user->tokens()->delete();
 
