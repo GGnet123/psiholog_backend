@@ -35,24 +35,12 @@ class BuyCouponAction extends AbstractAction
             throw new UserNotHasActiveCreditCardException();
         }
 
-        $tries = 0;
-        while (true) {
-            $code = substr(md5(time()), 0, 10);
-            $coupon = Coupon::where('code', $code)->first();
-            if (!$coupon) {
-                break;
-            }
-            if ($tries >= self::TriesCount) {
-                throw new \Exception("Couldn't create unique code");
-            }
-            $tries++;
-        }
-        $model->code = $code;
+        $model->code = Coupon::generateCode();
         if ($model->save()) {
             $this->createTransaction($model->sum);
             $this->doPayment($model->sum);
 
-            return $code;
+            return $model->code;
         }
         throw new \Exception("Couldn't save coupon");
     }

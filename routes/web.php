@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\Content\TermOfUseController;
 use App\Http\Controllers\Admin\Finance\TransactionController;
 use App\Http\Controllers\Admin\Lib\LibSpecializationController;
 use App\Http\Controllers\Admin\Main\ClaimController;
+use App\Http\Controllers\Admin\Main\CouponController;
 use App\Http\Controllers\Admin\Main\DoctorController;
 use App\Http\Controllers\Admin\Main\SubscriptionController;
 use App\Http\Controllers\Admin\Main\SupportController;
@@ -74,6 +75,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
             Route::get('show/{item}', [UserController::class, 'view'])->name('admin_main_user_show');
             Route::get('block/{item}', [UserController::class, 'blocked'])->name('admin_main_user_block');
             Route::get('block-seance/{item}', [UserController::class, 'blockedSeance'])->name('admin_main_user_block_seance');
+        });
+
+        Route::group(['prefix' => 'coupons'], function () {
+            Route::get('/', [CouponController::class, 'index'])->name('admin_coupons');
+            Route::get('create', [CouponController::class, 'create'])->name('admin_coupons_create');
+            Route::post('create', [CouponController::class, 'saveCreate'])->name('admin_coupons_create_save');
+            Route::get('delete/{item}', [CouponController::class, 'delete'])->name('admin_coupons_delete');
         });
 
         Route::group(['prefix' => 'doctor'], function () {

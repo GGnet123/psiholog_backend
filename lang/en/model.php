@@ -76,7 +76,11 @@ return [
         'is_canceled' => 'Отменено пользователем',
         'is_moved' => 'Перенесен'
     ],
-
+    'coupons' => [
+        'code' => 'Код',
+        'sum' => 'Сумма',
+        'is_used' => 'Использован'
+    ],
     'card_transaction' => [
         'user_id' => 'Пользователь',
         'type' => 'Тип',

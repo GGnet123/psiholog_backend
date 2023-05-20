@@ -5,6 +5,8 @@ return [
     'profile' => 'Профиль',
     'logout' => 'Выйти',
 
+    'coupons' => 'Купоны',
+    'coupons_create' => 'Создание купона',
 
     'faq' => 'FAQ',
     'faq_create' => 'FAQ. Форма создания',

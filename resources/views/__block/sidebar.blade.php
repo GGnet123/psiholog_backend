@@ -12,6 +12,7 @@
                     <li><a href="{{ route('admin_subscription') }}"><i class="icon-newspaper"></i> <span>{{ __('sidebar.admin_subscription') }}</span></a></li>
                     <li><a href="{{ route('admin_transaction') }}"><i class="icon-coin-dollar"></i> <span>{{ __('sidebar.admin_transaction') }}</span></a></li>
                     <li><a href="{{ route('admin_doctor') }}"><i class="icon-user-tie"></i> <span>{{ __('sidebar.admin_doctor') }}</span></a></li>
+                    <li><a href="{{ route('admin_coupons') }}"><i class="icon-user-tie"></i> <span>{{ __('sidebar.admin_coupons') }}</span></a></li>
                     <li><a href="{{ route('admin_main_user') }}"><i class="icon-users"></i> <span>{{ __('sidebar.admin_main_user') }}</span></a></li>
 
                     <li>
