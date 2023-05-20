@@ -6,6 +6,7 @@ use App\Models\Finance\CardTransaction;
 use App\Models\Finance\CreditCard;
 use App\Models\Main\Subscription;
 use App\Models\User;
+use Illuminate\Contracts\Auth\Authenticatable;
 
 class CreateSubscriptionTransactionService {
     private User $user;
@@ -13,7 +14,7 @@ class CreateSubscriptionTransactionService {
     private CreditCard $card;
     private CardTransaction $transaction;
 
-    static function do(User $user, Subscription $subscription){
+    static function do(User|Authenticatable $user, Subscription $subscription){
         $el = new CreateSubscriptionTransactionService();
         $el->pay($user, $subscription);
     }

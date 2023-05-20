@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\v1\FavoriteController;
 use App\Http\Controllers\v1\Finance\CreditCardController;
+use App\Http\Controllers\v1\Main\CouponController;
 use App\Http\Controllers\v1\Main\SubscriptionController;
 use App\Http\Controllers\v1\MainPage\GalaryController;
 use App\Http\Controllers\v1\Record\ManageRecordController;
@@ -37,7 +38,7 @@ Route::group(['prefix' => 'v1'], function () {
     Route::group(['middleware' => ['auth:sanctum']], function () {
 
         Route::post('change-login', [\App\Http\Controllers\v1\Profile\User\UserProfileController::class, 'changePhone']);
-		
+
         Route::post('create-password', [\App\Http\Controllers\v1\CreatePasswordController::class, 'save']);
         Route::post('create-password/check-login', [\App\Http\Controllers\v1\CreatePasswordController::class, 'checkLogin']);
 
@@ -101,6 +102,10 @@ Route::group(['prefix' => 'v1'], function () {
                 Route::get('/', [SubscriptionController::class, 'index']);
                 Route::post('/', [SubscriptionController::class, 'create']);
                 Route::delete('/', [SubscriptionController::class, 'cancelSubscription']);
+            });
+
+            Route::group(['prefix' => 'coupon'], function () {
+                Route::post('/buy', [CouponController::class, 'buy']);
             });
 
             Route::group(['prefix' => 'support'], function () {
