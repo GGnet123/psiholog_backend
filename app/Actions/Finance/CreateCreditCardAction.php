@@ -61,10 +61,10 @@ class CreateCreditCardAction extends AbstractAction {
         $result = (object) $result;
         if (property_exists($result, 'Model'))
             $res_model = (object)$result->Model;
-		
+
         if (!$result->Success && $result->Message) {
             event(new ErrorCreateCreditCardEvent($this->model));
-	
+
             throw new WrongCredentialDataException();
         }
 
@@ -74,8 +74,8 @@ class CreateCreditCardAction extends AbstractAction {
 			Log::info(json_encode($result));
 			Log::info(json_encode($array));
 			Log::info(json_encode($this->model));
-			
-			
+
+
             event(new ErrorCreateCreditCardEvent($this->model));
             throw new ErrorWithTransactionException($res_model->ReasonCode);
         }

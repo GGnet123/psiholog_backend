@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Coupon extends Model
 {
-    protected $table = 'coupon';
+    protected $table = 'coupons';
     protected $fillable = [
         'code', 'is_used', 'sum'
     ];
