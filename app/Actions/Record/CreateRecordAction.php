@@ -6,6 +6,7 @@ use App\Events\CreateRecordEvent;
 use App\Exceptions\Record\RecordDateAndTimeExpiredException;
 use App\Exceptions\Record\RecordHourBusyException;
 use App\Exceptions\Record\UserNotDoctorException;
+use App\Models\Main\Coupon;
 use App\Models\Record\RecordDoctor;
 use App\Services\CreateRecordTransactionService;
 use App\Services\DoctorFreeHourService;
@@ -39,7 +40,17 @@ class CreateRecordAction extends AbstractAction {
 
         event(new CreateRecordEvent($item, Auth::user()));
 
-        CreateRecordTransactionService::do(Auth::user(), $item);
+        $coupon = null;
+        if (isset($this->data['code']) && $this->data['code']) {
+            $code = $this->data['code'];
+            $coupon = Coupon::where('code', $code)->first();
+            if ($coupon->sum < $doctor->price) {
+                throw new \Exception('Coupon sum is not enough');
+            }
+        }
+        if (!$coupon) {
+            CreateRecordTransactionService::do(Auth::user(), $item);
+        }
 
         return $item;
     }

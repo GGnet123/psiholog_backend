@@ -3,16 +3,14 @@
 namespace App\Http\Controllers\v1\Main;
 
 use App\Actions\Main\BuyCouponAction;
-use App\Exceptions\Finance\UserNotHasActiveCreditCardException;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Main\BuyCouponRequest;
 use App\Models\Main\Coupon;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class CouponController extends Controller
 {
-    function buy(Request $request) {
-        $action = new BuyCouponAction(new Coupon(), ['sum' => $request->post('sum')]);
+    function buy(BuyCouponRequest $request) {
+        $action = new BuyCouponAction(new Coupon(), $request->validated());
         try {
             $code = $action->run();
             return ['success' => true, 'code' => $code];

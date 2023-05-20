@@ -4,6 +4,7 @@ namespace App\Services;
 use App\Exceptions\Finance\UserNotHasActiveCreditCardException;
 use App\Models\Finance\CardTransaction;
 use App\Models\Finance\CreditCard;
+use App\Models\Main\Coupon;
 use App\Models\Main\Subscription;
 use App\Models\Record\RecordDoctor;
 use App\Models\User;
@@ -15,7 +16,7 @@ class CreateRecordTransactionService {
     private CreditCard $card;
     private CardTransaction $transaction;
 
-    static function do(User $user, RecordDoctor $record){
+    static function do(User $user, RecordDoctor $record) {
         $el = new CreateRecordTransactionService();
         $el->pay($user, $record);
     }
@@ -28,12 +29,11 @@ class CreateRecordTransactionService {
         $this->record = $record;
         $this->card = $user->getActiveCreditCard();
 
-
         $this->createTransactionItem();
         $this->doPayment();
     }
 
-    private function createTransactionItem(){
+    private function createTransactionItem() {
         $this->transaction = new CardTransaction();
         $this->transaction->credit_card_id = $this->card->id;
         $this->transaction->user_id = $this->user->id;

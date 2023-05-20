@@ -10,7 +10,8 @@ class CreateRecordRequest extends FormRequest
     {
         return [
             'record_date' => 'required|date',
-            'record_time' => 'required|integer|between:0,23'
+            'record_time' => 'required|integer|between:0,23',
+            'code' => 'string|nullable'
         ];
     }
 }
