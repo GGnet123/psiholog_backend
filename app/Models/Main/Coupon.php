@@ -13,7 +13,7 @@ class Coupon extends Model
     use LabelModelTrait, SortModelTrait, FilterModelTrait;
     protected $table = 'coupons';
     protected $fillable = [
-        'code', 'is_used', 'sum'
+        'code', 'is_used', 'sum', 'created_user_id'
     ];
 
     protected $ar_sort = [

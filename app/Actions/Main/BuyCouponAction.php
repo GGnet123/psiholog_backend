@@ -28,6 +28,7 @@ class BuyCouponAction extends AbstractAction
         $model->is_used = false;
 
         $this->user = Auth::user();
+        $model->created_user_id = $this->user->id;
 
         $card = $this->user->getActiveCreditCard();
 
