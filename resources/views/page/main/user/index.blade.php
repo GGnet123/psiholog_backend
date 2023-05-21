@@ -57,6 +57,7 @@
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     <li><a href="{{ route($route_path.'_show', $i) }}">{{ __('main.show') }} </a></li>
                                     <li><a href="{{ route($route_path.'_toggle_doctor', $i) }}">{{ $i->isDoctor() ? 'Сделать юзером' : 'Сделать доктором' }} </a></li>
+                                    <li><a href="{{ route('admin_coupons_create', "user_id=".$i->id) }}"> Выдать купон </a></li>
                                     <li><a href="{{ route($route_path.'_block', $i) }}">{{ $i->is_blocked ? 'Разблокировать' : 'Заблокировать' }} </a></li>
                                 </ul>
                             </div>

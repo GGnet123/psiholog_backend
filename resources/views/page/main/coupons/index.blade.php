@@ -23,6 +23,10 @@
                         <x-input.filterBool name="is_used" id="is_used" :model="$model" :value="$request->is_used" />
                     </div>
 
+                    <div class="col-md-3">
+                        <x-input.int name="created_user_id" id="created_user_id" :model="$model" :value="$request->created_user_id" />
+                    </div>
+
                 </div>
             </x-form.filter>
         </form>
@@ -35,6 +39,7 @@
                     <th>{{ $model->label('code') }}</th>
                     <th><x-sortLink :name='$model->label("sum")' attr="sum" :request="$request" /></th>
                     <th><x-sortLink :name='$model->label("is_used")' attr="is_used" :request="$request" /></th>
+                    <th>{{ $model->label('created_user_id') }}</th>
                     <th data-breakpoints="all">{{ $model->label('created_at') }}</th>
                     <th data-breakpoints="all">{{ $model->label('updated_at') }}</th>
                     <th></th>
@@ -50,6 +55,7 @@
                         <td>{{ $i->code }}</td>
                         <td>{{ $i->sum }}</td>
                         <td>{{ $i->is_used ? 'Да' : 'Нет' }}</td>
+                        <td>{{ $i->created_user_id ? $i->created_user_id."|".$i->relUser->name : '' }}</td>
                         <td>{{ $i->created_at }}</td>
                         <td>{{ $i->updated_at }}</td>
                         <th>

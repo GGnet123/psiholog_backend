@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('coupons', function (Blueprint $table) {
-            $table->integer('created_user_id');
+            $table->integer('created_user_id')->nullable();
         });
     }
 

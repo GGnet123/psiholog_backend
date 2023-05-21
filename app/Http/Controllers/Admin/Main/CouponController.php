@@ -28,6 +28,7 @@ class CouponController extends Controller
         $code = Model::generateCode();
         $model = new Model();
         $model->code = $code;
+        $model->created_user_id = $request->get('user_id');
         return view($this->view_path.'.create', [
             'title' => __($this->title_path.'_create'),
             'ar_bread' => [
@@ -42,6 +43,7 @@ class CouponController extends Controller
     public function saveCreate(Request $request) {
         $code = $request->post('code');
         $sum = $request->post('sum');
+        $user_id = $request->post('created_user_id');
         $coupon = Model::where('code', $code)->first();
         if ($coupon) {
             return redirect()->back()->with('error', 'Code is already created, try again');
@@ -50,6 +52,7 @@ class CouponController extends Controller
         $newCoupon->code = $code;
         $newCoupon->sum = $sum;
         $newCoupon->is_used = false;
+        $newCoupon->created_user_id = $user_id;
 
         if ($newCoupon->save()) {
             return redirect()->route($this->route_path)->with('success', __('main.created_model'));

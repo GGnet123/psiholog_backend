@@ -79,7 +79,8 @@ return [
     'coupons' => [
         'code' => 'Код',
         'sum' => 'Сумма',
-        'is_used' => 'Использован'
+        'is_used' => 'Использован',
+        'created_user_id' => 'ID владельца'
     ],
     'card_transaction' => [
         'user_id' => 'Пользователь',

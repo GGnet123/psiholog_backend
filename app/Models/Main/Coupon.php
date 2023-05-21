@@ -2,6 +2,7 @@
 
 namespace App\Models\Main;
 
+use App\Models\User;
 use App\Traits\FilterModelTrait;
 use App\Traits\LabelModelTrait;
 use App\Traits\SortModelTrait;
@@ -24,6 +25,7 @@ class Coupon extends Model
         'sum' => 'int',
         'code' => 'string',
         'is_used' => 'boolean_str',
+        'created_user_id' => 'int'
     ];
 
     public static function generateCode(): string
@@ -41,5 +43,9 @@ class Coupon extends Model
             $tries++;
         }
         return $code;
+    }
+
+    public function relUser() {
+        return $this->belongsTo(User::class, 'created_user_id');
     }
 }
