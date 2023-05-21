@@ -70,6 +70,7 @@ Route::group(['prefix' => 'v1'], function () {
                 Route::get('show/{item}', [CreditCardController::class, 'item']);
                 Route::get('active', [CreditCardController::class, 'active']);
                 Route::post('create', [CreditCardController::class, 'create']);
+                Route::post('switch/{id}', [CreditCardController::class, 'switchActiveCard']);
                 Route::delete('remove/{item}', [CreditCardController::class, 'remove']);
             });
         });
