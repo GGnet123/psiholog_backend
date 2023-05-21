@@ -15,14 +15,14 @@ class Step1EmailAction extends AbstractAction {
             throw new AlreadyDoneRegistration();
 
         $this->model = EmailRegistration::where(['email' => $this->data['email']])->first();
-        if ($this->model && $this->model->accepted == false)
-            throw new NoteFinishedRegistrationException();
 
         if ($this->model && $this->model->accepted)
             throw new AlreadyFinishRegistrationException();
 
         $pin = rand(1000, 9999);
-        $this->model = new EmailRegistration();
+        if (!$this->model) {
+            $this->model = new EmailRegistration();
+        }
         $this->model->email = $this->data['email'];
         $this->model->accepted = false;
         $this->model->pin = $pin;

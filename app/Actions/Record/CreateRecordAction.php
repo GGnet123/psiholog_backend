@@ -43,9 +43,9 @@ class CreateRecordAction extends AbstractAction {
         $coupon = null;
         if (isset($this->data['code']) && $this->data['code']) {
             $code = $this->data['code'];
-            $coupon = Coupon::where(['code' => $code, 'is_used' => false])->first();
-            if ($coupon->sum < $doctor->price) {
-                throw new \Exception('Coupon sum is not enough');
+            $coupon = Coupon::where(['code' => $code, 'is_used' => false])->first()
+            ;
+            if ($coupon->sum < $doctor->price) {                throw new \Exception('Coupon sum is not enough');
             }
             $coupon->is_used = true;
             $coupon->save();

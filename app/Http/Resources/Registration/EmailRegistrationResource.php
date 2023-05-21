@@ -15,9 +15,10 @@ class EmailRegistrationResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
+//            'id' => $this->id,
             'email' => $this->email,
-            'accepted' => $this->accepted
+//            'accepted' => $this->accepted,
+            'pin' => $this->pin
         ];
     }
 }
