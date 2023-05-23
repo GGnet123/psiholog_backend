@@ -194,7 +194,7 @@ class User extends Authenticatable
     }
 
     function getActiveCreditCard(){
-        return $this->relCreditCards()->where(['is_active' => true, 'is_removed'=> false])->first();
+        return $this->relCreditCards()->where(['is_active' => true, 'is_removed'=> false])->latest()->first();
     }
 
     function relFavorite(){

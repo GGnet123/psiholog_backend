@@ -30,9 +30,9 @@ class BuyCouponAction extends AbstractAction
         $this->user = Auth::user();
         $model->created_user_id = $this->user->id;
 
-        $card = $this->user->getActiveCreditCard();
+        $this->card = $this->user->getActiveCreditCard();
 
-        if (!$card) {
+        if (!$this->card) {
             throw new UserNotHasActiveCreditCardException();
         }
 
@@ -58,7 +58,7 @@ class BuyCouponAction extends AbstractAction
     }
 
     private function doPayment($amount) {
-        $this->transaction = MakeTransactionService::do($this->card, $this->transaction, [
+        MakeTransactionService::do($this->card, $this->transaction, [
             'Amount' => $amount, // Required
             'Currency' => 'KZT', // Required
             'Name' => $this->user->name, // Required
