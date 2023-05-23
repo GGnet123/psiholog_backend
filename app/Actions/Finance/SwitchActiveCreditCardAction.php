@@ -10,7 +10,7 @@ class SwitchActiveCreditCardAction extends AbstractAction
 
     protected function do()
     {
-        CreditCard::where('user_id', $this->data['user_id'])->update(['is_active' => false, 'is_removed' => true]);
+        CreditCard::where('user_id', $this->data['user_id'])->update(['is_active' => false]);
         $this->model->is_active = true;
         $this->model->is_removed = false;
 
