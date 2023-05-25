@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'apiSecret' => 'fdf97e353c6e6564ea55de6cba3f46d9',
+    'apiSecret' => 'dccc87495bc905c42b038602a0de2c0c',
     'publicId' => 'pk_a44d26012c58e1acdc55d44f8d590',
     'apiUrl' => 'https://api.cloudpayments.ru',
     'cultureName' => 'en-US', // https://cloudpayments.ru/Docs/Api#language
