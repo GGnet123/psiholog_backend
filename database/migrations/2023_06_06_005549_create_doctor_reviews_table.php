@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('doctor_reviews', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
+            $table->integer('rate');
+            $table->string('comment')->nullable();
             $table->timestamps();
         });
     }
