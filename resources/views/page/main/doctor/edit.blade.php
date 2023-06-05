@@ -3,7 +3,13 @@
 @section('title', $title)
 
 @section('content')
-    <div class="row">
+
+    <style>
+        .timetable_el {
+            cursor: pointer;
+        }
+    </style>
+    <div class="row" id="main-row" data-doctor-id="{{$model->id}}">
         <div class="col-md-8">
             <x-form.update :action="route($route_path.'_update', $model)" :title="$title" :model="$model">
                 <x-input.text name="name"  :model="$model"   />
@@ -44,10 +50,7 @@
                 <div class="form-group">
                     <label>Дни недели</label> <br/>
                     @for($i = 1; $i <=7; $i++)
-                        <span class="label {{  $timetable->{'day_0'.$i} ? 'label-default' : 'label-success'}}">{{ __('main.day'.$i) }}</span>
-                        @if ($i != 7)
-                            |
-                        @endif
+                        <span data-time="{{ 'day_0'.$i }}" class="timetable_el label {{  $timetable->{'day_0'.$i} ? 'label-default' : 'label-success'}}">{{ __('main.day'.$i) }}</span>
                     @endfor
                 </div>
 
@@ -57,10 +60,7 @@
                         @php
                             $i_str = str_pad($i, 2, '0', STR_PAD_LEFT);
                         @endphp
-                        <span class="label {{  $timetable->{'hour_'.$i_str} ? 'label-default' : 'label-success'}}">{{ $i_str.':00' }}</span>
-                        @if ($i != 7)
-                            |
-                        @endif
+                        <span data-time="{{ 'hour_'.$i_str }}" class="timetable_el label {{  $timetable->{'hour_'.$i_str} ? 'label-default' : 'label-success'}}">{{ $i_str.':00' }}</span>
                     @endfor
                 </div>
                 <div class="form-group">
@@ -69,7 +69,7 @@
                         @php
                             $i_str = str_pad($i, 2, '0', STR_PAD_LEFT);
                         @endphp
-                        <span class="label {{  $timetable->{'hour_'.$i_str} ? 'label-default' : 'label-success'}}">{{ $i_str.':00' }}</span>
+                        <span data-time="{{ 'hour_'.$i_str }}" class="timetable_el label {{  $timetable->{'hour_'.$i_str} ? 'label-default' : 'label-success'}}">{{ $i_str.':00' }}</span>
                         @if ($i != 11)
                             |
                         @endif
@@ -81,10 +81,8 @@
                         @php
                             $i_str = str_pad($i, 2, '0', STR_PAD_LEFT);
                         @endphp
-                        <span class="label {{  $timetable->{'hour_'.$i_str} ? 'label-default' : 'label-success'}}">{{ $i_str.':00' }}</span>
-                        @if ($i != 18)
-                            |
-                        @endif
+                        <span data-time="{{ 'hour_'.$i_str }}" class="timetable_el label {{  $timetable->{'hour_'.$i_str} ? 'label-default' : 'label-success'}}">{{ $i_str.':00' }}</span>
+
                     @endfor
                 </div>
                 <div class="form-group">
@@ -93,10 +91,8 @@
                         @php
                             $i_str = str_pad($i, 2, '0', STR_PAD_LEFT);
                         @endphp
-                        <span class="label {{  $timetable->{'hour_'.$i_str} ? 'label-default' : 'label-success'}}">{{ $i_str.':00' }}</span>
-                        @if ($i != 23)
-                            |
-                        @endif
+                        <span data-time="{{ 'hour_'.$i_str }}" class="timetable_el label {{  $timetable->{'hour_'.$i_str} ? 'label-default' : 'label-success'}}">{{ $i_str.':00' }}</span>
+
                     @endfor
                 </div>
             </x-form.panel>
@@ -117,4 +113,20 @@
         </div>
 
     </div>
+
+    <script>
+        $(function () {
+            $('.timetable_el').click(function () {
+                let col = $(this).attr('data-time')
+                let doctor_id = $('#main-row').attr('data-doctor-id')
+                $.post('/admin/main/doctor/set-timetable-time', {col: col, doctor_id: doctor_id}, function (data) {
+                    if (data) {
+                        let $el = $('span.timetable_el[data-time="'+col+'"]')
+                        $el.removeClass(data.value ? 'label-default' : 'label-success')
+                        $el.addClass(data.value ? 'label-success' : 'label-default')
+                    }
+                })
+            })
+        })
+    </script>
 @endsection

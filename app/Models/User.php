@@ -96,6 +96,15 @@ class User extends Authenticatable
         'is_blocked_seance' => 'boolean'
     ];
 
+    function createDefaultTimeTable(): TimetablePlan
+    {
+        $t = new TimetablePlan();
+        $t->user_id = $this->id;
+        $t->save();
+
+        return $t;
+    }
+
     function scopeSpecializationId($q, $id){
         $q->whereHas('relSpecilization', function($b) use ($id){
             $b->where('lib_specialization_id', $id);

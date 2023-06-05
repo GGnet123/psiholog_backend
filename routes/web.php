@@ -93,6 +93,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
             Route::get('block/{item}', [DoctorController::class, 'blocked'])->name('admin_doctor_block');
             Route::get('block-seance/{item}', [DoctorController::class, 'blockedSeance'])->name('admin_doctor_block_seance');
             Route::get('approve-seance/{item}', [DoctorController::class, 'approveDoctor'])->name('admin_doctor_approve_seance');
+
+            Route::post('set-timetable-time', [DoctorController::class, 'setTimeTableTime'])->name('admin_doctor_set_time_table');
         });
 
         Route::group(['prefix' => 'support'], function(){

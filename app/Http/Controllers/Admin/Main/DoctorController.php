@@ -6,6 +6,7 @@ use App\Actions\Profile\LibSpecializationAction;
 use App\Events\UserIsBlockedEvent;
 use App\Http\Controllers\Controller;
 use App\Models\Profile\UserCertificat;
+use App\Models\Timetable\TimetablePlan;
 use App\Models\User as Model;
 use Illuminate\Http\Request;
 
@@ -50,7 +51,12 @@ class  DoctorController extends Controller{
 
     public function edit(Request $request, Model $item){
         $title = __($this->title_path.'_edit');
-        
+
+        $timetable = $item->relTimetablePlan;
+        if (!$timetable) {
+            $timetable = $item->createDefaultTimeTable();
+        }
+
         $data =  [
             'title' => $title,
             'model' => $item,
@@ -62,7 +68,7 @@ class  DoctorController extends Controller{
             'specializations' => $item->relSpecilizationMain()->pluck('name', 'lib_specialization.id')->toArray(),
             'certificats' => $item->relCertificatsMain,
             'videos' => $item->relVideoMain,
-            'timetable' => $item->relTimetablePlan
+            'timetable' => $timetable
         ];
 
 
@@ -107,5 +113,13 @@ class  DoctorController extends Controller{
         $item->update(['is_doctor_approve' => ($item->is_doctor_approve ? false : true)]);
 
         return redirect()->back()->with('success', __('main.updated_model'));
+    }
+
+    function setTimeTableTime(Request $request) {
+        $data = $request->all();
+        $table = TimetablePlan::where('user_id', $data['doctor_id'])->first();
+        $table->update([$data['col'] => !$table[$data['col']]]);
+
+        return ['value' => !$table[$data['col']]];
     }
 }
