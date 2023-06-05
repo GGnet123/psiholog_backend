@@ -47,7 +47,8 @@ class User extends Authenticatable
         'doctor_credit_card',
         'education',
         'therapy_methods',
-        'document_id'
+        'document_id',
+        'login_code'
     ];
 
     CONST ADMIN_TYPE = 1;
