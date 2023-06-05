@@ -46,7 +46,8 @@ class User extends Authenticatable
         'is_doctor_approve',
         'doctor_credit_card',
         'education',
-        'therapy_methods'
+        'therapy_methods',
+        'document_id'
     ];
 
     CONST ADMIN_TYPE = 1;
@@ -157,7 +158,9 @@ class User extends Authenticatable
     function relAvatar() {
         return $this->belongsTo(UploaderFile::class, 'avatar_id');
     }
-
+    function relDocument() {
+        return $this->belongsTo(UploaderFile::class, 'document_id');
+    }
     function relTimetablePlan(){
         return $this->hasOne(TimetablePlan::class, 'user_id');
     }

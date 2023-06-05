@@ -95,6 +95,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
             Route::get('approve-seance/{item}', [DoctorController::class, 'approveDoctor'])->name('admin_doctor_approve_seance');
 
             Route::post('set-timetable-time', [DoctorController::class, 'setTimeTableTime'])->name('admin_doctor_set_time_table');
+            Route::post('upload-document', [DoctorController::class, 'uploadDocument'])->name('admin_doctor_upload_document');
         });
 
         Route::group(['prefix' => 'support'], function(){

@@ -6,9 +6,12 @@ use App\Actions\Profile\LibSpecializationAction;
 use App\Events\UserIsBlockedEvent;
 use App\Http\Controllers\Controller;
 use App\Models\Profile\UserCertificat;
+use App\Models\Services\UploaderFile;
 use App\Models\Timetable\TimetablePlan;
+use App\Models\User;
 use App\Models\User as Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class  DoctorController extends Controller{
     protected $view_path = 'page.main.doctor';
@@ -121,5 +124,34 @@ class  DoctorController extends Controller{
         $table->update([$data['col'] => !$table[$data['col']]]);
 
         return ['value' => !$table[$data['col']]];
+    }
+
+    function uploadDocument(Request $request) {
+        $file = $request->file('file');
+        $file_name = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+        $file_name = Str::slug($file_name);
+
+        $file_path = $file->storeAs(
+            'store/'.time().'/'.rand(1000, 9999),
+            $file_name.'.'.$file->getClientOriginalExtension());
+
+        $size = $file->getSize();
+
+        $title = $file->getClientOriginalName();
+
+        $model = UploaderFile::create([
+            'path' => $file_path,
+            'filesize' => $size,
+            'filename' => $file_name,
+            'extension' => $file->getClientOriginalExtension(),
+            'title' => $title,
+            'type_id' => UploaderFile::DOCUMENT
+        ]);
+
+        $user = User::where('id', $request->post('user_id'))->first();
+        $user->document_id = $model->id;
+        $user->save();
+
+        return ['file_id' => $model->id];
     }
 }

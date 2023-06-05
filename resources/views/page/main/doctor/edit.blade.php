@@ -8,6 +8,9 @@
         .timetable_el {
             cursor: pointer;
         }
+        #upload-document-btn {
+            margin-left: 10px;
+        }
     </style>
     <div class="row" id="main-row" data-doctor-id="{{$model->id}}">
         <div class="col-md-8">
@@ -110,15 +113,35 @@
                     @endforeach
                 </div>
             </x-form.panel>
+
+                <x-form.panel title="Договор" >
+                    @if($model->document_id)
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a href="/{{ $model->relDocument->path  }}" target="_blank">
+                                    {{$model->relDocument->title}}
+                                </a>
+                            </div>
+                        </div>
+                    @endif
+                    <div class="row">
+                        <div>
+                            <div style="display: flex; align-items: center;">
+                                <input class="input" type="file" accept=".doc,.docx,.pdf" id="upload-document-input">
+                                <button class="btn btn-success" id="upload-document-btn">Загрузить</button>
+                            </div>
+                        </div>
+                    </div>
+                </x-form.panel>
         </div>
 
     </div>
 
     <script>
         $(function () {
+            let doctor_id = $('#main-row').attr('data-doctor-id')
             $('.timetable_el').click(function () {
                 let col = $(this).attr('data-time')
-                let doctor_id = $('#main-row').attr('data-doctor-id')
                 $.post('/admin/main/doctor/set-timetable-time', {col: col, doctor_id: doctor_id}, function (data) {
                     if (data) {
                         let $el = $('span.timetable_el[data-time="'+col+'"]')
@@ -126,6 +149,27 @@
                         $el.addClass(data.value ? 'label-success' : 'label-default')
                     }
                 })
+            })
+
+            $('#upload-document-btn').click(function () {
+                var fd = new FormData();
+
+                var files = $('#upload-document-input')[0].files;
+                if (files.length > 0) {
+                    fd.append('file',files[0]);
+                    fd.append('user_id', doctor_id)
+                    $.ajax({
+                        url:'/admin/main/doctor/upload-document',
+                        type:'post',
+                        data:fd,
+                        dataType: 'json',
+                        contentType: false,
+                        processData: false,
+                        success:function(response){
+                            alert('Файл успешно загружен')
+                        }
+                    });
+                }
             })
         })
     </script>
