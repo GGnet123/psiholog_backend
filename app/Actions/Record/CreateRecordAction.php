@@ -36,20 +36,24 @@ class CreateRecordAction extends AbstractAction {
         $item->status_id = RecordDoctor::CREATED_STATUS;
         $item->is_canceled =  false;
         $item->is_moved = true;
-        $item->save();
-
-        event(new CreateRecordEvent($item, Auth::user()));
 
         $coupon = null;
         if (isset($this->data['code']) && $this->data['code']) {
             $code = $this->data['code'];
-            $coupon = Coupon::where(['code' => $code, 'is_used' => false])->first()
-            ;
-            if ($coupon->sum < $doctor->price) {                throw new \Exception('Coupon sum is not enough');
+            $coupon = Coupon::where(['code' => $code, 'is_used' => false])->first();
+            if ($coupon->sum < $doctor->price) {
+                throw new \Exception('Coupon sum is not enough');
             }
             $coupon->is_used = true;
             $coupon->save();
+
+            $item->coupon_id = $coupon->id;
         }
+
+        $item->save();
+
+        event(new CreateRecordEvent($item, Auth::user()));
+
         if (!$coupon) {
             CreateRecordTransactionService::do(Auth::user(), $item);
         }

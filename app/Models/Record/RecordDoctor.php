@@ -1,6 +1,7 @@
 <?php
 namespace App\Models\Record;
 
+use App\Models\Main\Coupon;
 use App\Models\User;
 use App\Traits\FilterModelTrait;
 use App\Traits\LabelModelTrait;
@@ -12,7 +13,7 @@ class RecordDoctor extends Model {
     protected $table = 'record_doctor';
     protected $fillable = [
         'customer_id', 'doctor_id', 'sum', 'record_date',
-        'record_time', 'status_id', 'is_canceled', 'is_moved'];
+        'record_time', 'status_id', 'is_canceled', 'is_moved', 'coupon_id'];
 
     protected $ar_filter = [
         'customer_id' => 'int',
@@ -34,7 +35,8 @@ class RecordDoctor extends Model {
         'record_date' => 'date',
         'status_id' => 'int',
         'is_canceled' => 'boolean',
-        'is_moved' => 'boolean'
+        'is_moved' => 'boolean',
+        'coupon_id' => 'integer'
     ];
 
     CONST CREATED_STATUS = 1;
@@ -84,6 +86,10 @@ class RecordDoctor extends Model {
 
     function relDoctor(){
         return $this->belongsTo(User::class, 'doctor_id');
+    }
+
+    function relCoupon(){
+        return $this->belongsTo(Coupon::class, 'coupon_id');
     }
 
     function relLogs(){

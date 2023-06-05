@@ -42,6 +42,8 @@
                     <th>{{ $model->label('status_id') }}</th>
                     <th>{{ $model->label('is_canceled') }}</th>
                     <th>{{ $model->label('is_moved') }}</th>
+                    <th>{{ $model->label('sum') }}</th>
+                    <th>{{ $model->label('has_coupon') }}</th>
                     <th data-breakpoints="all">{{ $model->label('created_at') }}</th>
                     <th data-breakpoints="all">{{ $model->label('updated_at') }}</th>
                     <th>
@@ -58,6 +60,8 @@
                         <td>{{ $i->status_ru }}</td>
                         <td>{{ $i->is_canceled ? 'Да' : 'Нет' }}</td>
                         <td>{{ $i->is_moved ? 'Да' : 'Нет' }}</td>
+                        <td>{{ $i->sum }}</td>
+                        <td>{{ $i->coupon_id ? 'Да ('.$i->relCoupon->sum.')' : 'Нет' }}</td>
                         <td>{{ $i->created_at }}</td>
                         <td>{{ $i->updated_at }}</td>
                         <th>
@@ -67,6 +71,13 @@
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     <li><a href="{{ route($route_path.'_show', $i) }}">{{ __('main.show') }} </a></li>
+                                    @if(in_array($i->status_id, [
+                                                                    \App\Models\Record\RecordDoctor::CREATED_STATUS,
+                                                                    \App\Models\Record\RecordDoctor::APPROVED_STATUS,
+                                                                    \App\Models\Record\RecordDoctor::ON_WORK_STATUS,
+                                                                ]) )
+                                        <li><a href="{{ route($route_path.'_cancel', $i) }}">{{ __('main.cancel') }} </a></li>
+                                    @endif
                                 </ul>
                             </div>
                         </th>

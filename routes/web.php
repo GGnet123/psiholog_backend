@@ -59,6 +59,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
         Route::group(['prefix' => 'record'], function () {
             Route::get('/', [RecordController::class, 'index'])->name('admin_record');
             Route::get('show/{item}', [RecordController::class, 'view'])->name('admin_record_show');
+            Route::get('cancel/{item}', [RecordController::class, 'cancel'])->name('admin_record_cancel');
         });
     });
 

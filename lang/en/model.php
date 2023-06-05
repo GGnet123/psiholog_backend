@@ -63,6 +63,7 @@ return [
         'doctor_name' => 'Посетитель',
         'customer_name' => 'Доктор',
         'sum' => 'Сумма',
+        'has_coupon' => 'Погашен купон',
         'record_date' => 'Дата приема',
         'record_time' => 'Время приема',
         'record_str' => 'Дата и время приема',
