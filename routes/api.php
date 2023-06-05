@@ -61,6 +61,7 @@ Route::group(['prefix' => 'v1'], function () {
         Route::group(['prefix' => 'favorite'], function () {
             Route::get('ar-type', [FavoriteController::class, 'getArType']);
             Route::post('save', [FavoriteController::class, 'save']);
+            Route::post('rate', [FavoriteController::class, 'rate']);
             Route::delete('delete', [FavoriteController::class, 'delete']);
         });
 

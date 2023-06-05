@@ -162,6 +162,12 @@ class User extends Authenticatable
     function relDocument() {
         return $this->belongsTo(UploaderFile::class, 'document_id');
     }
+    function relUserReviews() {
+        return $this->hasMany(DoctorReviews::class, 'user_id')->orderBy('id', 'desc');
+    }
+    function relDoctorReviews() {
+        return $this->hasMany(DoctorReviews::class, 'doctor_id')->orderBy('id', 'desc');
+    }
     function relTimetablePlan(){
         return $this->hasOne(TimetablePlan::class, 'user_id');
     }

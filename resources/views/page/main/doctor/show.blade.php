@@ -35,6 +35,29 @@
 
                 </div>
             </x-form.panel>
+
+            <x-form.panel title="Отзывы">
+                <div class="row">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>От кого</th>
+                            <th>Оценка</th>
+                            <th>Комментарий</th>
+                            <th>Дата</th>
+                        </tr>
+                        @foreach($model->relDoctorReviews as $v)
+                            <?php $relUser = $v->relUser ?>
+                            <tr>
+                                <td>{{$relUser->name ?: ($relUser->login ?: $relUser->email)}}</td>
+                                <td>{{$v->rate}}</td>
+                                <td>{{$v->comment}}</td>
+                                <td>{{$v->created_at}}</td>
+                            </tr>
+                        @endforeach
+
+                    </table>
+                </div>
+            </x-form.panel>
         </div>
         <div class="col-md-4">
             @if ($timetable)

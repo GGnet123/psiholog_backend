@@ -4,8 +4,11 @@ namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Favorite\DeleteRequest;
+use App\Http\Requests\Favorite\RateRequest;
 use App\Http\Requests\Favorite\SaveRequest;
+use App\Models\DoctorReviews;
 use App\Models\Favorite;
+use Illuminate\Foundation\Http\FormRequest;
 
 class FavoriteController extends Controller
 {
@@ -35,6 +38,16 @@ class FavoriteController extends Controller
             $item->delete();
 
         return $this->data_response([true]);
+    }
+
+    function rate(RateRequest $request) {
+        $rate = new DoctorReviews();
+        $data = $request->validated();
+        $rate->doctor_id = $data['doctor_id'];
+        $rate->user_id = $request->user()->id;
+        $rate->rate = $data['rate'];
+        $rate->comment = $data['comment'] ?? null;
+        return ['success' => $rate->save()];
     }
 
 }
