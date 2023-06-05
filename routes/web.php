@@ -68,6 +68,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
         Route::group(['prefix' => 'subscription'], function () {
             Route::get('/', [SubscriptionController::class, 'index'])->name('admin_subscription');
             Route::get('show/{item}', [SubscriptionController::class, 'view'])->name('admin_subscription_show');
+            Route::post('set-prices', [SubscriptionController::class, 'setPrices'])->name('admin_subscription_set_prices');
         });
 
         Route::group(['prefix' => 'users'], function () {

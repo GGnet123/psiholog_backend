@@ -5,6 +5,7 @@ use App\Exceptions\Finance\UserNotHasActiveCreditCardException;
 use App\Models\Finance\CardTransaction;
 use App\Models\Finance\CreditCard;
 use App\Models\Main\Subscription;
+use App\Models\Main\SubscriptionPrices;
 use App\Models\User;
 use Illuminate\Contracts\Auth\Authenticatable;
 
@@ -59,12 +60,11 @@ class CreateSubscriptionTransactionService {
     }
 
     private function getAmount(){
+        $prices = SubscriptionPrices::first();
         if ($this->subscription->by_month)
-            return config('finance.cost_subscription_month');
+            return $prices ? $prices->month_price : 0;
 
 
-        return config('finance.cost_subscription_year');
+        return $prices ? $prices->year_price : 0;
     }
-
-
 }
