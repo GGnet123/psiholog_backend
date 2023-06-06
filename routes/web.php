@@ -97,6 +97,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
 
             Route::post('set-timetable-time', [DoctorController::class, 'setTimeTableTime'])->name('admin_doctor_set_time_table');
             Route::post('upload-document', [DoctorController::class, 'uploadDocument'])->name('admin_doctor_upload_document');
+            Route::post('upload-certificates', [DoctorController::class, 'uploadCertificates'])->name('admin_doctor_upload_certificates');
+            Route::post('delete-certificate', [DoctorController::class, 'deleteCert'])->name('admin_doctor_delete_certificate');
         });
 
         Route::group(['prefix' => 'support'], function(){

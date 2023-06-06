@@ -154,4 +154,45 @@ class  DoctorController extends Controller{
 
         return ['file_id' => $model->id];
     }
+
+    function uploadCertificates(Request $request) {
+        $files = $request->file('file');
+        $response = [];
+        foreach ($files as $file) {
+            $file_name = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $file_name = Str::slug($file_name);
+
+            $file_path = $file->storeAs(
+                'store/'.time().'/'.rand(1000, 9999),
+                $file_name.'.'.$file->getClientOriginalExtension());
+
+            $size = $file->getSize();
+
+            $title = $file->getClientOriginalName();
+
+            $model = UploaderFile::create([
+                'path' => $file_path,
+                'filesize' => $size,
+                'filename' => $file_name,
+                'extension' => $file->getClientOriginalExtension(),
+                'title' => $title,
+                'type_id' => UploaderFile::IMAGE
+            ]);
+
+            $cert = new UserCertificat();
+            $cert->user_id = $request->post('user_id');
+            $cert->sertificat_id = $model->id;
+            $cert->save();
+
+            $response[] = ['file_id' => $model->id, 'path' => $model->path, 'title' => $title, 'extension' => $model->extension];
+        }
+        return $response;
+    }
+
+    function deleteCert(Request $request) {
+        $certId=$request->post('cert_id');
+        UserCertificat::where('sertificat_id', $certId)->delete();
+        UploaderFile::where('id', $certId)->delete();
+        return true;
+    }
 }

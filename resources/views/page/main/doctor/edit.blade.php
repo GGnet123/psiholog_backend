@@ -11,6 +11,12 @@
         #upload-document-btn {
             margin-left: 10px;
         }
+        .delete-cert {
+            cursor: pointer;
+            margin-left: 5px;
+            color: red;
+            font-weight: bold;
+        }
     </style>
     <div class="row" id="main-row" data-doctor-id="{{$model->id}}">
         <div class="col-md-8">
@@ -101,38 +107,53 @@
             </x-form.panel>
             @endif
             <x-form.panel title="Сертификаты" >
-                <div class="row">
+                <div class="row" id="uploaded-certs">
                     @foreach($certificats as $c)
-                        <div class="col-md-6">
-                            <div class="thumbnail">
+                        @if(!in_array($c->extension, ['png', 'jpg', 'jpeg']))
+                            <div class="col-md-8">
                                 <a href="/{{ $c->path  }}" target="_blank">
-                                    <img src="/{{ $c->path  }}" alt="">
+                                    {{$c->title}}
                                 </a>
+                                <span class="delete-cert" data-cert="{{$c->id}}">X</span>
                             </div>
-                        </div>
+                        @else
+                            <div class="col-md-8">
+                                <a href="/{{ $c->path  }}" target="_blank">
+                                    <img src="/{{ $c->path  }}" style="height: 100px;width: 100px" alt="">
+                                </a>
+                                <span class="delete-cert" data-cert="{{$c->id}}">X</span>
+                            </div>
+                        @endif
+
                     @endforeach
+                </div>
+                <div class="row">
+                    <div style="display: flex; align-items: center;">
+                        <input class="input" type="file" multiple id="upload-certificate-input">
+                        <button class="btn btn-success" id="upload-certificate-btn">Загрузить</button>
+                    </div>
                 </div>
             </x-form.panel>
 
-                <x-form.panel title="Договор" >
-                    @if($model->document_id)
-                        <div class="row">
-                            <div class="col-md-6">
-                                <a href="/{{ $model->relDocument->path  }}" target="_blank">
-                                    {{$model->relDocument->title}}
-                                </a>
-                            </div>
-                        </div>
-                    @endif
+            <x-form.panel title="Договор" >
+                @if($model->document_id)
                     <div class="row">
-                        <div>
-                            <div style="display: flex; align-items: center;">
-                                <input class="input" type="file" accept=".doc,.docx,.pdf" id="upload-document-input">
-                                <button class="btn btn-success" id="upload-document-btn">Загрузить</button>
-                            </div>
+                        <div class="col-md-6">
+                            <a href="/{{ $model->relDocument->path  }}" target="_blank">
+                                {{$model->relDocument->title}}
+                            </a>
                         </div>
                     </div>
-                </x-form.panel>
+                @endif
+                <div class="row">
+                    <div>
+                        <div style="display: flex; align-items: center;">
+                            <input class="input" type="file" accept=".doc,.docx,.pdf" id="upload-document-input">
+                            <button class="btn btn-success" id="upload-document-btn">Загрузить</button>
+                        </div>
+                    </div>
+                </div>
+            </x-form.panel>
         </div>
 
     </div>
@@ -149,6 +170,60 @@
                         $el.addClass(data.value ? 'label-success' : 'label-default')
                     }
                 })
+            })
+
+            $('body').on('click', '.delete-cert', function () {
+                let $that = $(this)
+                let certId = $(this).attr('data-cert')
+                $.post('/admin/main/doctor/delete-certificate', {cert_id: certId}, function () {
+                    $that.parent().remove()
+                })
+            })
+
+            $('#upload-certificate-btn').click(function () {
+                var fd = new FormData();
+
+                var files = $('#upload-certificate-input')[0].files;
+                if (files.length > 0) {
+                    $.each(files, function (i, file) {
+                        fd.append('file[]', file)
+                    })
+                    fd.append('user_id', doctor_id)
+                    $.ajax({
+                        url:'/admin/main/doctor/upload-certificates',
+                        type:'post',
+                        data:fd,
+                        dataType: 'json',
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success:function(response){
+                            alert('Файлы успешно загружены')
+                            $.each(response, function (i, data) {
+                                if(['png', 'jpg','jpeg'].includes(data.extension)) {
+                                    $('#uploaded-certs').prepend('<div class="col-md-8"> ' +
+                                        '<a href="/'+data.path+'" target="_blank"> ' +
+                                        '<img src="/'+data.path+'" style="height: 100px;width: 100px" alt=""> ' +
+                                        '</a> ' +
+                                        '<span class="delete-cert" data-cert="'+data.file_id+'">X</span> ' +
+                                        '</div>')
+                                } else {
+                                    $('#uploaded-certs').prepend('<div class="col-md-8"> ' +
+                                        '<a href="/'+data.path+'" target="_blank">' +
+                                        data.title +
+                                        '</a> ' +
+                                        '<span class="delete-cert" data-cert="'+data.file_id+'">X</span> ' +
+                                        '</div>')
+                                }
+
+                            })
+
+                        },
+                        fail: function () {
+                            alert('Ошибка! Возможно файл/файлы слишком много весят')
+                        }
+                    });
+                }
             })
 
             $('#upload-document-btn').click(function () {
