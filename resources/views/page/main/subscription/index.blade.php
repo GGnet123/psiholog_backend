@@ -29,7 +29,7 @@
                 <label class="label label-info" for="month_price">Месячная подписка</label>
                 <input class="input input-xs" type="number" id="month_price" value="{{$prices ? $prices->month_price : 0}}">
 
-                <label class="label label-info" for="year_price">Годовая подписка</label>
+                <label class="label label-info" for="year_price">Полугодовая подписка</label>
                 <input class="input input-xs" type="number" type="text" id="year_price" value="{{$prices ? $prices->year_price : 0}}">
                 <button class="btn btn-success" id="save-price-btn">Сохранить</button>
             </div>

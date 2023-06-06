@@ -45,7 +45,9 @@ class  RecordController extends Controller{
         $record->status_id = RecordDoctor::DECLINE_BY_DOCTOR;
         $record->save();
         if (env('APP_ENVIRONMENT') == 'prod') {
-            $item->relCustomer->notify(new CancelRecordByDoctorNotification($item));
+            try {
+                $item->relCustomer->notify(new CancelRecordByDoctorNotification($item));
+            } catch (\Exception $exception) {}
         }
         return redirect()->back();
     }
