@@ -32,7 +32,7 @@ class AuthController extends Controller
 
         $code = $request->input('code');
         if (!$code) {
-            $pin = rand(1000, 9999);
+            $pin = rand(100000, 999999);
             $user->login_code = $pin;
             $user->save();
             if ($isEmailBased) {
