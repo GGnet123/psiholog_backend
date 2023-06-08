@@ -42,7 +42,7 @@ class AuthController extends Controller
                     throw new \Exception("System error");
                 }
             } else {
-                $res_check_pin = CheckSmsService::check($user->login, $user->login_code);
+                $res_check_pin = CheckSmsService::check($user->login, $code);
                 if (!$res_check_pin) {
                     throw new PhoneNoteFoundedInFirebaseException();
                 }
