@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'v1'], function () {
     Route::post('login', [\App\Http\Controllers\v1\AuthController::class, 'login']);
     Route::post('firebase-login', [\App\Http\Controllers\v1\FirebaseAuthController::class, 'login']);
-
+    Route::get('contract', [\App\Http\Controllers\v1\Services\UploaderFileController::class, 'contract']);
     Route::group(['prefix' => 'registration'], function () {
         Route::post('step1', [\App\Http\Controllers\v1\RegistrationController::class, 'step1']);
         Route::post('step1-email', [\App\Http\Controllers\v1\RegistrationController::class, 'step1Email']);

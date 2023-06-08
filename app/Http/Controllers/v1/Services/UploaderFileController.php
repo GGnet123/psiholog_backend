@@ -12,6 +12,7 @@ use App\Http\Requests\Services\Uploader\MusicRequest;
 use App\Http\Requests\Services\Uploader\VideoRequest;
 use App\Http\Resources\Services\UploaderFileResource;
 use App\Models\Services\UploaderFile;
+use http\Client\Response;
 
 class UploaderFileController extends Controller {
     function dropbox(DropBoxRequest $request){
@@ -62,5 +63,10 @@ class UploaderFileController extends Controller {
         (new MainDeleteAction($file))->run();
 
         return $this->noContent();
+    }
+
+    function contract() {
+        $path = 'store/contract/contract.pdf';
+        return response()->file($path, ['Content-Type' => 'application/pdf']);
     }
 }
