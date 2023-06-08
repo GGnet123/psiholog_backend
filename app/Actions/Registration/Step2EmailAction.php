@@ -37,7 +37,7 @@ class Step2EmailAction extends AbstractAction {
         $user->type_id = User::NOTE_FINISHED_TYPE;
         $user->email = $this->data['email'];
         $user->login = $this->data['email'];
-        $user->password = Hash::make($this->data['password']);
+        $user->password = 'blank'/*Hash::make($this->data['password'])*/;
         $user->name = '';
         $user->lang = User::EN_LANG;
         $user->save();

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\v1;
 
 use App\Exceptions\Registration\PhoneNoteFoundedInFirebaseException;
+use App\Exceptions\Registration\WrongPinException;
 use App\Exceptions\RestorePassword\PhoneNoteFoundedInFirebaseForRestoreException;
 use App\Exceptions\RestorePassword\WrongPinForRestorePasswordException;
 use App\Http\Controllers\Controller;
@@ -50,7 +51,7 @@ class AuthController extends Controller
                 if ($res_check_pin !== true && $res_check_pin == 'wrong_number')
                     throw new PhoneNoteFoundedInFirebaseForRestoreException();
                 else if ($res_check_pin !== true && $res_check_pin == 'wrong_pin')
-                    throw new WrongPinForRestorePasswordException();
+                    throw new WrongPinException();
             }
 
             return ['success' => true];

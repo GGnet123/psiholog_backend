@@ -25,13 +25,13 @@ class Step2Action extends AbstractAction {
         if (!$this->model)
             throw new NoteFoundedPhoneRegistrationException();
 
-        
+
         $res_check_pin = CheckSmsService::check($this->data['login'], $this->data['pin']);
         if ($res_check_pin !== true && $res_check_pin == 'wrong_number')
             throw new PhoneNoteFoundedInFirebaseException();
         else if ($res_check_pin !== true && $res_check_pin == 'wrong_pin')
             throw new WrongPinException();
-        
+
 
 
         $this->model->accepted = true;
@@ -40,7 +40,7 @@ class Step2Action extends AbstractAction {
         $user = new User();
         $user->type_id = User::NOTE_FINISHED_TYPE;
         $user->login = $this->data['login'];
-        $user->password = Hash::make($this->data['password']);
+        $user->password = /*Hash::make($this->data['password'])*/'blank';
         $user->name = '';
         $user->lang = User::EN_LANG;
         $user->save();
