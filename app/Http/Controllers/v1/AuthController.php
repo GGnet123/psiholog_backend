@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\v1;
 
 use App\Exceptions\Registration\PhoneNoteFoundedInFirebaseException;
+use App\Exceptions\RestorePassword\PhoneNoteFoundedInFirebaseForRestoreException;
+use App\Exceptions\RestorePassword\WrongPinForRestorePasswordException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AuthRequest;
 use App\Http\Resources\UserResource;
@@ -43,9 +45,10 @@ class AuthController extends Controller
                 }
             } else {
                 $res_check_pin = CheckSmsService::check($user->login, $code);
-                if (!$res_check_pin) {
-                    throw new PhoneNoteFoundedInFirebaseException();
-                }
+                if ($res_check_pin !== true && $res_check_pin == 'wrong_number')
+                    throw new PhoneNoteFoundedInFirebaseForRestoreException();
+                else if ($res_check_pin !== true && $res_check_pin == 'wrong_pin')
+                    throw new WrongPinForRestorePasswordException();
             }
 
             return ['success' => true];
