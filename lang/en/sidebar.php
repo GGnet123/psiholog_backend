@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'contract' => 'Договор',
     'content' => 'Контент',
     'admin_faq' => 'FAQ',
     'libs' => 'Справочники',

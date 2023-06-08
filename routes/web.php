@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\Content\Galary\VdohController;
 use App\Http\Controllers\Admin\Content\Galary\YogaController;
 use App\Http\Controllers\Admin\Content\Galary\YogatoMeCatController;
 use App\Http\Controllers\Admin\Content\TermOfUseController;
+use App\Http\Controllers\Admin\ContractController;
 use App\Http\Controllers\Admin\Finance\TransactionController;
 use App\Http\Controllers\Admin\Lib\LibSpecializationController;
 use App\Http\Controllers\Admin\Main\ClaimController;
@@ -54,6 +55,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
         });
     });
 
+    Route::group(['prefix' => 'contract'], function (){
+        Route::get('/', [ContractController::class, 'index'])->name('contract');
+        Route::any('/upload', [ContractController::class, 'upload'])->name('contract_upload');
+    });
 
     Route::group(['prefix' => 'record'], function () {
         Route::group(['prefix' => 'record'], function () {
@@ -152,7 +157,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
         Route::get('/', [\App\Http\Controllers\Admin\ProfileController::class, 'index'])->name('admin_profile');
         Route::post('/', [\App\Http\Controllers\Admin\ProfileController::class, 'save'])->name('admin_profile_save');
     });
-
 
     Route::group(['prefix' => 'galary'], function () {
         Route::group(['prefix' => 'affirmation'], function () {
@@ -276,8 +280,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
             Route::get('show/{item}', [AudioBookCatController::class, 'view'])->name('audio_book_cat_show');
             Route::get('delete/{item}', [AudioBookCatController::class, 'delete'])->name('audio_book_cat_delete');
         });
-
-
 
         Route::group(['prefix' => 'catnightstory'], function () {
             Route::get('/', [NightStoryCatController::class, 'index'])->name('night_story_cat');

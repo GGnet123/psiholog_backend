@@ -28,7 +28,9 @@ class AuthController extends Controller
                 return $this->false('Wrong credentials');
             }
         }
-
+        if ($user->login == $user->email) {
+            $isEmailBased = true;
+        }
         if ($user->is_blocked)
             return $this->false('This user is blocked');
 
