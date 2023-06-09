@@ -47,18 +47,20 @@ class AuthController extends Controller
                     throw new \Exception("System error");
                 }
             } else {
-                $res_check_pin = CheckSmsService::check($user->login, $code);
+                $res_check_pin=CheckSmsService::check($user->login, $code);
                 if ($res_check_pin !== true && $res_check_pin == 'wrong_number')
                     throw new PhoneNoteFoundedInFirebaseForRestoreException();
-                else if ($res_check_pin !== true && $res_check_pin == 'wrong_pin')
-                    throw new WrongPinException();
             }
 
             return ['success' => true];
         }
 
-        if ($user->login_code != $code) {
+        if ($isEmailBased && $user->login_code != $code) {
             throw new \Exception("Wrong code");
+        } elseif (!$isEmailBased) {
+            $res_check_pin = CheckSmsService::check($user->login, $code);
+            if ($res_check_pin !== true && $res_check_pin == 'wrong_pin')
+                throw new WrongPinException();
         }
 
         $user->login_code = null;
