@@ -6,10 +6,19 @@ use App\Actions\Main\BuyCouponAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Main\BuyCouponRequest;
 use App\Models\Main\Coupon;
+use Google\Cloud\Core\Exception\NotFoundException;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CouponController extends Controller
 {
+    function checkCoupon($code) {
+        $coupon = Coupon::where('code', $code)->first();
+        if (!$coupon) {
+            throw new NotFoundHttpException('Coupon not found');
+        }
+        return $coupon;
+    }
     function getUserCoupons() {
         $user = Auth::user();
         $coupons = Coupon::where('created_user_id', $user->id)->get();

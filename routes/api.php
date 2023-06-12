@@ -109,6 +109,7 @@ Route::group(['prefix' => 'v1'], function () {
             Route::group(['prefix' => 'coupon'], function () {
                 Route::post('/buy', [CouponController::class, 'buy']);
                 Route::get('/', [CouponController::class, 'getUserCoupons']);
+                Route::get('/{code}', [CouponController::class, 'checkCoupon']);
             });
 
             Route::group(['prefix' => 'support'], function () {
