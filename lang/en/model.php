@@ -33,7 +33,8 @@ return [
         'specializations[]' => 'Специализации',
         'card_data' => 'Данные карточки',
         'education' => 'Образование',
-        'therapy_methods' => 'Методы терапии'
+        'therapy_methods' => 'Методы терапии',
+        'experience' => 'Опыт работы'
     ],
     'support' => [
         'name' => 'Заголовок',

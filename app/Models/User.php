@@ -48,7 +48,8 @@ class User extends Authenticatable
         'education',
         'therapy_methods',
         'document_id',
-        'login_code'
+        'login_code',
+        'experience'
     ];
 
     CONST ADMIN_TYPE = 1;
@@ -67,12 +68,14 @@ class User extends Authenticatable
         'price_b' => 'function',
         'price_e' => 'function',
         'is_blocked' => 'boolean',
-        'is_doctor_approve' => 'boolean'
+        'is_doctor_approve' => 'boolean',
+        'experience' => 'int'
     ];
 
     protected $ar_sort = [
         'name',
         'login',
+        'experience'
     ];
 
     protected $hidden = [

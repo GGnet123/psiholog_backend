@@ -33,22 +33,23 @@
                 <x-input.multiSelect name="specializations[]"  :model="$model"
                 :dataar="[null=>'<Выберите из списка>'] + App\Models\Main\LibSpecialization::all()->pluck('name', 'id')->toArray()"
                 :value="array_keys($specializations)" />
-                <x-input.text name="education"  :model="$model"   />
-                <x-input.text name="therapy_methods"  :model="$model"   />
+                <x-input.textarea name="education"  :model="$model"   />
+                <x-input.textarea name="therapy_methods"  :model="$model"   />
+                <x-input.int name="experience"  :model="$model"   />
             </x-form.update>
 
 
             <!-- <x-form.panel title="Видео" >
                 <div class="row">
-                    @foreach($videos as $v)
+{{--                    @foreach($videos as $v)--}}
                         <div class="col-md-6">
                             <video width="100%" height="300" controls="controls" poster="video/duel.jpg">
-                                <source src="/{{ $v->path  }}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+{{--                                <source src="/{{ $v->path  }}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>--}}
                                 Тег video не поддерживается вашим браузером.
-                                <a href="/{{ $v->path  }}">Скачайте видео</a>.
+{{--                                <a href="/{{ $v->path  }}">Скачайте видео</a>.--}}
                             </video>
                         </div>
-                    @endforeach
+{{--                    @endforeach--}}
 
                 </div>
             </x-form.panel> -->
@@ -106,34 +107,34 @@
                 </div>
             </x-form.panel>
             @endif
-            <x-form.panel title="Сертификаты" >
-                <div class="row" id="uploaded-certs">
-                    @foreach($certificats as $c)
-                        @if(!in_array($c->extension, ['png', 'jpg', 'jpeg']))
-                            <div class="col-md-8">
-                                <a href="/{{ $c->path  }}" target="_blank">
-                                    {{$c->title}}
-                                </a>
-                                <span class="delete-cert" data-cert="{{$c->id}}">X</span>
-                            </div>
-                        @else
-                            <div class="col-md-8">
-                                <a href="/{{ $c->path  }}" target="_blank">
-                                    <img src="/{{ $c->path  }}" style="height: 100px;width: 100px" alt="">
-                                </a>
-                                <span class="delete-cert" data-cert="{{$c->id}}">X</span>
-                            </div>
-                        @endif
+{{--            <x-form.panel title="Сертификаты" >--}}
+{{--                <div class="row" id="uploaded-certs">--}}
+{{--                    @foreach($certificats as $c)--}}
+{{--                        @if(!in_array($c->extension, ['png', 'jpg', 'jpeg']))--}}
+{{--                            <div class="col-md-8">--}}
+{{--                                <a href="/{{ $c->path  }}" target="_blank">--}}
+{{--                                    {{$c->title}}--}}
+{{--                                </a>--}}
+{{--                                <span class="delete-cert" data-cert="{{$c->id}}">X</span>--}}
+{{--                            </div>--}}
+{{--                        @else--}}
+{{--                            <div class="col-md-8">--}}
+{{--                                <a href="/{{ $c->path  }}" target="_blank">--}}
+{{--                                    <img src="/{{ $c->path  }}" style="height: 100px;width: 100px" alt="">--}}
+{{--                                </a>--}}
+{{--                                <span class="delete-cert" data-cert="{{$c->id}}">X</span>--}}
+{{--                            </div>--}}
+{{--                        @endif--}}
 
-                    @endforeach
-                </div>
-                <div class="row">
-                    <div style="display: flex; align-items: center;">
-                        <input class="input" type="file" multiple id="upload-certificate-input">
-                        <button class="btn btn-success" id="upload-certificate-btn">Загрузить</button>
-                    </div>
-                </div>
-            </x-form.panel>
+{{--                    @endforeach--}}
+{{--                </div>--}}
+{{--                <div class="row">--}}
+{{--                    <div style="display: flex; align-items: center;">--}}
+{{--                        <input class="input" type="file" multiple id="upload-certificate-input">--}}
+{{--                        <button class="btn btn-success" id="upload-certificate-btn">Загрузить</button>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </x-form.panel>--}}
 
             <x-form.panel title="Договор" >
                 @if($model->document_id)

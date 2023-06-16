@@ -18,23 +18,24 @@
                 <x-show.def name="specializations"  :model="$model"  :value="implode(', ', $specializations)"  />
                 <x-show.def name="education"  :model="$model"   />
                 <x-show.def name="therapy_methods"  :model="$model"   />
+                <x-show.def name="experience"  :model="$model"   />
             </x-form.show>
 
 
-            <x-form.panel title="Видео" >
-                <div class="row">
-                    @foreach($videos as $v)
-                        <div class="col-md-6">
-                            <video width="100%" height="300" controls="controls" poster="video/duel.jpg">
-                                <source src="/{{ $v->path  }}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-                                Тег video не поддерживается вашим браузером.
-                                <a href="/{{ $v->path  }}">Скачайте видео</a>.
-                            </video>
-                        </div>
-                    @endforeach
+{{--            <x-form.panel title="Видео" >--}}
+{{--                <div class="row">--}}
+{{--                    @foreach($videos as $v)--}}
+{{--                        <div class="col-md-6">--}}
+{{--                            <video width="100%" height="300" controls="controls" poster="video/duel.jpg">--}}
+{{--                                <source src="/{{ $v->path  }}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>--}}
+{{--                                Тег video не поддерживается вашим браузером.--}}
+{{--                                <a href="/{{ $v->path  }}">Скачайте видео</a>.--}}
+{{--                            </video>--}}
+{{--                        </div>--}}
+{{--                    @endforeach--}}
 
-                </div>
-            </x-form.panel>
+{{--                </div>--}}
+{{--            </x-form.panel>--}}
 
             <x-form.panel title="Отзывы">
                 <div class="row">
@@ -122,19 +123,19 @@
                 </div>
             </x-form.panel>
             @endif
-            <x-form.panel title="Сертификаты" >
-                <div class="row">
-                    @foreach($certificats as $c)
-                        <div class="col-md-6">
-                            <div class="thumbnail">
-                                <a href="/{{ $c->path  }}" target="_blank">
-                                    <img src="/{{ $c->path  }}" alt="">
-                                </a>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </x-form.panel>
+{{--            <x-form.panel title="Сертификаты" >--}}
+{{--                <div class="row">--}}
+{{--                    @foreach($certificats as $c)--}}
+{{--                        <div class="col-md-6">--}}
+{{--                            <div class="thumbnail">--}}
+{{--                                <a href="/{{ $c->path  }}" target="_blank">--}}
+{{--                                    <img src="/{{ $c->path  }}" alt="">--}}
+{{--                                </a>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    @endforeach--}}
+{{--                </div>--}}
+{{--            </x-form.panel>--}}
         </div>
 
     </div>
