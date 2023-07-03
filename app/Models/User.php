@@ -44,7 +44,12 @@ class User extends Authenticatable
         'fcm_token',
         'card_data',
         'is_doctor_approve',
-        'doctor_credit_card'
+        'doctor_credit_card',
+        'education',
+        'therapy_methods',
+        'document_id',
+        'login_code',
+        'experience'
     ];
 
     CONST ADMIN_TYPE = 1;
@@ -63,18 +68,22 @@ class User extends Authenticatable
         'price_b' => 'function',
         'price_e' => 'function',
         'is_blocked' => 'boolean',
-        'is_doctor_approve' => 'boolean'
+        'is_doctor_approve' => 'boolean',
+        'experience' => 'int'
     ];
 
     protected $ar_sort = [
         'name',
         'login',
+        'experience'
     ];
 
     protected $hidden = [
         'password',
         'remember_token',
     ];
+
+    protected $specializations = [];
 
     /**
      * The attributes that should be cast.
@@ -91,6 +100,15 @@ class User extends Authenticatable
         'is_blocked' => 'boolean',
         'is_blocked_seance' => 'boolean'
     ];
+
+    function createDefaultTimeTable(): TimetablePlan
+    {
+        $t = new TimetablePlan();
+        $t->user_id = $this->id;
+        $t->save();
+
+        return $t;
+    }
 
     function scopeSpecializationId($q, $id){
         $q->whereHas('relSpecilization', function($b) use ($id){
@@ -144,7 +162,15 @@ class User extends Authenticatable
     function relAvatar() {
         return $this->belongsTo(UploaderFile::class, 'avatar_id');
     }
-
+    function relDocument() {
+        return $this->belongsTo(UploaderFile::class, 'document_id');
+    }
+    function relUserReviews() {
+        return $this->hasMany(DoctorReviews::class, 'user_id')->orderBy('id', 'desc');
+    }
+    function relDoctorReviews() {
+        return $this->hasMany(DoctorReviews::class, 'doctor_id')->orderBy('id', 'desc');
+    }
     function relTimetablePlan(){
         return $this->hasOne(TimetablePlan::class, 'user_id');
     }
@@ -190,7 +216,7 @@ class User extends Authenticatable
     }
 
     function getActiveCreditCard(){
-        return $this->relCreditCards()->where(['is_active' => true, 'is_removed'=> false])->first();
+        return $this->relCreditCards()->where(['is_active' => true, 'is_removed'=> false])->latest()->first();
     }
 
     function relFavorite(){

@@ -52,6 +52,7 @@ class CardTransaction extends Model
 
     CONST TYPE_SUBSCRIPTION = 1;
     CONST TYPE_RECORD = 2;
+    CONST TYPE_COUPON = 3;
 
     function relUser(){
         return $this->belongsTo(User::class, 'user_id');

@@ -30,7 +30,11 @@ return [
         'price' => 'Цена за сеанс',
         'date_b' => 'Дата рождения',
         'specializations' => 'Специализации',
-        'card_data' => 'Данные карточки'
+        'specializations[]' => 'Специализации',
+        'card_data' => 'Данные карточки',
+        'education' => 'Образование',
+        'therapy_methods' => 'Методы терапии',
+        'experience' => 'Опыт работы'
     ],
     'support' => [
         'name' => 'Заголовок',
@@ -60,6 +64,7 @@ return [
         'doctor_name' => 'Посетитель',
         'customer_name' => 'Доктор',
         'sum' => 'Сумма',
+        'has_coupon' => 'Погашен купон',
         'record_date' => 'Дата приема',
         'record_time' => 'Время приема',
         'record_str' => 'Дата и время приема',
@@ -73,7 +78,12 @@ return [
         'is_canceled' => 'Отменено пользователем',
         'is_moved' => 'Перенесен'
     ],
-
+    'coupons' => [
+        'code' => 'Код',
+        'sum' => 'Сумма',
+        'is_used' => 'Использован',
+        'created_user_id' => 'ID владельца'
+    ],
     'card_transaction' => [
         'user_id' => 'Пользователь',
         'type' => 'Тип',

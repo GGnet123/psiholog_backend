@@ -5,6 +5,8 @@ return [
     'profile' => 'Профиль',
     'logout' => 'Выйти',
 
+    'coupons' => 'Купоны',
+    'coupons_create' => 'Создание купона',
 
     'faq' => 'FAQ',
     'faq_create' => 'FAQ. Форма создания',
@@ -23,7 +25,7 @@ return [
 
     'doctor' => 'Профили докторов',
     'doctor_show' => 'Профили докторов. Форма просмотра',
-
+    'doctor_edit' => 'Профили докторов. Правка формы',
     'admin_support' => 'Поддержка',
     'admin_support_show' => 'Поддержка. Форма просмотра',
 

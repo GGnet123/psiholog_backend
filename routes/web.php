@@ -17,9 +17,11 @@ use App\Http\Controllers\Admin\Content\Galary\VdohController;
 use App\Http\Controllers\Admin\Content\Galary\YogaController;
 use App\Http\Controllers\Admin\Content\Galary\YogatoMeCatController;
 use App\Http\Controllers\Admin\Content\TermOfUseController;
+use App\Http\Controllers\Admin\ContractController;
 use App\Http\Controllers\Admin\Finance\TransactionController;
 use App\Http\Controllers\Admin\Lib\LibSpecializationController;
 use App\Http\Controllers\Admin\Main\ClaimController;
+use App\Http\Controllers\Admin\Main\CouponController;
 use App\Http\Controllers\Admin\Main\DoctorController;
 use App\Http\Controllers\Admin\Main\SubscriptionController;
 use App\Http\Controllers\Admin\Main\SupportController;
@@ -53,11 +55,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
         });
     });
 
+    Route::group(['prefix' => 'contract'], function (){
+        Route::get('/', [ContractController::class, 'index'])->name('contract');
+        Route::any('/upload', [ContractController::class, 'upload'])->name('contract_upload');
+    });
 
     Route::group(['prefix' => 'record'], function () {
         Route::group(['prefix' => 'record'], function () {
             Route::get('/', [RecordController::class, 'index'])->name('admin_record');
             Route::get('show/{item}', [RecordController::class, 'view'])->name('admin_record_show');
+            Route::get('cancel/{item}', [RecordController::class, 'cancel'])->name('admin_record_cancel');
         });
     });
 
@@ -66,21 +73,37 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
         Route::group(['prefix' => 'subscription'], function () {
             Route::get('/', [SubscriptionController::class, 'index'])->name('admin_subscription');
             Route::get('show/{item}', [SubscriptionController::class, 'view'])->name('admin_subscription_show');
+            Route::post('set-prices', [SubscriptionController::class, 'setPrices'])->name('admin_subscription_set_prices');
         });
 
         Route::group(['prefix' => 'users'], function () {
             Route::get('/', [UserController::class, 'index'])->name('admin_main_user');
+            Route::get('toggle-doctor/{item}', [UserController::class, 'toggleDoctor'])->name('admin_main_user_toggle_doctor');
             Route::get('show/{item}', [UserController::class, 'view'])->name('admin_main_user_show');
             Route::get('block/{item}', [UserController::class, 'blocked'])->name('admin_main_user_block');
             Route::get('block-seance/{item}', [UserController::class, 'blockedSeance'])->name('admin_main_user_block_seance');
         });
 
+        Route::group(['prefix' => 'coupons'], function () {
+            Route::get('/', [CouponController::class, 'index'])->name('admin_coupons');
+            Route::get('create', [CouponController::class, 'create'])->name('admin_coupons_create');
+            Route::post('create', [CouponController::class, 'saveCreate'])->name('admin_coupons_create_save');
+            Route::get('delete/{item}', [CouponController::class, 'delete'])->name('admin_coupons_delete');
+        });
+
         Route::group(['prefix' => 'doctor'], function () {
             Route::get('/', [DoctorController::class, 'index'])->name('admin_doctor');
             Route::get('show/{item}', [DoctorController::class, 'view'])->name('admin_doctor_show');
+            Route::get('edit/{item}', [DoctorController::class, 'edit'])->name('admin_doctor_edit');
+            Route::post('update/{item}', [DoctorController::class, 'update'])->name('admin_doctor_update');
             Route::get('block/{item}', [DoctorController::class, 'blocked'])->name('admin_doctor_block');
             Route::get('block-seance/{item}', [DoctorController::class, 'blockedSeance'])->name('admin_doctor_block_seance');
             Route::get('approve-seance/{item}', [DoctorController::class, 'approveDoctor'])->name('admin_doctor_approve_seance');
+
+            Route::post('set-timetable-time', [DoctorController::class, 'setTimeTableTime'])->name('admin_doctor_set_time_table');
+            Route::post('upload-document', [DoctorController::class, 'uploadDocument'])->name('admin_doctor_upload_document');
+            Route::post('upload-certificates', [DoctorController::class, 'uploadCertificates'])->name('admin_doctor_upload_certificates');
+            Route::post('delete-certificate', [DoctorController::class, 'deleteCert'])->name('admin_doctor_delete_certificate');
         });
 
         Route::group(['prefix' => 'support'], function(){
@@ -134,7 +157,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
         Route::get('/', [\App\Http\Controllers\Admin\ProfileController::class, 'index'])->name('admin_profile');
         Route::post('/', [\App\Http\Controllers\Admin\ProfileController::class, 'save'])->name('admin_profile_save');
     });
-
 
     Route::group(['prefix' => 'galary'], function () {
         Route::group(['prefix' => 'affirmation'], function () {
@@ -258,8 +280,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth_admin']], function () 
             Route::get('show/{item}', [AudioBookCatController::class, 'view'])->name('audio_book_cat_show');
             Route::get('delete/{item}', [AudioBookCatController::class, 'delete'])->name('audio_book_cat_delete');
         });
-
-
 
         Route::group(['prefix' => 'catnightstory'], function () {
             Route::get('/', [NightStoryCatController::class, 'index'])->name('night_story_cat');

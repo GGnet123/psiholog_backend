@@ -11,7 +11,7 @@ class AuthRequest extends FormRequest
     {
         return [
             'login' => 'required|string|max:255',
-            'password' => 'required|string|max:255'
+            'code' => 'string|max:255|nullable'
         ];
     }
 }

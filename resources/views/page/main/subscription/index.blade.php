@@ -21,6 +21,20 @@
             </x-form.filter>
         </form>
 
+        <div class="col-md-10">
+            <div>
+                <h3>Цены подписок</h3>
+            </div>
+            <div>
+                <label class="label label-info" for="month_price">Месячная подписка</label>
+                <input class="input input-xs" type="number" id="month_price" value="{{$prices ? $prices->month_price : 0}}">
+
+                <label class="label label-info" for="year_price">Полугодовая подписка</label>
+                <input class="input input-xs" type="number" type="text" id="year_price" value="{{$prices ? $prices->year_price : 0}}">
+                <button class="btn btn-success" id="save-price-btn">Сохранить</button>
+            </div>
+        </div>
+
         <x-table.def :title="$title" >
             <table class="table table-togglable">
                 <thead>
@@ -69,4 +83,19 @@
             </div>
         </x-table.def>
     </div>
+
+    <script>
+        $(function () {
+            $('#save-price-btn').click(function () {
+                $.post('/admin/main/subscription/set-prices', {
+                    month: $('#month_price').val(),
+                    year: $('#year_price').val()
+                }, function (data) {
+                    if(data) {
+                        alert('Цены успешно обновлены')
+                    }
+                })
+            })
+        })
+    </script>
 @endsection

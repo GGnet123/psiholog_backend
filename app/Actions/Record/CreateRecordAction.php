@@ -6,6 +6,7 @@ use App\Events\CreateRecordEvent;
 use App\Exceptions\Record\RecordDateAndTimeExpiredException;
 use App\Exceptions\Record\RecordHourBusyException;
 use App\Exceptions\Record\UserNotDoctorException;
+use App\Models\Main\Coupon;
 use App\Models\Record\RecordDoctor;
 use App\Services\CreateRecordTransactionService;
 use App\Services\DoctorFreeHourService;
@@ -35,11 +36,27 @@ class CreateRecordAction extends AbstractAction {
         $item->status_id = RecordDoctor::CREATED_STATUS;
         $item->is_canceled =  false;
         $item->is_moved = true;
+
+        $coupon = null;
+        if (isset($this->data['code']) && $this->data['code']) {
+            $code = $this->data['code'];
+            $coupon = Coupon::where(['code' => $code, 'is_used' => false])->first();
+            if ($coupon->sum < $doctor->price) {
+                throw new \Exception('Coupon sum is not enough');
+            }
+            $coupon->is_used = true;
+            $coupon->save();
+
+            $item->coupon_id = $coupon->id;
+        }
+
         $item->save();
 
         event(new CreateRecordEvent($item, Auth::user()));
 
-        CreateRecordTransactionService::do(Auth::user(), $item);
+        if (!$coupon) {
+            CreateRecordTransactionService::do(Auth::user(), $item);
+        }
 
         return $item;
     }

@@ -2,7 +2,9 @@
 namespace App\Http\Controllers\Admin\Record;
 
 use App\Http\Controllers\Controller;
+use App\Models\Record\RecordDoctor;
 use App\Models\Record\RecordDoctor as Model;
+use App\Notifications\Fcm\CancelRecordByDoctorNotification;
 use Illuminate\Http\Request;
 
 class  RecordController extends Controller{
@@ -38,5 +40,16 @@ class  RecordController extends Controller{
         ]);
     }
 
+    public function cancel(Request $request, Model $item) {
+        $record = RecordDoctor::where('id', $item['id'])->first();
+        $record->status_id = RecordDoctor::DECLINE_BY_DOCTOR;
+        $record->save();
+        if (env('APP_ENVIRONMENT') == 'prod') {
+            try {
+                $item->relCustomer->notify(new CancelRecordByDoctorNotification($item));
+            } catch (\Exception $exception) {}
+        }
+        return redirect()->back();
+    }
 
 }

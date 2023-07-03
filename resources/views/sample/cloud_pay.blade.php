@@ -32,7 +32,7 @@
 <script>
 
     const checkout = new cp.Checkout({
-        publicId: 'pk_6840c67f9779f41238f7c82ff236f',
+        publicId: 'pk_a44d26012c58e1acdc55d44f8d590',
         container: document.getElementById("paymentFormSample")
     });
 

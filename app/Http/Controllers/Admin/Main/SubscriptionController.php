@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Admin\Main;
 
 use App\Http\Controllers\Controller;
 use App\Models\Main\Subscription as Model;
+use App\Models\Main\SubscriptionPrices;
 use Illuminate\Http\Request;
 
 class SubscriptionController extends Controller{
@@ -14,12 +15,15 @@ class SubscriptionController extends Controller{
     public function index(Request $request){
         $this->items = $this->def_model::filter($request)->sort($request);
 
+        $prices = SubscriptionPrices::first();
+
         return view($this->view_path.'.index', [
             'title' => __($this->title_path.''),
             'items' => $this->items->paginate(24),
             'model' => new Model(),
             'request' => $request,
-            'route_path' => $this->route_path
+            'route_path' => $this->route_path,
+            'prices' => $prices
         ]);
     }
 
@@ -38,5 +42,18 @@ class SubscriptionController extends Controller{
 
 
         return view($this->view_path.'.show', $data);
+    }
+
+    public function setPrices(Request $request) {
+        $data = $request->all();
+
+        $prices = SubscriptionPrices::first();
+        if (!$prices) {
+            $prices = new SubscriptionPrices();
+        }
+        $prices->month_price = $data['month'];
+        $prices->year_price = $data['year'];
+
+        return ['success' => $prices->save()];
     }
 }

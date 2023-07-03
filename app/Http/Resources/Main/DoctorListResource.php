@@ -17,9 +17,11 @@ class DoctorListResource extends JsonResource
             'avatar' => ($this->relAvatar ? new UploaderFileResource($this->relAvatar) : null),
             'price' => $this->price,
             'specializations' => LibSpecializationResource::collection($this->relSpecilizationMain),
-            'certificats' => UploaderFileResource::collection($this->relCertificatsMain),
-            'video' => UploaderFileResource::collection($this->relVideoMain),
-            'favorite' => Favorite::getFavorBool('doctor', $this->id)
+//            'certificats' => UploaderFileResource::collection($this->relCertificatsMain),
+//            'video' => UploaderFileResource::collection($this->relVideoMain),
+            'favorite' => Favorite::getFavorBool('doctor', $this->id),
+            'therapy_methods' => $this->therapy_methods,
+            'experience' => $this->experience
         ];
     }
 }

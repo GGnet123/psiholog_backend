@@ -14,13 +14,13 @@ use Illuminate\Http\Request;
 
 class SubscriptionController extends Controller
 {
-    function index(Request $request){
+    function index(Request $request) {
         $item = Subscription::where(['user_id'=>$request->user()->id, 'is_active' => true])->first();
 
         return $item ? new SubscriptionResource($item) : $this->data_response(null);
     }
 
-    function create(SaveSubscriptionRequest $request){
+    function create(SaveSubscriptionRequest $request) {
         try {
             $item = (new SaveSubscriptionAction(new Subscription(), $request->all()))->run();
 

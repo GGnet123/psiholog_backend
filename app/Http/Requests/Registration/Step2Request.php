@@ -15,8 +15,8 @@ class Step2Request extends FormRequest
     {
         return [
             'login' => 'required|int',
-            'password' => 'required|string|max:255',
-            're_password' => 'required|string|max:255|same:password',
+//            'password' => 'required|string|max:255',
+//            're_password' => 'required|string|max:255|same:password',
             'pin' => 'required|int'
         ];
     }

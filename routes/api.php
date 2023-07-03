@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\v1\FavoriteController;
 use App\Http\Controllers\v1\Finance\CreditCardController;
+use App\Http\Controllers\v1\Main\CouponController;
 use App\Http\Controllers\v1\Main\SubscriptionController;
 use App\Http\Controllers\v1\MainPage\GalaryController;
 use App\Http\Controllers\v1\Record\ManageRecordController;
@@ -12,10 +13,12 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'v1'], function () {
     Route::post('login', [\App\Http\Controllers\v1\AuthController::class, 'login']);
     Route::post('firebase-login', [\App\Http\Controllers\v1\FirebaseAuthController::class, 'login']);
-
+    Route::get('contract', [\App\Http\Controllers\v1\Services\UploaderFileController::class, 'contract']);
     Route::group(['prefix' => 'registration'], function () {
         Route::post('step1', [\App\Http\Controllers\v1\RegistrationController::class, 'step1']);
+        Route::post('step1-email', [\App\Http\Controllers\v1\RegistrationController::class, 'step1Email']);
         Route::post('step2', [\App\Http\Controllers\v1\RegistrationController::class, 'step2']);
+        Route::post('step2-email', [\App\Http\Controllers\v1\RegistrationController::class, 'step2Email']);
 
         Route::group(['middleware' => ['auth:sanctum']], function () {
             Route::post('step3-doctor', [\App\Http\Controllers\v1\RegistrationController::class, 'step3Doctor']);
@@ -33,6 +36,8 @@ Route::group(['prefix' => 'v1'], function () {
     Route::post('check-login', [\App\Http\Controllers\v1\CreatePasswordController::class, 'checkLogin']);
 
     Route::group(['middleware' => ['auth:sanctum']], function () {
+
+        Route::post('change-login', [\App\Http\Controllers\v1\Profile\User\UserProfileController::class, 'changePhone']);
 
         Route::post('create-password', [\App\Http\Controllers\v1\CreatePasswordController::class, 'save']);
         Route::post('create-password/check-login', [\App\Http\Controllers\v1\CreatePasswordController::class, 'checkLogin']);
@@ -56,6 +61,7 @@ Route::group(['prefix' => 'v1'], function () {
         Route::group(['prefix' => 'favorite'], function () {
             Route::get('ar-type', [FavoriteController::class, 'getArType']);
             Route::post('save', [FavoriteController::class, 'save']);
+            Route::post('rate', [FavoriteController::class, 'rate']);
             Route::delete('delete', [FavoriteController::class, 'delete']);
         });
 
@@ -65,6 +71,7 @@ Route::group(['prefix' => 'v1'], function () {
                 Route::get('show/{item}', [CreditCardController::class, 'item']);
                 Route::get('active', [CreditCardController::class, 'active']);
                 Route::post('create', [CreditCardController::class, 'create']);
+                Route::post('switch/{id}', [CreditCardController::class, 'switchActiveCard']);
                 Route::delete('remove/{item}', [CreditCardController::class, 'remove']);
             });
         });
@@ -97,6 +104,12 @@ Route::group(['prefix' => 'v1'], function () {
                 Route::get('/', [SubscriptionController::class, 'index']);
                 Route::post('/', [SubscriptionController::class, 'create']);
                 Route::delete('/', [SubscriptionController::class, 'cancelSubscription']);
+            });
+
+            Route::group(['prefix' => 'coupon'], function () {
+                Route::post('/buy', [CouponController::class, 'buy']);
+                Route::get('/', [CouponController::class, 'getUserCoupons']);
+                Route::get('/{code}', [CouponController::class, 'checkCoupon']);
             });
 
             Route::group(['prefix' => 'support'], function () {

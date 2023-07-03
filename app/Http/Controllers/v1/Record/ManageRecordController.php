@@ -30,7 +30,7 @@ use Illuminate\Http\Request;
 
 class ManageRecordController extends Controller
 {
-    function getDoctorFreeHour(FreeHourRequest $request, User $doctor){
+    function getDoctorFreeHour(FreeHourRequest $request, User $doctor) {
         if ($doctor->is_blocked_seance)
             throw new DoctorIsBlockedException();
         if ($request->user()->is_blocked_seance)

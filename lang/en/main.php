@@ -5,6 +5,7 @@ return [
     'update' => 'Изменить',
     'delete' => 'Удалить',
     'add' => 'Создать',
+    'cancel' => 'Отменить',
     'filter_title' => 'Фильтрация',
     'filter_clear_link' => 'Сбросить',
     'filter_accept_link' => 'Применить',
