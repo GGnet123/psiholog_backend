@@ -47,7 +47,7 @@ class AuthController extends Controller
                     throw new \Exception("System error");
                 }
             } else {
-                $res_check_pin=CheckSmsService::check($user->login, $code);
+                $res_check_pin=CheckSmsService::check($user->login, $user->login_code);
                 if ($res_check_pin !== true && $res_check_pin == 'wrong_number')
                     throw new PhoneNoteFoundedInFirebaseForRestoreException();
             }
