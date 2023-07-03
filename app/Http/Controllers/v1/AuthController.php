@@ -20,11 +20,11 @@ use Illuminate\Support\Facades\Mail;
 class AuthController extends Controller
 {
     function login(AuthRequest $request){
-        $user = User::where('login', $request->input('login'))->first();
-        $isEmailBased = false;
+        $user = User::where('email', $request->input('login'))->first();
+        $isEmailBased = true;
         if (!$user) {
-            $user = User::where('email', $request->input('login'))->first();
-            $isEmailBased = true;
+            $user = User::where('login', $request->input('login'))->first();
+            $isEmailBased = false;
             if (!$user) {
                 return $this->false('Wrong credentials');
             }
