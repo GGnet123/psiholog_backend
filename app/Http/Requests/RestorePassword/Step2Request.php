@@ -17,6 +17,7 @@ class Step2Request extends FormRequest
         return [
             'login' => 'required|int',
             'pin' => 'required|int',
+            'sessionInfo' => 'string'
         ];
     }
 }

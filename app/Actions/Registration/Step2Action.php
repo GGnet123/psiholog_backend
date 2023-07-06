@@ -27,7 +27,7 @@ class Step2Action extends AbstractAction {
             throw new NoteFoundedPhoneRegistrationException();
 
         Log::info(json_encode(['sessionInfo' => $this->data['sessionInfo']]));
-        $res_check_pin = CheckSmsService::check($this->data['login'], $this->data['pin'], $this->data['sessionInfo']);
+        $res_check_pin = CheckSmsService::check($this->data['pin'], $this->data['sessionInfo']);
         if ($res_check_pin !== true && $res_check_pin == 'wrong_number')
             throw new PhoneNoteFoundedInFirebaseException();
         else if ($res_check_pin !== true && $res_check_pin == 'wrong_pin')

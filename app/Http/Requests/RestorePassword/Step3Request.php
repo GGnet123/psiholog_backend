@@ -17,6 +17,7 @@ class Step3Request extends FormRequest
         return [
             'login' => 'required|int',
             'pin' => 'required|int',
+            'sessionInfo' => 'string',
             'password' => 'required|string|max:255',
             're_password' => 'required|string|max:255|same:password',
         ];
