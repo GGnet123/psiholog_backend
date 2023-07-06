@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Services\CheckSmsService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class Step2Action extends AbstractAction {
     protected function do(){
@@ -25,7 +26,7 @@ class Step2Action extends AbstractAction {
         if (!$this->model)
             throw new NoteFoundedPhoneRegistrationException();
 
-
+        Log::info(json_encode(['sessionInfo' => $this->data['sessionInfo']]));
         $res_check_pin = CheckSmsService::check($this->data['login'], $this->data['pin'], $this->data['sessionInfo']);
         if ($res_check_pin !== true && $res_check_pin == 'wrong_number')
             throw new PhoneNoteFoundedInFirebaseException();
