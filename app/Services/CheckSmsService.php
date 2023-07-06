@@ -41,6 +41,7 @@ class CheckSmsService {
         ]);
 
         if (!$response->successful()){
+            Log::info(json_encode($response->json()));
             $this->message = 'wrong_pin';
             return false;
         }
