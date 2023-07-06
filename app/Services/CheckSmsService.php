@@ -9,22 +9,22 @@ class CheckSmsService {
     private string $url_check_pin = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPhoneNumber';
     public string $message = '';
 
-    static function check($phone, $pin){
+    static function check($phone, $pin, $sessionInfo){
         $el = new CheckSmsService();
-        $res = $el->run($phone, $pin);
+        $res = $el->run($phone, $pin, $sessionInfo);
         if (!$res)
             return $el->message;
 
         return true;
     }
 
-    function run($phone, $pin) : bool{
+    function run($phone, $pin, $sessionInfo) : bool{
         $key = config('firebase.api_key');
 
-        $response = Http::post($this->url_get_session.'?key='.$key, [
+        /*$response = Http::post($this->url_get_session.'?key='.$key, [
             'phoneNumber' => '+'.$phone
         ]);
-
+        Log::info(json_encode(['key' => $key, 'phone' => $phone]));
         if (!$response->successful()) {
             $this->message = 'wrong_number';
 
@@ -33,10 +33,10 @@ class CheckSmsService {
         }
 
         $token = $response->json();
-        $token = $token['sessionInfo'];
+        $token = $token['sessionInfo'];*/
 
         $response = Http::post($this->url_check_pin.'?key='.$key, [
-            'sessionInfo' => $token,
+            'sessionInfo' => $sessionInfo,
             'code' => $pin
         ]);
 

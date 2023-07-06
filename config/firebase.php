@@ -3,7 +3,8 @@
 declare(strict_types=1);
 
 return [
-    'api_key' => 'AIzaSyCoc9jeEgFyuslyfBW4Om-dVWO7KhplmyM',
+//    'api_key' => 'AIzaSyCoc9jeEgFyuslyfBW4Om-dVWO7KhplmyM',
+    'api_key' => 'AIzaSyD0cdaq4-VP7kG3c-k8Nfa_JeuQrWX85QU',
     /*
      * ------------------------------------------------------------------------
      * Default Firebase project
