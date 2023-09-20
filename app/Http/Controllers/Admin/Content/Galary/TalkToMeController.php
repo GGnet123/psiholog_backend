@@ -29,7 +29,7 @@ class  TalkToMeController extends Controller{
         ]);
     }
 
-    public function create(Request $request, Model $item){
+    public function create(Request $request, Model $item) {
 
         return view($this->view_path.'.create', [
             'title' => __($this->title_path.'_create'),

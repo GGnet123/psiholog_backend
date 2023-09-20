@@ -52,8 +52,10 @@ class UserResource extends JsonResource
             'doctor_credit_card' => $this->doctor_credit_card,
             'is_blocked_seance' => $this->is_blocked_seance,
             'has_active_credit_card' => $this->hasActiveCreditCard(),
-            'type' => 'doctor',
+            'specializations' => $this->relSpecilizationMain()->pluck('name')->toArray(),
+            'card_data' => $this->card_data,
             'education' => $this->education,
+            'type' => 'doctor',
             'therapy_methods' => $this->therapy_methods
         ];
     }
