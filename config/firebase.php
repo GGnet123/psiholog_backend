@@ -3,8 +3,7 @@
 declare(strict_types=1);
 
 return [
-//    'api_key' => 'AIzaSyCoc9jeEgFyuslyfBW4Om-dVWO7KhplmyM',
-    'api_key' => 'AIzaSyD0cdaq4-VP7kG3c-k8Nfa_JeuQrWX85QU',
+    'api_key' => 'a0bc3f0cd6c11e1d14d98649bbe06e3d786c862e',
     /*
      * ------------------------------------------------------------------------
      * Default Firebase project
@@ -49,7 +48,8 @@ return [
              *
              */
             'credentials' => [
-                'file' => env('FIREBASE_CREDENTIALS', env('GOOGLE_APPLICATION_CREDENTIALS')),
+//                'file' => env('FIREBASE_CREDENTIALS', env('GOOGLE_APPLICATION_CREDENTIALS')),
+                'file' => storage_path('firebase_credentials.json'),
 
                 /*
                  * If you want to prevent the auto discovery of credentials, set the

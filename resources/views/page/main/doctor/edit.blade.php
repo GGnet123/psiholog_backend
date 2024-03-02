@@ -30,7 +30,7 @@
                 <x-input.int name="price"  :model="$model"   />
                 <x-input.date name="date_b"  :model="$model" :value="date('Y-m-d', strtotime($model->date_b))" />
                 <x-input.textarea name="card_data"  :model="$model"   />
-                <x-input.multiSelect name="specializations[]"  :model="$model"
+                <x-input.multiSelect name="specializations[]" required  :model="$model"
                 :dataar="[null=>'<Выберите из списка>'] + App\Models\Main\LibSpecialization::all()->pluck('name', 'id')->toArray()"
                 :value="array_keys($specializations)" />
                 <x-input.textarea name="education"  :model="$model"   />
