@@ -62,12 +62,12 @@ class CreateRecordAction extends AbstractAction {
     }
 
     private function checkDateTimeExpired(){
-        date_default_timezone_set('Asia/Dhaka');
+        date_default_timezone_set('Asia/Oral');
 
         $now = new DateTime();
-        $timezone = new DateTimeZone('Asia/Dhaka');
+        $timezone = new DateTimeZone('Asia/Oral');
         $now->setTimezone($timezone);
-        $now->modify('+12 hours');
+        $now->modify('+1 hours');
 
         $record_date = new DateTime($this->data['record_date'].' '.$this->hour_str);
 

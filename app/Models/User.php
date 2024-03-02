@@ -7,6 +7,7 @@ use App\Models\Main\LibSpecialization;
 use App\Models\Profile\UserCertificat;
 use App\Models\Profile\UserSpecialization;
 use App\Models\Profile\UserVideo;
+use App\Models\Record\RecordDoctor;
 use App\Models\Services\UploaderFile;
 use App\Models\Timetable\TimetablePlan;
 use App\Traits\FilterModelTrait;
@@ -16,6 +17,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use DateTime;
+use DateTimeZone;
 
 class User extends Authenticatable
 {
@@ -221,5 +224,75 @@ class User extends Authenticatable
 
     function relFavorite(){
         return $this->hasMany(Favorite::class, 'el_id');
+    }
+
+    public function getClosestOpenDateTime(): ?array
+    {
+        $timetable = TimetablePlan::query()->where('user_id', '=', $this->id)->first();
+        if (!$timetable) {
+            return null;
+        }
+        $now = new DateTime('+1 hour');
+        $timezone = new DateTimeZone('Asia/Oral');
+        $now->setTimezone($timezone);
+        $hour = $now->format('H');
+        $dayOfWeek = date('w', strtotime($now->format('Y-m-d')));
+
+        $iteratedDays = 0;
+
+        return $this->findClosestOpenDate($timetable, $iteratedDays,$hour, $dayOfWeek, $now);
+    }
+
+    private function findClosestOpenDate($timetable, int $iteratedDays, $hour, $dayOfWeek, $now): array
+    {
+        if ($dayOfWeek == 0) {
+            $dayOfWeek = 7;
+        }
+
+        $day = $dayOfWeek + $iteratedDays > 7 ? 1 : $dayOfWeek + $iteratedDays;
+        if ($timetable->getAttribute('day_0'.$day) == 0) {
+            $iteratedDays++;
+            return $this->findClosestOpenDate($timetable, $iteratedDays, $hour, $dayOfWeek, $now);
+        }
+
+        foreach ($timetable->attributes as $key => $value) {
+            if (in_array($key, ['id', 'user_id', 'created_at', 'updated_at'])) {
+                continue;
+            }
+
+            list($unit, $number) = explode('_', $key);
+            if ($unit == 'day') {
+                $iteratedDays++;
+                return $this->findClosestOpenDate($timetable, $iteratedDays, $hour, $dayOfWeek, $now);
+            }
+
+            if ($value == 0) {
+                continue;
+            }
+
+            if ($iteratedDays == 0) {
+                if (intval($number) < intval($hour)) {
+                    continue;
+                }
+            }
+
+            $currentDate = $now;
+            $currentDate->modify('+'.$iteratedDays.' days');
+            $hasRecord = RecordDoctor::query()
+                ->where('doctor_id', '=', $this->id)
+                ->where('record_date', '=', $currentDate->format('Y-m-d'))
+                ->where('record_time', '=', $number.':00:00')
+                ->exists();
+            if ($hasRecord) {
+                continue;
+            }
+            return [
+                'date' => $currentDate->format('Y-m-d'),
+                'time' => $number.':00:00'
+            ];
+        }
+
+        $iteratedDays++;
+        return $this->findClosestOpenDate($timetable, $iteratedDays, $hour, $dayOfWeek, $now);
     }
 }
